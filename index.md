@@ -1,8 +1,10 @@
 ---
 layout: archive
 permalink: /
-title: "Welcome to ENEE459C!"
+title: ""
 published: true
 ---
+
+#Welcome to ENEE459C!
 
 Welcome message here. Can add an image as well.
