@@ -12,9 +12,6 @@
 	.inner-wrap {
 		@include outer-container;
 	}
-    background: #333 url(../images/security.jpg) no-repeat;
-    padding-top: 100px;
-    color: #fff;
 }
 .site-title {
 	@include row;
@@ -24,8 +21,7 @@
 	padding: (.25 * $masthead-height) 0; // fourth the height to center vertically
 	height: $masthead-height;
 	text-decoration: none;
-	/*color: $black;*/
-    color: #fff;
+	color: $black;
 	font-family: $alt-font;
 	font-weight: 700;
 	@include font-size(20,no);
@@ -69,8 +65,7 @@
 			}
 			&:after {
 				width: 0;
-				/*background: $black;*/
-                background: #fff;
+				background: $black;
 			}
 			&:active:after,
 			&:hover:after {
@@ -102,8 +97,7 @@
 			font-weight: 700;
 			@include font-size(16,no);
 			line-height: .5 * $masthead-height; // half the height to center vertically
-			/*color: $black;*/
-            color: #fff;
+			color: $black;
 			text-transform: uppercase;
 		}
 	}
