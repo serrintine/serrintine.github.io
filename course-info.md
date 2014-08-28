@@ -29,6 +29,6 @@ Office hours: Wednesday 2pm-3pm
 
 ###Lectures
 Tuesday and Thursday, 12:30pm-1:45pm, SPH 0308  
-- Lectures will be published on this webpage after class.
-- Homework and programming assignments will be published on this webpage, but should be submitted through Canvas.
-- Discussions will be managed on Canvas. Please do use the discussions on Canvas and do not email the instructor or the TA individually with course-related questions.
+- Lectures will be published on this webpage after class.  
+- Homework and programming assignments will be published on this webpage, but should be submitted through Canvas.  
+- Discussions will be managed on Canvas. Please do use the discussions on Canvas and do not email the instructor or the TA individually with course-related questions.  
