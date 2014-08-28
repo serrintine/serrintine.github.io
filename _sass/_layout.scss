@@ -12,6 +12,7 @@
 	.inner-wrap {
 		@include outer-container;
 	}
+    background: #333;
 }
 .site-title {
 	@include row;
