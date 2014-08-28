@@ -12,6 +12,9 @@
 	.inner-wrap {
 		@include outer-container;
 	}
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.75);
 }
 #masthead-bottom {
 	height: 300px;
