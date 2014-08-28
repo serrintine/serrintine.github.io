@@ -13,7 +13,7 @@
 		@include outer-container;
 	}
     background: #333 url(../images/security.jpg) no-repeat;
-    padding-top: 100px;
+    margin-top: 100px;
 }
 .site-title {
 	@include row;
