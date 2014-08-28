@@ -1,11 +1,9 @@
 ---
 layout: archive
 permalink: /
-title: "Latest Posts"
+title: Latest Posts
+published: true
 ---
 
-<div class="tiles">
-{% for post in site.posts %}
-	{% include post-grid.html %}
-{% endfor %}
-</div><!-- /.tiles -->
+##Welcome to ENEE459C!
+Welcome message here. Can add an image as well.
