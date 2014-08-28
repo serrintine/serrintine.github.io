@@ -101,7 +101,8 @@
 			font-weight: 700;
 			@include font-size(16,no);
 			line-height: .5 * $masthead-height; // half the height to center vertically
-			color: $black;
+			/*color: $black;*/
+            color: #fff;
 			text-transform: uppercase;
 		}
 	}
