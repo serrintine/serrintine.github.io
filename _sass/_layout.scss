@@ -69,7 +69,8 @@
 			}
 			&:after {
 				width: 0;
-				background: $black;
+				/*background: $black;*/
+                background: #fff;
 			}
 			&:active:after,
 			&:hover:after {
