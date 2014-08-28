@@ -12,6 +12,8 @@ ads: false
 published: true
 ---
 
+##Course Information
+
 ###Instructor
 Charalampos (Babis) Papamanthou  
 ECE Department  
