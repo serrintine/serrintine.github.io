@@ -12,7 +12,7 @@
 	.inner-wrap {
 		@include outer-container;
 	}
-    background: #333;
+    background: #333 url(../images/security.jpg) no-repeat;
 }
 .site-title {
 	@include row;
