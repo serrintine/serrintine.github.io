@@ -17,9 +17,9 @@
 	height: 300px;
     display: block;
     background: url(../images/security.jpg) no-repeat;
-    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
--moz-box-shadow:    inset 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
-box-shadow:         inset 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
+	-webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    inset 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	box-shadow:         inset 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 .site-title {
 	@include row;
