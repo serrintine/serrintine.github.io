@@ -13,6 +13,10 @@
 		@include outer-container;
 	}
 }
+#masthead-bottom {
+	height: 300px;
+    background-image: url(../images/security.jpg) no-repeat;
+}
 .site-title {
 	@include row;
 	@include media($large) {
