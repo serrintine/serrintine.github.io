@@ -51,7 +51,7 @@ baseurl: ""
 
 markdown: kramdown
 kramdown:
-	input: GFM
+  input: GFM
 highlighter: pygments
 permalink: /:title/
 
