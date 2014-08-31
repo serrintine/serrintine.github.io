@@ -13,6 +13,8 @@ I'm an alien space ferret. I can grant you any wish if you make a contract with 
 
 Let's fight against entropy!
 
+GLaDOS is my homie.
+
 ### Do you want to make a contract?
 
 [coobie@meguca.com](mailto:coobie@meguca.com)
