@@ -9,11 +9,13 @@ published: true
 
 ### Wassup mahous?
 
-I'm a friendly alien space ferret. I can grant you any wish if you make a contract with me. Become meguca.
+I'm a friendly alien space ferret. I can grant you any wish if you make a contract with me.
 
 I have candy.
 
 And jedi mind powers.
+
+Become meguca.
 
 ### Do you want to make a contract?
 
