@@ -11,6 +11,6 @@ published: true
 
 A place to include any other types of information that you'd like to include about yourself. 
 
-### Contact me
+### Do you want to make a contract?
 
-[email@domain.com](mailto:email@domain.com)
+[coobie@greefsid.com](mailto:coobie@greefsid.com)
