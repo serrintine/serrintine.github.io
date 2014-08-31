@@ -4,11 +4,6 @@ published: true
 ---
 
 <div class="posts">
-
-# Hello world...
-
-Nothing to see here yet ／人◕ ‿‿ ◕人＼
-
   <!--{% for post in site.posts %}
     <article class="post">    
       
@@ -22,3 +17,7 @@ Nothing to see here yet ／人◕ ‿‿ ◕人＼
     </article>
   {% endfor %}-->
 </div>
+
+# Hello world...
+
+Nothing to see here yet ／人◕ ‿‿ ◕人＼
