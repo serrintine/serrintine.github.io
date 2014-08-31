@@ -3,8 +3,8 @@ layout: default
 published: true
 ---
 
-<div class="posts">
-  <!--{% for post in site.posts %}
+<!--<div class="posts">
+  {% for post in site.posts %}
     <article class="post">    
       
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
@@ -15,8 +15,8 @@ published: true
       
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
-  {% endfor %}-->
-</div>
+  {% endfor %}
+</div>-->
 
 # Hello world...
 
