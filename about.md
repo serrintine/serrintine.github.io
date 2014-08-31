@@ -7,7 +7,7 @@ published: true
 
 ／人◕ ‿‿ ◕人＼
 
-### Become Meguca
+### Become meguca!
 
 I'm an alien space ferret. I can grant you any wish if you make a contract with me. Become meguca. 
 
