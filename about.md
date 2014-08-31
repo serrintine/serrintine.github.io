@@ -13,6 +13,8 @@ I'm a friendly alien space ferret. I can grant you any wish if you make a contra
 
 I have candy.
 
+And jedi mind powers.
+
 ### Do you want to make a contract?
 
 [coobie@meguca.com](mailto:coobie@meguca.com)
