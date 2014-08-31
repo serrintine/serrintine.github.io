@@ -7,10 +7,10 @@ published: true
 
 ／人◕ ‿‿ ◕人＼
 
-### More Information
+### Become meguca
 
-A place to include any other types of information that you'd like to include about yourself. 
+I'm an alien space ferret. I can grant you any wish if you make a contract with me. Become meguca. 
 
 ### Do you want to make a contract?
 
-[coobie@greefsid.com](mailto:coobie@greefsid.com)
+[coobie@meguca.com](mailto:coobie@meguca.com)
