@@ -11,9 +11,7 @@ published: true
 
 I'm a friendly alien space ferret. I can grant you any wish if you make a contract with me. Become meguca.
 
-Let's fight against entropy!
-
-GLaDOS is my homie.
+I have candy.
 
 ### Do you want to make a contract?
 
