@@ -18,7 +18,7 @@ body {
   /* font: 300 1em/1.333 "proxima-nova", sans-serif; */
 }
 
-/*.site {
+.site {
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -33,7 +33,7 @@ body {
   @include breakpoint("large") {
     padding-top: 2em;
   }
-}*/
+}
 
 .container {
   margin: 0 auto;
