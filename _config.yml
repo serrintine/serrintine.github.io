@@ -64,7 +64,3 @@ exclude:
     - Gemfile.lock
     - LICENSE
     - README.md
-		- config.rb
-		- Rakefile
-		- bower.json
-		- bower_components
