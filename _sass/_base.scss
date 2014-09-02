@@ -18,6 +18,16 @@ body {
   font: 300 1em/1.333 "proxima-nova", sans-serif;
 }
 
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
 .container {
   margin: 0 auto;
   max-width: 740px;
