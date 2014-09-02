@@ -28,9 +28,5 @@ published: true
 .
 .
 .
-.
-.
-.
-.
 
 I grant wishes.
