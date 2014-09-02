@@ -81,10 +81,11 @@ p {
 a {
   color: $blue;
   text-decoration: none;
-	cursor: pointer;
+  cursor: pointer;
   &:hover, &:active {
     color: $blue;
   }
+  transition: .3s;
 }
 
 ul, ol {
