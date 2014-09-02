@@ -13,14 +13,20 @@
 /* BASE RULES */
 /**************/
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 100%;
+  height: 100%;
 }
 
 body {
-	background: $white;
+  background: $white;
   font: 16px/1.4 $helvetica;
   color: $darkGray;
+  /* font: 300 1em/1.333 "proxima-nova", sans-serif; */
 }
 
 .site {
