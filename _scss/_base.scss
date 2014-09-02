@@ -18,23 +18,6 @@ body {
   /* font: 300 1em/1.333 "proxima-nova", sans-serif; */
 }
 
-.Site {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.Site-content {
-  flex: 1;
-  width: 100%;
-  padding: 1.5em;
-  -ms-flex-preferred-size: auto;
-
-  @include breakpoint("large") {
-    padding-top: 2em;
-  }
-}
-
 .container {
   margin: 0 auto;
   max-width: 740px;
