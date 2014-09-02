@@ -19,16 +19,16 @@ body {
 }
 
 .site {
-  /*display: flex;
-  flex-direction: column;*/
+  display: flex;
+  flex-direction: column;
   min-height: 100%;
 }
 
 .site-content {
-  /*flex: 1;*/
+  flex: 1;
   width: 100%;
   padding: 1.5em;
-  /*-ms-flex-preferred-size: auto;*/
+  -ms-flex-preferred-size: auto;
 
   @include breakpoint("large") {
     padding-top: 2em;
