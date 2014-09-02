@@ -20,8 +20,7 @@
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
   </head>
 
-  <body>
-    <div id="wrapper">
+  <body class="site">
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
@@ -40,7 +39,7 @@
       </div>
     </div>
 
-    <div id="wrapper-main" role="main" class="container">
+    <div id="wrapper-main" role="main" class="container site-content">
       {{ content }}
     </div>
 
@@ -50,7 +49,6 @@
           {% include svg-icons.html %}
         </footer>
       </div>
-    </div>
     </div>
 
     {% include analytics.html %}
