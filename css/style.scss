@@ -23,6 +23,25 @@ body {
   color: $darkGray;
 }
 
+.Site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.Site-content {
+  flex: 1;
+  width: 100%;
+  padding: 1.5em;
+
+  /* IE10 tweener syntax */
+  -ms-flex-preferred-size: auto;
+
+  @include breakpoint("large") {
+    padding-top: 2em;
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: 740px;
@@ -236,10 +255,6 @@ nav {
 //
 // .main
 //
-
-#main.container {
-	height: 100%;
-}
 
 .posts > .post {
   padding-bottom: 2em;
