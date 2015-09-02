@@ -8,13 +8,16 @@ published: true
 
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
-### Sailunsi Chen
+<div style = "text-align:center">
+<span style="font-weight:bold; font-size:16px">Sailunsi Chen</span>
 sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
+</div>
 
 ### Education
+<hr />
 <pre>
-University of Maryland							College Park, MD
+University of Maryland										College Park, MD
 B.S. Candidate, Mathematics and Computer Science			Expected graduation: May 2016
 Cumulative GPA: 3.82/4.00
 Current relevant coursework: CMSC420 – Data Structures
@@ -26,7 +29,10 @@ Previous courses: Database Design, Computer and Network Security, Algorithms,
 		      Introduction to Probability Theory, Introduction to Statistics
 </pre>
 
+<br />
+
 ### Skills
+<hr />
 <pre>
 Computer languages: Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
 Communication languages: English (native), Mandarin Chinese (native),
@@ -36,23 +42,28 @@ Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
 </pre>
 
+<br />
+
 ### Experience
-Epic Systems									Summer 2014
+<hr />
+<pre>
+Epic Systems														Summer 2014
 Software Development-Intern
 *	Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data
 *	Used SAP HANA in-memory database and SAP business analytics tools to model user action data to find inefficiencies in user workflow
 *	Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis
 *	Used R to develop a web application to facilitate easier modeling for Epic's optimization team
-Software Design Class								Spring 2012
+Software Design Class												Spring 2012
 Game development
 *	Worked in a team of three to produce a fully functional game involving 3-dimensional manipulation of light beams with rotating mirrors and beam splitters
 *	3D rendering in Java using JOGL library
 *	2D game components in Java using Graphics2D
 *	Digital artwork using GIMP 2.0 and Paint Tool SAI
-Center for Prostate Disease Research						Summer 2011, 2013
+Center for Prostate Disease Research								Summer 2011, 2013
 Laboratory Assistant
 *	Worked on developing a non-invasive urine-based prostate cancer detection assay, as well as the subcellular localization of the androgen-responsive protein PMEPA1
 *	Cell culture of established prostate cancer cell lines (LNCaP/VCaP cells)
 *	Fluorescent and immunohistochemistry staining of prostate cancer cells
 *	Fluorescence microscopy of stained prostate cancer cells
 *	Western blotting of total and fractional protein of prostate cancer cells
+</pre>
