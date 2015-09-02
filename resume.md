@@ -34,7 +34,7 @@ University of Maryland &middot; College Park, MD 20740
       <td>Cumulative GPA: 3.82/4.00</td>
       <td> </td>
     </tr>
-    </tbody>
+  </tbody>
 </table>
 
 <table>
