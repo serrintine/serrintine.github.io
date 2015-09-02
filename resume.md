@@ -52,6 +52,7 @@ University of Maryland &middot; College Park, MD 20740
 
 ### Skills
 <hr />
+
 <p style="margin:0;padding:0">
 _Computer languages:_ Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
 _Communication languages:_ English (native), Mandarin Chinese (native), Japanese (elementary), French (elementary)
