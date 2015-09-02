@@ -19,7 +19,7 @@ University of Maryland &middot; College Park, MD 20740
 ### Education
 <hr />
 
-| First Header  | Second Header |
+| | |
 | ------------- | ------------- |
 | University of Maryland | College Park, MD |
 | B.S. Candidate, Mathematics and Computer Science | Expected graduation: May 2016 |
