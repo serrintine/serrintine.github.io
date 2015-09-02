@@ -21,10 +21,8 @@ University of Maryland &middot; College Park, MD 20740
 
 | First Header  | Second Header |
 | ------------- | ------------- |
-| sdfhsk | sdjhkj |
-
-| University of Maryland | College Park, MD
-| B.S. Candidate, Mathematics and Computer Science | Expected graduation: May 2016
+| University of Maryland | College Park, MD |
+| B.S. Candidate, Mathematics and Computer Science | Expected graduation: May 2016 |
 | Cumulative GPA: 3.82/4.00 | |
 | <pre>Current relevant coursework: CMSC420 – Data Structures
 				  CMSC498O – Data Science I
