@@ -6,6 +6,7 @@ published: true
 ---
 
 
+
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
 <div style = "text-align:center">
@@ -43,7 +44,6 @@ University of Maryland &middot; College Park, MD 20740
     </tr>
   </tbody>
 </table>
-
 
 <br />
 
