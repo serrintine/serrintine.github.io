@@ -5,6 +5,8 @@ permalink: /resume/
 published: true
 ---
 
+[PDF Version](serrintine.github.io/assets/Sailunsi Chen Resume Updated.pdf)
+
 Sailunsi Chen
 sailunsi@.umd.edu · (240)-499-5177
 University of Maryland · College Park, MD 20740
