@@ -22,7 +22,7 @@ University of Maryland &middot; College Park, MD 20740
 | University of Maryland | College Park, MD |
 | <span style="padding-right:25px">B.S. Candidate, Mathematics and Computer Science</span> | Expected graduation: May 2016 |
 | Cumulative GPA: 3.82/4.00 | |
-| Current relevant coursework: | <ul style="list-style:none"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li> |
+| Current relevant coursework: | <ul style="list-style:none"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul> |
 | Previous courses: | Database Design, Computer and Network Security, Algorithms, Organization of Programming Languages, Discrete Structures, Introduction to Computer Systems, Object-Oriented Programming I/II, Introduction to Probability Theory, Introduction to Statistics |
 
 <br />
