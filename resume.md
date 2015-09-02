@@ -5,7 +5,7 @@ permalink: /resume/
 published: true
 ---
 
-[PDF Version](serrintine.github.io/assets/Sailunsi Chen Resume Updated.pdf)
+<a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
 Sailunsi Chen
 sailunsi@.umd.edu · (240)-499-5177
