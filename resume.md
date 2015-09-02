@@ -52,6 +52,8 @@ University of Maryland &middot; College Park, MD 20740
   </tbody>
 </table>
 
+<div style = "height:10px"></div>
+
 ### Skills
 <hr />
 
@@ -62,6 +64,8 @@ University of Maryland &middot; College Park, MD 20740
 Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
 </p>
+
+<div style = "height:10px"></div>
 
 ### Experience
 <hr />
