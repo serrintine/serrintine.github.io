@@ -81,7 +81,7 @@ Solid understanding of statistical analysis and predictive modeling
       <td style="width:100px">Summer 2014</td>
     </tr>
     <tr>
-      <td ><ul style="margin:0 20px;padding:0"><li>Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data</li><li>Used SAP HANA in-memory database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</li><li>Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</li><li>Used R to develop a web application to facilitate easier modeling for Epic's optimization team</li></ul></td>
+      <td colspan="2"><ul style="margin:0 20px;padding:0"><li>Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data</li><li>Used SAP HANA in-memory database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</li><li>Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</li><li>Used R to develop a web application to facilitate easier modeling for Epic's optimization team</li></ul></td>
     </tr>
   </tbody>
 </table>
