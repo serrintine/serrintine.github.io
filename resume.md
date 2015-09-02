@@ -27,7 +27,7 @@ University of Maryland &middot; College Park, MD 20740
       <td>College Park, MD</td>
     </tr>
     <tr>
-      <td style="width:300px">B.S. Candidate, Mathematics and Computer Science</td>
+      <td style="width:400px">B.S. Candidate, Mathematics and Computer Science</td>
       <td>Expected graduation: May 2016</td>
     </tr>
     <tr>
@@ -36,7 +36,7 @@ University of Maryland &middot; College Park, MD 20740
     </tr>
     <tr>
       <td>Current relevant coursework:</td>
-      <td><ul style="list-style:none"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul></td>
+      <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul></td>
     </tr>
     <tr>
       <td>Previous courses:</td>
