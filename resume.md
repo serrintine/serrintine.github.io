@@ -17,6 +17,8 @@ sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
 </div>
 
+<br />
+
 ### Education
 <hr />
 
@@ -51,18 +53,20 @@ University of Maryland &middot; College Park, MD 20740
 </table>
 
 <br />
+
 ### Skills
 <hr />
 
 <p style="margin:0;padding:0">
-_Computer languages:_ Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
-_Communication languages:_ English (native), Mandarin Chinese (native), Japanese (elementary), French (elementary)
-_Development environments:_ Windows, UNIX, Linux
+<i>Computer languages:</i> Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
+<i>Communication languages:</i> English (native), Mandarin Chinese (native), Japanese (elementary), French (elementary)
+<i>Development environments:</i> Windows, UNIX, Linux
 Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
 </p>
 
 <br />
+
 ### Experience
 <hr />
 
