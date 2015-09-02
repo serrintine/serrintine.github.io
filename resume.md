@@ -12,7 +12,7 @@ published: true
 <div style = "text-align:center;margin-bottom:10px">
 <span style="font-weight:bold; font-size:18px">Sailunsi Chen</span>
 <br />
-sailunsi@.umd.edu &middot; (240)-499-5177
+sailunsi[at]umd.edu &middot; (240)-499-5177
 <br />
 University of Maryland &middot; College Park, MD 20740
 </div>
