@@ -53,7 +53,6 @@ University of Maryland &middot; College Park, MD 20740
 </table>
 
 &nbsp;
-
 ### Skills
 <hr />
 
@@ -66,7 +65,6 @@ Solid understanding of statistical analysis and predictive modeling
 </p>
 
 &nbsp;
-
 ### Experience
 <hr />
 
