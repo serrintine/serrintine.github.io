@@ -79,4 +79,3 @@ Laboratory Assistant
 *	Fluorescent and immunohistochemistry staining of prostate cancer cells
 *	Fluorescence microscopy of stained prostate cancer cells
 *	Western blotting of total and fractional protein of prostate cancer cells
-</pre>
