@@ -17,6 +17,8 @@ sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
 </div>
 
+<div style = "height:10px"></div>
+
 ### Education
 <hr />
 
