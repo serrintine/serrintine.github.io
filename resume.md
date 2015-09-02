@@ -9,7 +9,7 @@ published: true
 
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
-<div style = "text-align:center">
+<div style = "text-align:center;margin-bottom:10px">
 <span style="font-weight:bold; font-size:18px">Sailunsi Chen</span>
 <br />
 sailunsi@.umd.edu &middot; (240)-499-5177
