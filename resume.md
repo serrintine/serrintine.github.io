@@ -36,7 +36,8 @@ University of Maryland &middot; College Park, MD 20740
     </tr>
     </tbody>
 </table>
-    <table>
+
+<table>
   <tbody>
     <tr>
       <td>Current relevant coursework:</td>
