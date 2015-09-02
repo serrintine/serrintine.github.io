@@ -38,10 +38,11 @@ body {
 }
 
 hr {
+	margin: 0;
 	padding: 0;
-    margin: 0;
-    height: 0;
-    border-bottom: 1px solid #000;
+	border: 0;
+    height: 1px;
+    background: #333;
 }
 
 table {
