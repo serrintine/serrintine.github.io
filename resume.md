@@ -17,7 +17,7 @@ sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
 </div>
 
-<div style = "height:10px"></div>
+<div style = "height:20px"></div>
 
 ### Education
 <hr />
@@ -52,7 +52,7 @@ University of Maryland &middot; College Park, MD 20740
   </tbody>
 </table>
 
-<div style = "height:10px"></div>
+<div style = "height:20px"></div>
 
 ### Skills
 <hr />
@@ -65,7 +65,7 @@ Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
 </p>
 
-<div style = "height:10px"></div>
+<div style = "height:20px"></div>
 
 ### Experience
 <hr />
