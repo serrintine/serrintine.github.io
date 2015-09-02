@@ -9,25 +9,26 @@ published: true
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
 <div style = "text-align:center">
-<span style="font-weight:bold; font-size:16px">Sailunsi Chen</span>
+<span style="font-weight:bold; font-size:18px">Sailunsi Chen</span>
+<br />
 sailunsi@.umd.edu &middot; (240)-499-5177
+<br />
 University of Maryland &middot; College Park, MD 20740
 </div>
 
 ### Education
 <hr />
-<pre>
-University of Maryland										College Park, MD
-B.S. Candidate, Mathematics and Computer Science			Expected graduation: May 2016
-Cumulative GPA: 3.82/4.00
-Current relevant coursework: CMSC420 – Data Structures
+|University of Maryland|										College Park, MD
+|B.S. Candidate, Mathematics and Computer Science|			Expected graduation: May 2016
+|Cumulative GPA: 3.82/4.00|
+|<pre>Current relevant coursework: CMSC420 – Data Structures
 				  CMSC498O – Data Science I
 				  STAT430 – Introduction to Statistical Computing with SAS
-Previous courses: Database Design, Computer and Network Security, Algorithms,
+                  </pre>|
+|<pre>Previous courses: Database Design, Computer and Network Security, Algorithms,
 		      Organization of Programming Languages, Discrete Structures,
 		      Introduction to Computer Systems, Object-Oriented Programming I/II,
-		      Introduction to Probability Theory, Introduction to Statistics
-</pre>
+		      Introduction to Probability Theory, Introduction to Statistics</pre>|
 
 <br />
 
