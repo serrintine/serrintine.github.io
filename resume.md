@@ -5,13 +5,15 @@ permalink: /resume/
 published: true
 ---
 
+
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
-###Sailunsi Chen
+### Sailunsi Chen
 sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
 
-###Education
+### Education
+<pre>
 University of Maryland							College Park, MD
 B.S. Candidate, Mathematics and Computer Science			Expected graduation: May 2016
 Cumulative GPA: 3.82/4.00
@@ -22,16 +24,19 @@ Previous courses: Database Design, Computer and Network Security, Algorithms,
 		      Organization of Programming Languages, Discrete Structures,
 		      Introduction to Computer Systems, Object-Oriented Programming I/II,
 		      Introduction to Probability Theory, Introduction to Statistics
+</pre>
 
-###Skills
+### Skills
+<pre>
 Computer languages: Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
 Communication languages: English (native), Mandarin Chinese (native),
 			          Japanese (elementary), French (elementary)
 Development environments: Windows, UNIX, Linux
 Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
+</pre>
 
-###Experience
+### Experience
 Epic Systems									Summer 2014
 Software Development-Intern
 *	Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data
