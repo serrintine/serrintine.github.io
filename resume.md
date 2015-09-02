@@ -74,9 +74,9 @@ Solid understanding of statistical analysis and predictive modeling
   <tbody>
     <tr>
       <td>
-      Epic Systems
+      <b>Epic Systems</b>
       <br />
-      Software Development-Intern
+      <i>Software Development-Intern</i>
       </td>
       <td style="width:100px">Summer 2014</td>
     </tr>
