@@ -40,7 +40,7 @@ University of Maryland &middot; College Park, MD 20740
 <table>
   <tbody>
     <tr>
-      <td>Current relevant coursework:</td>
+      <td style="width:150px">Current relevant coursework:</td>
       <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul></td>
     </tr>
     <tr>
