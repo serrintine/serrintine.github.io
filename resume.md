@@ -17,7 +17,7 @@ sailunsi@.umd.edu &middot; (240)-499-5177
 University of Maryland &middot; College Park, MD 20740
 </div>
 
-<div style = "height:20px"></div>
+<div style = "height:15px"></div>
 
 ### Education
 <hr />
@@ -46,13 +46,13 @@ University of Maryland &middot; College Park, MD 20740
       <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul></td>
     </tr>
     <tr>
-      <td>Previous courses:</td>
+      <td>Previous coursework:</td>
       <td>Database Design, Computer and Network Security, Algorithms, Organization of Programming Languages, Discrete Structures, Introduction to Computer Systems, Object-Oriented Programming I/II, Introduction to Probability Theory, Introduction to Statistics</td>
     </tr>
   </tbody>
 </table>
 
-<div style = "height:20px"></div>
+<div style = "height:15px"></div>
 
 ### Skills
 <hr />
@@ -69,7 +69,7 @@ Experience with relational databases
 Solid understanding of statistical analysis and predictive modeling
 </p>
 
-<div style = "height:20px"></div>
+<div style = "height:15px"></div>
 
 ### Experience
 <hr />
