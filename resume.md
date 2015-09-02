@@ -59,9 +59,13 @@ University of Maryland &middot; College Park, MD 20740
 
 <p style="margin:0;padding:0">
 <i>Computer languages:</i> Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
+<br />
 <i>Communication languages:</i> English (native), Mandarin Chinese (native), Japanese (elementary), French (elementary)
+<br />
 <i>Development environments:</i> Windows, UNIX, Linux
+<br />
 Experience with relational databases
+<br />
 Solid understanding of statistical analysis and predictive modeling
 </p>
 
