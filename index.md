@@ -23,3 +23,5 @@ published: true
 # Hello world...
 
 I'm **Sailunsi**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
+
+I'm sufficiently versed in both UI design and backend dev.
