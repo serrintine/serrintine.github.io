@@ -51,5 +51,5 @@ def languages()
 #!/bin/bash
 function education {
   echo "University of Maryland, College Park"
-  echo "B.S. candidate, mathematics and computer science"
+  echo "B.S. Candidate, Mathematics and Computer Science"
 }
