@@ -3,6 +3,7 @@ layout: default
 published: true
 ---
 
+
 <!--<div class="posts">
   {% for post in site.posts %}
     <article class="post">    
@@ -29,4 +30,12 @@ def interests
   puts "Cryptography"
   puts "Security"
 end
+{% endhighlight %}
+
+{% highlight python %}
+def languages()
+  print "Java"
+  print "Python"
+  print "C"
+  print "HTML/CSS"
 {% endhighlight %}
