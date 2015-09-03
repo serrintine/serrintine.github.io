@@ -4,6 +4,7 @@ published: true
 ---
 
 
+
 <!--<div class="posts">
   {% for post in site.posts %}
     <article class="post">    
@@ -42,6 +43,7 @@ def languages()
   print "Python"
   print "C"
   print "HTML/CSS"
+  print "SQL"
   print "LaTeX"
 {% endhighlight %}
 
