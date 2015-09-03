@@ -5,9 +5,22 @@
 
 code {
   font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  /*font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;*/
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
 }
 
-.highlight { background: #ffffff; }
+.highlight {
+  background: #efefef;
+  -moz-border-radius: 15px;
+  border-radius: 5px;
+  border: 1px solid #333;
+}
+
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
