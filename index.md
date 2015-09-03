@@ -4,6 +4,7 @@ published: true
 ---
 
 
+
 <!--<div class="posts">
   {% for post in site.posts %}
     <article class="post">    
@@ -21,4 +22,4 @@ published: true
 
 # Hello world...
 
-I'm **Sailunsi**. I write a lot of code. I also play video game music.
+I'm **Sailunsi**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
