@@ -37,6 +37,19 @@ body {
   width: 100%;
 }
 
+hr {
+	margin: 0;
+	padding: 0;
+	border: 0;
+    height: 1px;
+    background: #333;
+}
+
+table {
+    empty-cells: hide;
+    font-size: 14px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
