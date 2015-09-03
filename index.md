@@ -6,6 +6,7 @@ published: true
 
 
 
+
 <!--<div class="posts">
   {% for post in site.posts %}
     <article class="post">    
@@ -25,7 +26,7 @@ published: true
 
 I'm **Sailunsi**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
 
-{% highlight ruby linenos %}
+{% highlight ruby %}
 def interests
   puts "Mobile development"
   puts "Web development"
