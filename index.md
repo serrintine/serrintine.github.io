@@ -3,6 +3,7 @@ layout: default
 published: true
 ---
 
+
 <!--<div class="posts">
   {% for post in site.posts %}
     <article class="post">    
@@ -20,10 +21,4 @@ published: true
 
 # Hello world...
 
-／人◕ ‿‿ ◕人＼
-
-.
-.
-.
-
-I grant wishes.
+I'm **Sailunsi**. I write a lot of code. I also play video game music.
