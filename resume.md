@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Sailunsi Chen
+title: Resume
 permalink: /resume/
 published: true
 ---
