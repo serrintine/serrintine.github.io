@@ -6,6 +6,7 @@ published: true
 ---
 
 
+
 <a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
 
 <div style = "text-align:center;margin-bottom:10px">
@@ -32,8 +33,7 @@ University of Maryland &middot; College Park, MD 20740
       <td>Expected graduation: May 2016</td>
     </tr>
     <tr>
-      <td>Cumulative GPA: 3.82/4.00</td>
-      <td> </td>
+      <td colspan="2">Cumulative GPA: 3.82/4.00</td>
     </tr>
   </tbody>
 </table>
