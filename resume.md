@@ -5,46 +5,86 @@ permalink: /resume/
 published: true
 ---
 
-sailunsi@.umd.edu &middot; (240)-499-5177
+
+<a href="{{ site.baseurl }}/assets/Sailunsi Chen Resume Updated.pdf">PDF Version</a>
+
+<div style = "text-align:center;margin-bottom:10px">
+<span style="font-weight:bold; font-size:18px">Sailunsi Chen</span>
+<br />
+sailunsi[at]umd.edu &middot; (240)-499-5177
+<br />
 University of Maryland &middot; College Park, MD 20740
+</div>
 
-###Education
-University of Maryland							College Park, MD
-B.S. Candidate, Mathematics and Computer Science			Expected graduation: May 2016
-Cumulative GPA: 3.82/4.00
-Current relevant coursework: CMSC420 – Data Structures
-				  CMSC498O – Data Science I
-				  STAT430 – Introduction to Statistical Computing with SAS
-Previous courses: Database Design, Computer and Network Security, Algorithms,
-		      Organization of Programming Languages, Discrete Structures,
-		      Introduction to Computer Systems, Object-Oriented Programming I/II,
-		      Introduction to Probability Theory, Introduction to Statistics
+<div style = "height:15px"></div>
 
-###Skills
-Computer languages: Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
-Communication languages: English (native), Mandarin Chinese (native),
-			          Japanese (elementary), French (elementary)
-Development environments: Windows, UNIX, Linux
+### Education
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td><b>University of Maryland</b></td>
+      <td>College Park, MD</td>
+    </tr>
+    <tr>
+      <td style="width:500px"><i>B.S. Candidate, Mathematics and Computer Science</i></td>
+      <td>Expected graduation: May 2016</td>
+    </tr>
+    <tr>
+      <td>Cumulative GPA: 3.82/4.00</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td style="width:150px">Current coursework:</td>
+      <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC420 – Data Structures</li><li>CMSC498O – Data Science I</li><li>STAT430 – Introduction to Statistical Computing with SAS</li></ul></td>
+    </tr>
+    <tr>
+      <td>Previous coursework:</td>
+      <td>Database Design, Computer and Network Security, Algorithms, Organization of Programming Languages, Discrete Structures, Introduction to Computer Systems, Object-Oriented Programming I/II, Introduction to Probability Theory, Introduction to Statistics</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style = "height:15px"></div>
+
+### Skills
+<hr />
+
+<p style="margin:0;padding:0">
+<i>Computer languages:</i> Java (6+ years), C, SQL, LaTeX, R, SAS, HTML, CSS, PHP
+<br />
+<i>Communication languages:</i> English (native), Mandarin Chinese (native), Japanese (elementary), French (elementary)
+<br />
+<i>Development environments:</i> Windows, UNIX, Linux
+<br />
 Experience with relational databases
+<br />
 Solid understanding of statistical analysis and predictive modeling
+</p>
 
-###Experience
-Epic Systems									Summer 2014
-Software Development-Intern
-*	Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data
-*	Used SAP HANA in-memory database and SAP business analytics tools to model user action data to find inefficiencies in user workflow
-*	Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis
-*	Used R to develop a web application to facilitate easier modeling for Epic's optimization team
-Software Design Class								Spring 2012
-Game development
-*	Worked in a team of three to produce a fully functional game involving 3-dimensional manipulation of light beams with rotating mirrors and beam splitters
-*	3D rendering in Java using JOGL library
-*	2D game components in Java using Graphics2D
-*	Digital artwork using GIMP 2.0 and Paint Tool SAI
-Center for Prostate Disease Research						Summer 2011, 2013
-Laboratory Assistant
-*	Worked on developing a non-invasive urine-based prostate cancer detection assay, as well as the subcellular localization of the androgen-responsive protein PMEPA1
-*	Cell culture of established prostate cancer cell lines (LNCaP/VCaP cells)
-*	Fluorescent and immunohistochemistry staining of prostate cancer cells
-*	Fluorescence microscopy of stained prostate cancer cells
-*	Western blotting of total and fractional protein of prostate cancer cells
+<div style = "height:15px"></div>
+
+### Experience
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+      <b>Epic Systems</b>
+      <br />
+      <i>Software Development-Intern</i>
+      </td>
+      <td style="width:100px">Summer 2014</td>
+    </tr>
+    <tr>
+      <td colspan="2"><ul style="margin:0 20px;padding:0"><li>Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data</li><li>Used SAP HANA in-memory database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</li><li>Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</li><li>Used R to develop a web application to facilitate easier modeling for Epic's optimization team</li></ul></td>
+    </tr>
+  </tbody>
+</table>
