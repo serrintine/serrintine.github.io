@@ -44,7 +44,7 @@ University of Maryland &middot; College Park, MD 20740
   <tbody>
     <tr>
       <td style="width:150px">Current coursework:</td>
-      <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC412 - Operating Systems</li><li>AMSC460 - Computational Methods</li><li>STAT600 - Probability Theory I</li></ul></td>
+      <td><ul style="list-style:none;margin:0;padding:0"><li>CMSC412 - Operating Systems</li><li>CMSC460 - Computational Methods</li><li>STAT600 - Probability Theory I</li></ul></td>
     </tr>
     <tr>
       <td>Previous coursework:</td>
