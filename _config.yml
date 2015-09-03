@@ -18,13 +18,13 @@ footer-links:
   facebook: sailunsi.chen
   flickr: 
   github: serrintine
-  instagram: serrintine
-  linkedin: sailunsi-chen
+  instagram:
+  linkedin: sailunsi-chen/6b/684/58b
   pinterest: 
   rss: # just type anything here for a working RSS icon
   twitter: serrintine
   stackoverflow:
-  youtube: channel/serrintine # channel/<your_long_string> or user/<user-name>
+  youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
 # Disqus shortname, entering this will enable commenting on posts
