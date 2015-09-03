@@ -24,6 +24,7 @@ published: true
 I'm **Sailunsi**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
 
 {% highlight ruby %}
+#!/usr/bin/env ruby
 def interests
   puts "Mobile development"
   puts "Web development"
@@ -32,7 +33,10 @@ def interests
 end
 {% endhighlight %}
 
+<div style="height:15px"></div>
+
 {% highlight python %}
+#!/usr/bin/env python
 def languages()
   print "Java"
   print "Python"
