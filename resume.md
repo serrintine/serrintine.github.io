@@ -22,7 +22,7 @@ University of Maryland &middot; College Park, MD 20740
 ### Education
 <hr />
 
-<table>
+<table style="width:100%">
   <tbody>
     <tr>
       <td><b>University of Maryland</b></td>
