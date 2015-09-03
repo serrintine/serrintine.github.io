@@ -42,4 +42,14 @@ def languages()
   print "Python"
   print "C"
   print "HTML/CSS"
+  print "LaTeX"
 {% endhighlight %}
+
+<div style="height:15px"></div>
+
+{% highlight bash %}
+#!/bin/bash
+function education {
+  echo "University of Maryland, College Park"
+  echo "B.S. candidate, mathematics and computer science"
+}
