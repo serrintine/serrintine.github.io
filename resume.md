@@ -59,7 +59,7 @@ University of Maryland &middot; College Park, MD 20740
 <hr />
 
 <p style="margin:0;padding:0">
-<i>Computer languages:</i> Java (7+ years), Python, C, HTML, CSS, SQL, LaTeX, R, SAS
+<i>Computer languages:</i> Java (7+ years), Python, C, HTML, CSS, SQL, LaTeX, R, SAS; limited experience with Ruby, JavaScript, C#, Bash, OCaml, MATLAB
 <br />
 <i>Communication languages:</i> English (native), Mandarin Chinese (native), Japanese (limited), French (limited)
 <br />
