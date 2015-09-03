@@ -29,7 +29,9 @@ University of Maryland &middot; College Park, MD 20740
       <td>College Park, MD</td>
     </tr>
     <tr>
-      <td style="width:500px"><i>B.S. Candidate, Mathematics and Computer Science</i></td>
+      <td style="width:500px">
+      <i>B.S. Candidate, Mathematics and Computer Science</i>
+      </td>
       <td>Expected graduation: May 2016</td>
     </tr>
     <tr>
