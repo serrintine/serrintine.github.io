@@ -2,4 +2,4 @@
 layout: default
 published: true
 ---
-[Presentation](http://slides.com/sailunsichen/voting/live)
+<img src="{{ site.baseurl }}/images/badge.png" style="width: 700px;"/>](http://slides.com/sailunsichen/voting/live)
