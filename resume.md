@@ -15,6 +15,10 @@ published: true
 sailunsi@umd.edu &middot; (240)-499-5177
 <br />
 University of Maryland &middot; College Park, MD 20740
+<br />
+<a href="https://github.com/serrintine">https://github.com/serrintine</a>
+&middot;
+<a href="http://serrintine.github.io">http://serrintine.github.io</a>
 </div>
 
 <div style = "height:15px"></div>
