@@ -19,7 +19,6 @@ published: true
 </div>
 <div id="id_2">
 <div id="id_2_1">
-<table cellpadding=0 cellspacing=0 class="t0">
 <tr>
 	<td class="tr0 td0"><p class="p4 ft3">EXPERIENCE</p></td>
 	<td class="tr0 td1"><p class="p4 ft4">&nbsp;</p></td>
@@ -32,11 +31,10 @@ published: true
 	<td class="tr2 td0"><p class="p4 ft7">Software <nobr>Development-Intern</nobr></p></td>
 	<td class="tr2 td1"><p class="p4 ft4">&nbsp;</p></td>
 </tr>
-</table>
-<P class="p5 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Developed a searching functionality for MyChart, a patient- facing health record application, on Android</SPAN></P>
-<P class="p6 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Wrote a business logic for searching in a C# library, making use of </SPAN><NOBR>Damerau-Levenshtein</NOBR> edit distance to do fuzzy string matching on user queries</P>
-<P class="p7 ft12"><SPAN class="ft8">∙</SPAN><SPAN class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</SPAN></P>
-<P class="p8 ft14"><SPAN class="ft8">∙</SPAN><SPAN class="ft13">Worked with Android fragments and adhered to Google's material design principles to create a smooth and intuitive user interface</SPAN></P>
+<p class="p5 ft10"><span class="ft8">∙</span><span class="ft9">Developed a searching functionality for MyChart, a patient- facing health record application, on Android</span></p>
+<p class="p6 ft10"><span class="ft8">∙</span><span class="ft9">Wrote a business logic for searching in a C# library, making use of </span><nobr>Damerau-Levenshtein</nobr> edit distance to do fuzzy string matching on user queries</p>
+<p class="p7 ft12"><span class="ft8">∙</span><span class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</span></p>
+<p class="p8 ft14"><span class="ft8">∙</span><span class="ft13">Worked with Android fragments and adhered to Google's material design principles to create a smooth and intuitive user interface</span></p>
 <TABLE cellpadding=0 cellspacing=0 class="t1">
 <TR>
 	<TD class="tr3 td0"><P class="p4 ft5">Epic Systems</P></TD>
