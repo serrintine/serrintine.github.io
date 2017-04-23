@@ -9,30 +9,30 @@ published: true
 
 <a href="{{ site.baseurl }}/assets/sailunsi-resume.pdf">PDF Version</a>
 
-<DIV id="page_1">
+<div id="page_1">
 
-<DIV id="id_1">
-<P class="p0 ft0">Sailunsi Chen</P>
-<P class="p1 ft2">sailunsi@umd.edu <SPAN class="ft1">· </SPAN><NOBR>(240)-499-5177</NOBR></P>
-<P class="p2 ft2">University of Maryland <SPAN class="ft1">· </SPAN>College Park, MD 20740</P>
-<P class="p3 ft2">https://github.com/serrintine <SPAN class="ft1">· </SPAN>http://serrintine.github.io</P>
-</DIV>
-<DIV id="id_2">
-<DIV id="id_2_1">
-<TABLE cellpadding=0 cellspacing=0 class="t0">
-<TR>
-	<TD class="tr0 td0"><P class="p4 ft3">EXPERIENCE</P></TD>
-	<TD class="tr0 td1"><P class="p4 ft4">&nbsp;</P></TD>
-</TR>
-<TR>
-	<TD class="tr1 td0"><P class="p4 ft5">Epic Systems</P></TD>
-	<TD class="tr1 td1"><P class="p4 ft6">Summer 2015</P></TD>
-</TR>
-<TR>
-	<TD class="tr2 td0"><P class="p4 ft7">Software <NOBR>Development-Intern</NOBR></P></TD>
-	<TD class="tr2 td1"><P class="p4 ft4">&nbsp;</P></TD>
-</TR>
-</TABLE>
+<div id="id_1">
+<p class="p0 ft0">Sailunsi Chen</p>
+<p class="p1 ft2">sailunsi@umd.edu <span class="ft1">&middot; </span><nobr>(240)-499-5177</nobr></p>
+<p class="p2 ft2">University of Maryland <span class="ft1">&middot; </span>College Park, MD 20740</p>
+<p class="p3 ft2">https://github.com/serrintine <span class="ft1">&middot; </span>http://serrintine.github.io</p>
+</div>
+<div id="id_2">
+<div id="id_2_1">
+<table cellpadding=0 cellspacing=0 class="t0">
+<tr>
+	<td class="tr0 td0"><p class="p4 ft3">EXPERIENCE</p></td>
+	<td class="tr0 td1"><p class="p4 ft4">&nbsp;</p></td>
+</tr>
+<tr>
+	<td class="tr1 td0"><p class="p4 ft5">Epic Systems</p></td>
+	<td class="tr1 td1"><p class="p4 ft6">Summer 2015</p></td>
+</tr>
+<tr>
+	<td class="tr2 td0"><p class="p4 ft7">Software <nobr>Development-Intern</nobr></p></td>
+	<td class="tr2 td1"><p class="p4 ft4">&nbsp;</p></td>
+</tr>
+</table>
 <P class="p5 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Developed a searching functionality for MyChart, a patient- facing health record application, on Android</SPAN></P>
 <P class="p6 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Wrote a business logic for searching in a C# library, making use of </SPAN><NOBR>Damerau-Levenshtein</NOBR> edit distance to do fuzzy string matching on user queries</P>
 <P class="p7 ft12"><SPAN class="ft8">∙</SPAN><SPAN class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</SPAN></P>
@@ -65,7 +65,7 @@ published: true
 <P class="p14 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Maintained class website oh GitHub, including editing and uploading lecture slides and homework files</SPAN></P>
 <P class="p15 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Maintained a server for homework problems that involved exploiting bugs in old versions of Ubuntu</SPAN></P>
 <P class="p16 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Held office hours and review sessions for homework and exams; graded homework problems</SPAN></P>
-</DIV>
+</div>
 <DIV id="id_2_2">
 <P class="p17 ft3">EDUCATION</P>
 <P class="p18 ft15">University of Maryland</P>
@@ -123,5 +123,5 @@ published: true
 <P class="p23 ft6">Concertmaster</P>
 <P class="p24 ft17">Association for Women in Computing <SPAN class="ft10">2012 – Present</SPAN></P>
 </DIV>
-</DIV>
-</DIV>
+</div>
+</div>
