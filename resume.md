@@ -38,7 +38,7 @@ published: true
 <P class="p6 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Wrote a business logic for searching in a C# library, making use of </SPAN><NOBR>Damerau-Levenshtein</NOBR> edit distance to do fuzzy string matching on user queries</P>
 <P class="p7 ft12"><SPAN class="ft8">∙</SPAN><SPAN class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</SPAN></P>
 <P class="p8 ft14"><SPAN class="ft8">∙</SPAN><SPAN class="ft13">Worked with Android fragments and adhered to Google's material design principles to create a smooth and intuitive user interface</SPAN></P>
-<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TABLE class="t1">
 <TR>
 	<TD class="tr3 td0"><P class="p4 ft5">Epic Systems</P></TD>
 	<TD class="tr3 td1"><P class="p4 ft6">Summer 2014</P></TD>
