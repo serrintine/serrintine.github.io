@@ -32,10 +32,10 @@ published: true
 	<td class="tr2 td1"><p class="p4 ft4">&nbsp;</p></td>
 </tr>
 </table>
-<p class="p5 ft10"><span class="ft8">&middot;</span><span class="ft9">Developed a searching functionality for MyChart, a patient- facing health record application, on Android</span></p>
-<p class="p6 ft10"><span class="ft8">&middot;</span><span class="ft9">Wrote a business logic for searching in a C# library, making use of </span><nobr>Damerau-Levenshtein</nobr> edit distance to do fuzzy string matching on user queries</p>
-<p class="p7 ft12"><span class="ft8">&middot;</span><span class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</span></p>
-<p class="p8 ft14"><span class="ft8">&middot;</span><span class="ft13">Worked with Android fragments and adhered to Google's material design principles to create a smooth and intuitive user interface</span></p>
+<p class="p5 ft10"><span class="ft1">&middot;</span><span class="ft9">Developed a searching functionality for MyChart, a patient- facing health record application, on Android</span></p>
+<p class="p6 ft10"><span class="ft1">&middot;</span><span class="ft9">Wrote a business logic for searching in a C# library, making use of </span><nobr>Damerau-Levenshtein</nobr> edit distance to do fuzzy string matching on user queries</p>
+<p class="p7 ft12"><span class="ft1">&middot;</span><span class="ft11">Wrote web services for Android to communicate with the C# layer that sits on top of the database of health records</span></p>
+<p class="p8 ft14"><span class="ft1">&middot;</span><span class="ft13">Worked with Android fragments and adhered to Google's material design principles to create a smooth and intuitive user interface</span></p>
 <table class="t1">
 <tr>
 	<td class="tr3 td0"><p class="p4 ft5">Epic Systems</p></td>
@@ -46,10 +46,10 @@ published: true
 	<td class="tr4 td1"><p class="p4 ft4">&nbsp;</p></td>
 </tr>
 </table>
-<p class="p9 ft10"><span class="ft8">&middot;</span><span class="ft9">Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data</span></p>
-<p class="p10 ft10"><span class="ft8">&middot;</span><span class="ft9">Used SAP HANA </span><nobr>in-memory</nobr> database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</p>
-<p class="p11 ft10"><span class="ft8">&middot;</span><span class="ft9">Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</span></p>
-<p class="p12 ft10"><span class="ft8">&middot;</span><span class="ft9">Used R to develop a web application to facilitate easier modeling for Epic's optimization team</span></p>
+<p class="p9 ft10"><span class="ft1">&middot;</span><span class="ft9">Wrote SQL queries and procedures in Microsoft SQL Server to organize and extract over 20GB of user action data</span></p>
+<p class="p10 ft10"><span class="ft1">&middot;</span><span class="ft9">Used SAP HANA </span><nobr>in-memory</nobr> database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</p>
+<p class="p11 ft10"><span class="ft1">&middot;</span><span class="ft9">Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</span></p>
+<p class="p12 ft10"><span class="ft1">&middot;</span><span class="ft9">Used R to develop a web application to facilitate easier modeling for Epic's optimization team</span></p>
 <table class="t2">
 <tr>
 	<td class="tr3 td2"><p class="p4 ft5">University of Maryland</p></td>
@@ -60,10 +60,10 @@ published: true
 	<td class="tr4 td3"><p class="p4 ft4">&nbsp;</p></td>
 </tr>
 </table>
-<p class="p13 ft10"><span class="ft8">&middot;</span><span class="ft9">Designed and wrote solutions to homework problems and exam questions on </span><nobr>one-time</nobr> pad, buffer overflow, DES and AES encryption, RSA and ElGamal cryptosystems, hashing (SHA, Merkle tree) and rainbow tables, message authentication, and elementary number theory</p>
-<p class="p14 ft10"><span class="ft8">&middot;</span><span class="ft9">Maintained class website oh GitHub, including editing and uploading lecture slides and homework files</span></p>
-<p class="p15 ft10"><span class="ft8">&middot;</span><span class="ft9">Maintained a server for homework problems that involved exploiting bugs in old versions of Ubuntu</span></p>
-<p class="p16 ft10"><span class="ft8">&middot;</span><span class="ft9">Held office hours and review sessions for homework and exams; graded homework problems</span></p>
+<p class="p13 ft10"><span class="ft1">&middot;</span><span class="ft9">Designed and wrote solutions to homework problems and exam questions on </span><nobr>one-time</nobr> pad, buffer overflow, DES and AES encryption, RSA and ElGamal cryptosystems, hashing (SHA, Merkle tree) and rainbow tables, message authentication, and elementary number theory</p>
+<p class="p14 ft10"><span class="ft1">&middot;</span><span class="ft9">Maintained class website oh GitHub, including editing and uploading lecture slides and homework files</span></p>
+<p class="p15 ft10"><span class="ft1">&middot;</span><span class="ft9">Maintained a server for homework problems that involved exploiting bugs in old versions of Ubuntu</span></p>
+<p class="p16 ft10"><span class="ft1">&middot;</span><span class="ft9">Held office hours and review sessions for homework and exams; graded homework problems</span></p>
 </div>
 <div id="id_2_2">
 <p class="p17 ft3">EDUCATION</p>
