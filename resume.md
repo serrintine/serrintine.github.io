@@ -73,7 +73,7 @@ published: true
 <p class="p19 ft16">Mathematics and Computer Science, B.S. <span class="ft14">Expected graduation: May 2016 Cumulative GPA: 3.75/4.00</span></p>
 <p class="p20 ft16">Current coursework <span class="ft14">CMSC412 - Operating Systems CMSC460 - Computational Methods STAT600 - Probability Theory I</span></p>
 <p class="p21 ft17">Previous coursework <span class="ft10">Cryptology, Data Science I, Data Structures, Database Design, Computer and Network Security, Algorithms, Discrete Structures, Introduction to Probability Theory, Introduction to Statistics, Sampling Theory</span></p>
-
+<TABLE cellpadding=0 cellspacing=0 class="t3">
 <tr>
 	<td class="tr0 td4"><p class="p4 ft3">SKILLS</p></td>
 	<td class="tr0 td5"><p class="p4 ft4">&nbsp;</p></td>
@@ -118,7 +118,7 @@ published: true
 	<td class="tr7 td4"><p class="p4 ft18">ACTIVITIES</p></td>
 	<td class="tr7 td5"><p class="p4 ft4">&nbsp;</p></td>
 </tr>
-
+</TABLE>
 <p class="p18 ft7">Gamer Symphony Orchestra</p>
 <p class="p22 ft6">2012 – Present</p>
 <p class="p23 ft6">Concertmaster</p>
