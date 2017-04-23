@@ -20,7 +20,7 @@ published: true
 </DIV>
 <DIV id="id_2">
 <DIV id="id_2_1">
-<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TABLE class="t0">
 <TR>
 	<TD class="tr0 td0"><P class="p4 ft3">EXPERIENCE</P></TD>
 	<TD class="tr0 td1"><P class="p4 ft4">&nbsp;</P></TD>
@@ -52,7 +52,7 @@ published: true
 <P class="p10 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Used SAP HANA </SPAN><NOBR>in-memory</NOBR> database and SAP business analytics tools to model user action data to find inefficiencies in user workflow</P>
 <P class="p11 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Used R to analyze and model user action data; modeling techniques include Bayesian model averaging, neural networks, and cluster analysis</SPAN></P>
 <P class="p12 ft10"><SPAN class="ft8">∙</SPAN><SPAN class="ft9">Used R to develop a web application to facilitate easier modeling for Epic's optimization team</SPAN></P>
-<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TABLE class="t2">
 <TR>
 	<TD class="tr3 td2"><P class="p4 ft5">University of Maryland</P></TD>
 	<TD class="tr3 td3"><P class="p4 ft6">Fall 2014</P></TD>
@@ -73,7 +73,7 @@ published: true
 <P class="p19 ft16">Mathematics and Computer Science, B.S. <SPAN class="ft14">Expected graduation: May 2016 Cumulative GPA: 3.75/4.00</SPAN></P>
 <P class="p20 ft16">Current coursework <SPAN class="ft14">CMSC412 - Operating Systems CMSC460 - Computational Methods STAT600 - Probability Theory I</SPAN></P>
 <P class="p21 ft17">Previous coursework <SPAN class="ft10">Cryptology, Data Science I, Data Structures, Database Design, Computer and Network Security, Algorithms, Discrete Structures, Introduction to Probability Theory, Introduction to Statistics, Sampling Theory</SPAN></P>
-<TABLE cellpadding=0 cellspacing=0 class="t3">
+<TABLE class="t3">
 <TR>
 	<TD class="tr0 td4"><P class="p4 ft3">SKILLS</P></TD>
 	<TD class="tr0 td5"><P class="p4 ft4">&nbsp;</P></TD>
