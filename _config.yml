@@ -47,7 +47,7 @@ baseurl: ""
 markdown: kramdown
 kramdown:
   input: GFM
-highlighter: pygments
+highlighter: rouge
 permalink: /:title/
 
 # Set the Sass partials directory
