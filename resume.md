@@ -12,7 +12,6 @@ published: true
 <div id="page_1">
 <div id="id_1">
 <p class="p0 ft0">Sailunsi Chen</p>
-<p class="p1 ft2">sailunsi@umd.edu <span class="ft1">&middot; </span><nobr>(240)-499-5177</nobr></p>
 <p class="p2 ft2">University of Maryland <span class="ft1">&middot; </span>College Park, MD 20740</p>
 <p class="p3 ft2">https://github.com/serrintine <span class="ft1">&middot; </span>http://serrintine.github.io</p>
 </div>
