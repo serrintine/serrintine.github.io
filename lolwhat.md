@@ -5,7 +5,7 @@ permalink: /lolwhat/
 published: true
 ---
 
-{% highlight %}
+{% highlight html%}
 {% raw %}
 movie: spirited away (nothing else even comes close)
 book/novel: idk i guess i don't have one oops
