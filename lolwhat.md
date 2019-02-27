@@ -5,7 +5,8 @@ permalink: /lolwhat/
 published: true
 ---
 
-```bash
+{% highlight ruby %}
+{% raw %}
 movie: spirited away (nothing else even comes close)
 book/novel: idk i guess i don't have one oops
 composer: tchaikovsky, rachmaninoff, liszt
@@ -17,4 +18,5 @@ video game: journey, dark souls, touhou, pokemon
 data structure: red black tree
 sorting algorithm: bogosort
 programming language: python
-```
+{% endraw %}
+{% endhighlight %}
