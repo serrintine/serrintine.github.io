@@ -17,4 +17,3 @@ video game: journey, dark souls, touhou, pokemon
 data structure: red black tree
 sorting algorithm: bogosort
 programming language: python
-```
