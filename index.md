@@ -22,7 +22,7 @@ published: true
 
 # Hello world...
 
-I'm **Sailunsi**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
+I'm **Serrin**. I write a lot of code. I also [play video game music](https://youtu.be/euTGmKx9yw4).
 
 {% highlight ruby %}
 #!/usr/bin/env ruby
