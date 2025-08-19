@@ -300,25 +300,30 @@
 	
 	.flex-container {
 		display: flex;
+		justify-content: space-between;
 	}
 	
-	.flex-container > div {
-		padding: 10px;
+	.flex-container > fieldset{
+		display: flex;
+		justify-content: center;
 	}
 
 	#displayCritDamage,
-	#displayMissing,
 	#displayDamageLoss {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		width: 100px;
-		height: 30px;
-		border: 1px solid gray;
-		box-shadow: 0px 0px 30px gray;
+		border: none;
 		text-align: center;
 		font: 20px bold;
+		font-family: sans-serif;
 		color: blue;
 		border-radius: 4px;
+	}
+	
+	#displayCritDamage {
+		width: 150px;
+	}
+	
+	#displayDamageLoss {
+		width: 100px;
 	}
 
 	input[type="number"] {
@@ -347,6 +352,10 @@
 		border-top: 1px solid #dee2e6;
 		margin: 1em 0;
 		padding: 0;
+	}
+	
+	.green {
+		color: #40c979;
 	}
 	</style>
 </head>
@@ -395,7 +404,7 @@
 							<input type="checkbox" class="critDamageSource" name="base" autocomplete="off" checked disabled />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="base">Base Character Crit Damage</label>
-							<span>50%</span>
+							<span name="baseValue">50%</span>
 						</div>
 					</div>
 					<hr />
@@ -404,31 +413,31 @@
 							<input type="checkbox" class="critDamageSource" name="majorForce" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="majorForce">Major Force</label>
-							<span>20%</span>
+							<span name="majorForceValue">20%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="majorBrittle" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="majorBrittle">Major Brittle</label>
-							<span>20%</span>
+							<span name="majorBrittleValue">20%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="minorBrittle" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="minorBrittle">Minor Brittle</label>
-							<span>10%</span>
+							<span name="minorBrittleValue">10%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="lucent" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="lucent">Lucent Echoes</label>
-							<span>11%</span>
+							<span name="lucentValue">11%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="ec" autocomplete="off" />
 							<input type="number" id="element" name="element" min="1" max="3" value="3" autocomplete="off">
-							<label for="ec">Elemental Catalyst</label>
-							<span>5% per element</span>
+							<label for="ec">Elemental Catalyst (5% per element)</label>
+							<span name="ecValue">15%</span>
 						</div>
 					</div>
 					<hr />
@@ -437,95 +446,92 @@
 							<input type="checkbox" class="critDamageSource" name="minorForce" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="minorForce">Minor Force</label>
-							<span>10%</span>
+							<span name="minorForceValue">10%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="mediumArmor" autocomplete="off" />
-							<input type="number" id="armor" name="armor min=" 1" max="7" value="6" autocomplete="off">
-							<label for="mediumArmor">Medium Armor</label>
-							<span>2% per piece</span>
+							<input type="number" id="armor" name="armor" min="1" max="7" value="6" autocomplete="off">
+							<label for="mediumArmor">Medium Armor (2% per piece)</label>
+							<span name="mediumArmorValue">12%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="fighting" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="fighting">Fighting Finesse</label>
-							<span>8%</span>
+							<span name="fightingValue">8%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="backstabber" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="backstabber">Backstabber</label>
-							<span>10%</span>
+							<span name="backstabberValue">10%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="khajiit" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="khajiit">Khajiit</label>
-							<span>12%</span>
+							<span name="khajiitValue">12%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="sulxan" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="sulxan">Sul-Xan's Torment</label>
-							<span>12%</span>
+							<span name="sulxanValue">12%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="moras" autocomplete="off" />
 							<input type="number" id="buff" name="buff" min="1" max="12" value="12" autocomplete="off">
-							<label for="moras">Mora Scribe's Thesis</label>
-							<span>1% per buff</span>
+							<label for="moras">Mora Scribe's Thesis (1% per buff)</label>
+							<span name="morasValue">12%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="dwAxe" autocomplete="off" />
 							<input type="number" id="axe" name="axe" min="1" max="2" value="1" autocomplete="off">
-							<label for="dwAxe">Dual Wield Axes</label>
-							<span>6% per axe</span>
+							<label for="dwAxe">Dual Wield Axes (6% per axe)</label>
+							<span name="dwAxeValue">6%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="thAxe" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="thAxe">Two-Handed Axe</label>
-							<span>12%</span>
+							<span name="thAxeValue">12%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="mundus" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
-							<label for="mundus">Shadow Mundus</label>
-							<span>18% (7 divines)</span>
+							<label for="mundus">Shadow Mundus (7 divines)</label>
+							<span name="mundusValue">18%</span>
 						</div>
 						<div class="source">
 							<input type="checkbox" class="critDamageSource" name="kilt" autocomplete="off" />
 							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
 							<label for="kilt">Harpooner's Wading Kilt</label>
-							<span>10%</span>
+							<span name="kiltValue">10%</span>
 						</div>
 					</div>
 				</fieldset>
-				<fieldset>
+			</form>
+			<div class="flex-container">
+			<fieldset>
 					<legend>Crit Rate</legend>
 					<div>
 						<label for="critRate">Percent Chance to Crit: </label>
 						<input type="number" id="critRate" min="0" max="100" value="70" autocomplete="off">
 					</div>
 				</fieldset>
-			</form>
-			<form id="display">
-				<label class="legend" for="subclasses">Crit Damage % (Cap 125)</label>
-				<div class="flex-container">
+				<fieldset>
+					<legend>Crit Damage</legend>
 					<div>
-						<label for="amount">Current Amount</label>
 						<input type="text" id="displayCritDamage" disabled>
 					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Damage Loss</legend>
 					<div>
-						<label for="missing">Missing Amount</label>
-						<input type="text" id="displayMissing" disabled>
-					</div>
-					<div>
-						<label for="dmgLoss">Damage Loss</label>
 						<input type="text" id="displayDamageLoss" disabled>
 					</div>
-				</div>
-			</form>
+				</fieldset>
+			</div>
 		</div>
 	</div>
 	<script>
@@ -558,7 +564,7 @@
 		mediumArmor: {
 			value: 2,
 			active: false,
-			quantity: 0
+			quantity: 6,
 		},
 		assassin: {
 			value: 10,
@@ -586,17 +592,17 @@
 		ec: {
 			value: 5,
 			active: false,
-			quantity: 0
+			quantity: 3
 		},
 		moras: {
 			value: 1,
 			active: false,
-			quantity: 0
+			quantity: 12
 		},
 		dwAxe: {
 			value: 6,
 			active: false,
-			quantity: 0
+			quantity: 1
 		},
 		backstabber: {
 			value: 10,
@@ -784,7 +790,6 @@
 						this.options.onUnselect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
 					}
 					let selfCritDamage = document.getElementById("self");
-					console.log(selfCritDamage);
 					this.selectedValues.forEach(option => {
 						if(critDamageValues.has(option)) {
 							let toUpdate = critDamageValues.get(option);
@@ -795,7 +800,7 @@
           <input type="checkbox" class="critDamageSource" name="${option}" autocomplete="off" checked disabled />
 		  <input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
           <label for="${option}">${toUpdate.name}</label>
-		  <span>${toUpdate.value}%</span>
+		  <span name="${option}Value">${toUpdate.value}%</span>
          </div>`);
 							}
 						}
@@ -964,25 +969,40 @@
 		let critRate = Number(document.getElementById('critRate').value) / 100;
 		let critDamage = 0;
 		for(const [key, properties] of critDamageValues) {
+			let span = document.querySelector('[name="' + key + 'Value"]');
+			let label = document.querySelector('[for="' + key + '"]');
+			let total = properties.value * properties.quantity;
 			if(properties.active) {
-				critDamage += properties.value * properties.quantity;
+				critDamage += total;
+				if(span) {
+					span.classList.add("green");
+				}
+				if(label) {
+					label.classList.add("green");
+				}
+			} else {
+				if(span) {
+					span.classList.remove("green");
+				}
+				if(label) {
+					label.classList.remove("green");
+				}
+			}
+			if(span) {
+				span.innerHTML = total + '%';
 			}
 		}
 		let missing = 125 - critDamage;
 		let box1 = document.getElementById("displayCritDamage");
-		box1.value = critDamage;
-		let box2 = document.getElementById("displayMissing");
-		box2.value = Math.max(missing, 0);
-		let box3 = document.getElementById("displayDamageLoss");
-		box3.value = Math.max(0, Number((1 - (1 + critDamage / 100 * critRate) / (1 + 1.25 * critRate)) * 100).toFixed(2));
+		box1.value = critDamage + "% / 125%";
+		let box2 = document.getElementById("displayDamageLoss");
+		box2.value = Math.max(0, Number((1 - (1 + critDamage / 100 * critRate) / (1 + 1.25 * critRate)) * 100).toFixed(2)) + "%";
 		if(missing > 0) {
 			box1.style["color"] = "red";
 			box2.style["color"] = "red";
-			box3.style["color"] = "red";
 		} else {
-			box1.style["color"] = "blue";
-			box2.style["color"] = "blue";
-			box3.style["color"] = "blue";
+			box1.style["color"] = "#40c979";
+			box2.style["color"] = "#40c979";
 		}
 	}
 	
