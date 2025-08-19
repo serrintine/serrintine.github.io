@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ESO Crit Damage Calculator</title>
+	<style>
+	/* multi-select styles taken from https://codeshack.io/multi-select-dropdown-html-javascript/ */
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: sans-serif;
+	}
+
+	.container {
+		max-width: 800px;
+		margin: 30px auto;
+	}
+	
+	.container h1 {
+		text-align: center;
+	}
+
+	.multi-select {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+		position: relative;
+		width: 100%;
+		user-select: none;
+	}
+
+	.multi-select .multi-select-header {
+		border: 1px solid #dee2e6;
+		padding: 7px 30px 7px 12px;
+		overflow: hidden;
+		gap: 7px;
+		min-height: 45px;
+	}
+
+	.multi-select .multi-select-header::after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		transform: translateY(-50%);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23949ba3' viewBox='0 0 16 16'%3E%3Cpath d='M8 13.1l-8-8 2.1-2.2 5.9 5.9 5.9-5.9 2.1 2.2z'/%3E%3C/svg%3E");
+		height: 12px;
+		width: 12px;
+	}
+
+	.multi-select .multi-select-header.multi-select-header-active {
+		border-color: #c1c9d0;
+	}
+
+	.multi-select .multi-select-header.multi-select-header-active::after {
+		transform: translateY(-50%) rotate(180deg);
+	}
+
+	.multi-select .multi-select-header.multi-select-header-active+.multi-select-options {
+		display: flex;
+	}
+
+	.multi-select .multi-select-header .multi-select-header-placeholder {
+		color: #65727e;
+	}
+
+	.multi-select .multi-select-header .multi-select-header-option {
+		display: inline-flex;
+		align-items: center;
+		background-color: #f3f4f7;
+		font-size: 14px;
+		padding: 3px 8px;
+		border-radius: 5px;
+	}
+
+	.multi-select .multi-select-header .multi-select-header-max {
+		font-size: 14px;
+		color: #65727e;
+	}
+
+	.multi-select .multi-select-options {
+		display: none;
+		box-sizing: border-box;
+		flex-flow: wrap;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		z-index: 999;
+		margin-top: 5px;
+		padding: 5px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		max-height: 600px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.multi-select .multi-select-options::-webkit-scrollbar {
+		width: 5px;
+	}
+
+	.multi-select .multi-select-options::-webkit-scrollbar-track {
+		background: #f0f1f3;
+	}
+
+	.multi-select .multi-select-options::-webkit-scrollbar-thumb {
+		background: #cdcfd1;
+	}
+
+	.multi-select .multi-select-options::-webkit-scrollbar-thumb:hover {
+		background: #b2b6b9;
+	}
+
+	.multi-select .multi-select-options .multi-select-option,
+	.multi-select .multi-select-options .multi-select-all {
+		padding: 4px 12px;
+		height: 42px;
+	}
+
+	.multi-select .multi-select-options .multi-select-option .multi-select-option-radio,
+	.multi-select .multi-select-options .multi-select-all .multi-select-option-radio {
+		margin-right: 14px;
+		height: 16px;
+		width: 16px;
+		border: 1px solid #ced4da;
+		border-radius: 4px;
+	}
+
+	.multi-select .multi-select-options .multi-select-option .multi-select-option-text,
+	.multi-select .multi-select-options .multi-select-all .multi-select-option-text {
+		box-sizing: border-box;
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: inherit;
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-radio,
+	.multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-radio {
+		border-color: #40c979;
+		background-color: #40c979;
+	}
+
+	.multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-radio::after,
+	.multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-radio::after {
+		content: "";
+		display: block;
+		width: 3px;
+		height: 7px;
+		margin: 0.12em 0 0 0.27em;
+		border: solid #fff;
+		border-width: 0 0.15em 0.15em 0;
+		transform: rotate(45deg);
+	}
+
+	.multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-text,
+	.multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-text {
+		color: #40c979;
+	}
+
+	.multi-select .multi-select-options .multi-select-option:hover,
+	.multi-select .multi-select-options .multi-select-option:active,
+	.multi-select .multi-select-options .multi-select-all:hover,
+	.multi-select .multi-select-options .multi-select-all:active {
+		background-color: #f3f4f7;
+	}
+
+	.multi-select .multi-select-options .multi-select-all {
+		border-bottom: 1px solid #f1f3f5;
+		border-radius: 0;
+	}
+
+	.multi-select .multi-select-options .multi-select-search {
+		padding: 7px 10px;
+		border: 1px solid #dee2e6;
+		border-radius: 5px;
+		margin: 10px 10px 5px 10px;
+		width: 100%;
+		outline: none;
+		font-size: 16px;
+	}
+
+	.multi-select .multi-select-options .multi-select-search::placeholder {
+		color: #b2b5b9;
+	}
+
+	.multi-select .multi-select-header,
+	.multi-select .multi-select-option,
+	.multi-select .multi-select-option-disabled,
+	.multi-select .multi-select-all {
+		display: flex;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		align-items: center;
+		border-radius: 5px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		font-size: 16px;
+		color: #212529;
+	}
+
+	.multi-select-option-disabled-text {
+		font-weight: bold;
+	}
+
+	#calculator {
+		width: 600px;
+		margin: 30px auto;
+	}
+
+	#calculator fieldset {
+		box-sizing: border-box;
+		border-radius: 5px;
+		border: 1px solid #dee2e6;
+		padding: 7px 12px;
+	}
+
+	legend {
+		font-weight: bold;
+		font-size: 18px;
+	}
+
+	fieldset {
+		margin-top: 10px;
+	}
+
+	fieldset div {
+		margin-bottom: 10px;
+		margin-top: 5px;
+	}
+
+	.legend {
+		font-weight: bold;
+		font-size: 18px;
+	}
+
+	.section {
+		font-weight: bold;
+		font-size: 16px;
+	}
+
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		appearance: none;
+		background-color: #fff;
+		margin: 0;
+		font: inherit;
+		color: currentColor;
+		height: 16px;
+		width: 16px;
+		border: 1px solid #ced4da;
+		border-radius: 4px;
+	}
+
+	input[type="checkbox"]:checked {
+		border-color: #40c979;
+		background-color: #40c979;
+	}
+
+	input[type="checkbox"]:checked::after {
+		content: "";
+		display: block;
+		width: 3px;
+		height: 7px;
+		margin: 0.12em 0 0 0.28em;
+		border: solid #fff;
+		border-width: 0 0.15em 0.15em 0;
+		transform: rotate(45deg);
+	}
+
+	input[type="checkbox"][disabled] {
+		border-color: gray;
+		background-color: gray;
+	}
+
+	#display {
+		max-width: 600px;
+		border: 5px solid black;
+		text-align: center;
+		background: #b463ff;
+		margin: 30px auto;
+		padding-top: 10px;
+		padding-left: 10px;
+		box-shadow: 0px 0px 30px gray;
+		border-radius: 10px;
+	}
+
+	#displayCritDamage,
+	#displayMissing,
+	#displayDamageLoss {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 220px;
+		height: 30px;
+		border: 1px solid gray;
+		box-shadow: 0px 0px 30px gray;
+		text-align: center;
+		font: 20px bold;
+		color: blue;
+		border-radius: 4px;
+	}
+
+	input[type="number"] {
+		margin: 0;
+		height: 16px;
+		width: 48px;
+		border: 1px solid #dee2e6;
+		border-radius: 3px;
+		padding: 2px;
+		text-align: center;
+		font-size: 14px;
+	}
+
+	input[type="number"][disabled] {
+		color: lightgray;
+	}
+
+	.source span {
+		float: right;
+	}
+
+	hr {
+		display: block;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid #dee2e6;
+		margin: 1em 0;
+		padding: 0;
+	}
+	</style>
+</head>
+
+<body translate="no">
+	<div class="container">
+		<h1>ESO Crit Damage Calculator (Updated U47)</h1>
+		<div id="calculator">
+			<form>
+				<label class="legend" for="subclasses">Subclasses</label>
+				<select id="subclass" name="subclass" data-search="false" data-max="3" data-select-all="false" data-height="50px" multiple data-multi-select>
+					<option value="">Dragonknight</option>
+					<option value="ardent">Ardent Flame</option>
+					<option value="earthen">Earthen Heart</option>
+					<option value="draconic">Draconic Power</option>
+					<option value="">Nightblade</option>
+					<option value="assassin">Assassination</option>
+					<option value="shadow">Shadow</option>
+					<option value="siphon">Siphoning</option>
+					<option value="">Templar</option>
+					<option value="dawn">Dawn's Wrath</option>
+					<option value="aedric">Aedric Spear</option>
+					<option value="restoring">Restoring Light</option>
+					<option value="">Sorcerer</option>
+					<option value="storm">Storm Calling</option>
+					<option value="daedric">Daedric Summoning</option>
+					<option value="dark">Dark Magic</option>
+					<option value="">Warden</option>
+					<option value="animal">Animal Companions</option>
+					<option value="winter">Winter's Embrace</option>
+					<option value="green">Green Balance</option>
+					<option value="">Necromancer</option>
+					<option value="grave">Grave Lord</option>
+					<option value="bone">Bone Tyrant</option>
+					<option value="living">Living Death</option>
+					<option value="">Arcanist</option>
+					<option value="herald">Herald of the Tome</option>
+					<option value="soldier">Soldier of Apocrypha</option>
+					<option value="curative">Curative Runeforms</option>
+				</select>
+				<fieldset>
+					<legend>Crit Damage Sources</legend>
+					<div id="base">
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="base" autocomplete="off" checked disabled />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="base">Base Character Crit Damage</label>
+							<span>50%</span>
+						</div>
+					</div>
+					<hr />
+					<div id="group">
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="majorForce" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="majorForce">Major Force</label>
+							<span>20%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="majorBrittle" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="majorBrittle">Major Brittle</label>
+							<span>20%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="minorBrittle" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="minorBrittle">Minor Brittle</label>
+							<span>10%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="lucent" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="lucent">Lucent Echoes</label>
+							<span>11%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="ec" autocomplete="off" />
+							<input type="number" id="element" name="element" min="1" max="3" value="3" autocomplete="off">
+							<label for="ec">Elemental Catalyst</label>
+							<span>5% per element</span>
+						</div>
+					</div>
+					<hr />
+					<div id="self">
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="minorForce" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="minorForce">Minor Force</label>
+							<span>10%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="mediumArmor" autocomplete="off" />
+							<input type="number" id="armor" name="armor min=" 1" max="7" value="6" autocomplete="off">
+							<label for="mediumArmor">Medium Armor</label>
+							<span>2% per piece</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="fighting" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="fighting">Fighting Finesse</label>
+							<span>8%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="backstabber" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="backstabber">Backstabber</label>
+							<span>10%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="khajiit" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="khajiit">Khajiit</label>
+							<span>12%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="sulxan" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="sulxan">Sul-Xan's Torment</label>
+							<span>12%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="moras" autocomplete="off" />
+							<input type="number" id="buff" name="buff" min="1" max="12" value="12" autocomplete="off">
+							<label for="moras">Mora Scribe's Thesis</label>
+							<span>1% per buff</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="dwAxe" autocomplete="off" />
+							<input type="number" id="axe" name="axe" min="1" max="2" value="1" autocomplete="off">
+							<label for="dwAxe">Dual Wield Axes</label>
+							<span>6% per axe</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="thAxe" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="thAxe">Two-Handed Axe</label>
+							<span>12%</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="mundus" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="mundus">Shadow Mundus</label>
+							<span>18% (7 divines)</span>
+						</div>
+						<div class="source">
+							<input type="checkbox" class="critDamageSource" name="kilt" autocomplete="off" />
+							<input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+							<label for="kilt">Harpooner's Wading Kilt</label>
+							<span>10%</span>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Crit Rate</legend>
+					<div>
+						<label for="critRate">Percent Chance to Crit: </label>
+						<input type="number" id="critRate" min="0" max="100" value="70" autocomplete="off">
+					</div>
+				</fieldset>
+			</form>
+			<div id="display">
+				<form>
+					<legend>Crit Damage % (Cap 125)</legend>
+					<div>
+						<label for="scales">Current Amount</label>
+						<input type="text" id="displayCritDamage" disabled>
+					</div>
+					<div>
+						<label for="scales">Missing Amount</label>
+						<input type="text" id="displayMissing" disabled>
+					</div>
+					<div>
+						<label for="scales">Damage Loss</label>
+						<input type="text" id="displayDamageLoss" disabled>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+	let critDamageValues = new Map(Object.entries({
+		base: {
+			value: 50,
+			active: true,
+			quantity: 1
+		},
+		minorForce: {
+			value: 10,
+			active: false,
+			quantity: 1
+		},
+		majorForce: {
+			value: 20,
+			active: false,
+			quantity: 1
+		},
+		minorBrittle: {
+			value: 20,
+			active: false,
+			quantity: 1
+		},
+		majorBrittle: {
+			value: 20,
+			active: false,
+			quantity: 1
+		},
+		mediumArmor: {
+			value: 2,
+			active: false,
+			quantity: 0
+		},
+		assassin: {
+			value: 10,
+			active: false,
+			quantity: 1,
+			name: "Nightblade Assassination"
+		},
+		aedric: {
+			value: 12,
+			active: false,
+			quantity: 1,
+			name: "Templar Aedric Spear"
+		},
+		herald: {
+			value: 12,
+			active: false,
+			quantity: 1,
+			name: "Arcanist Herald of the Tome"
+		},
+		lucent: {
+			value: 11,
+			active: false,
+			quantity: 1
+		},
+		ec: {
+			value: 5,
+			active: false,
+			quantity: 0
+		},
+		moras: {
+			value: 1,
+			active: false,
+			quantity: 0
+		},
+		dwAxe: {
+			value: 6,
+			active: false,
+			quantity: 0
+		},
+		backstabber: {
+			value: 10,
+			active: false,
+			quantity: 1
+		},
+		fighting: {
+			value: 8,
+			active: false,
+			quantity: 1
+		},
+		khajiit: {
+			value: 12,
+			active: false,
+			quantity: 1
+		},
+		sulxan: {
+			value: 12,
+			active: false,
+			quantity: 1
+		},
+		thAxe: {
+			value: 12,
+			active: false,
+			quantity: 1
+		},
+		mundus: {
+			value: 18,
+			active: false,
+			quantity: 1
+		},
+		kilt: {
+			value: 10,
+			active: false,
+			quantity: 1
+		}
+	}))
+	
+	/* MultiSelect taken from https://codeshack.io/multi-select-dropdown-html-javascript/ */
+	class MultiSelect {
+		constructor(element, options = {}) {
+			let defaults = {
+				placeholder: '',
+				max: null,
+				search: true,
+				selectAll: true,
+				listAll: true,
+				closeListOnItemSelect: false,
+				name: '',
+				width: '',
+				height: '',
+				dropdownWidth: '',
+				dropdownHeight: '',
+				data: [],
+				onChange: function() {},
+				onSelect: function() {},
+				onUnselect: function() {},
+			};
+			this.options = Object.assign(defaults, options);
+			this.selectElement = typeof element === 'string' ? document.querySelector(element) : element;
+			for(const prop in this.selectElement.dataset) {
+				if(this.options[prop] !== undefined) {
+					this.options[prop] = this.selectElement.dataset[prop];
+				}
+			}
+			this.name = this.selectElement.getAttribute('name') ? this.selectElement.getAttribute('name') : 'multi-select-' + Math.floor(Math.random() * 1000000);
+			if(!this.options.data.length) {
+				let options = this.selectElement.querySelectorAll('option');
+				for(let i = 0; i < options.length; i++) {
+					this.options.data.push({
+						value: options[i].value,
+						text: options[i].innerHTML,
+						selected: options[i].selected,
+						html: options[i].getAttribute('data-html')
+					});
+				}
+			}
+			this.element = this._template();
+			this.selectElement.replaceWith(this.element);
+			this._updateSelected();
+			this._eventHandlers();
+			updateDisplay();
+		}
+		_template() {
+			let optionsHTML = '';
+			for(let i = 0; i < this.data.length; i++) {
+				if(this.data[i].value.length > 0) {
+					optionsHTML += `
+                      <div class="multi-select-option${this.selectedValues.includes(this.data[i].value) ? ' multi-select-selected' : ''}" data-value="${this.data[i].value}">
+                          <span class="multi-select-option-radio"></span>
+                          <span class="multi-select-option-text">${this.data[i].html ? this.data[i].html : this.data[i].text}</span>
+                      </div>
+                  `;
+				} else {
+					optionsHTML += `
+                      <div class="multi-select-option-disabled">
+                          <span class="multi-select-option-disabled-text">${this.data[i].html ? this.data[i].html : this.data[i].text}</span>
+                      </div>
+                  `;
+				}
+			}
+			let selectAllHTML = '';
+			if(this.options.selectAll === true || this.options.selectAll === 'true') {
+				selectAllHTML = `<div class="multi-select-all">
+                      <span class="multi-select-option-radio"></span>
+                      <span class="multi-select-option-text">Select all</span>
+                  </div>`;
+			}
+			let template = `
+                  <div class="multi-select ${this.name}"${this.selectElement.id ? ' id="' + this.selectElement.id + '"' : ''} style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
+                      ${this.selectedValues.map(value => `<input type="hidden" name="${this.name}[]" value="${value}">`).join('')}
+                      <div class="multi-select-header" style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
+                          <span class="multi-select-header-max">${this.options.max ? this.selectedValues.length + '/' + this.options.max + ' selected' : ''}</span>
+                          <span class="multi-select-header-placeholder">${this.placeholder}</span>
+                      </div>
+                      <div class="multi-select-options" style="${this.options.dropdownWidth ? 'width:' + this.options.dropdownWidth + ';' : ''}${this.options.dropdownHeight ? 'height:' + this.options.dropdownHeight + ';' : ''}">
+                          ${this.options.search === true || this.options.search === 'true' ? '<input type="text" class="multi-select-search" placeholder="Search...">' : ''}
+                          ${selectAllHTML}
+                          ${optionsHTML}
+                      </div>
+                  </div>
+              `;
+			let element = document.createElement('div');
+			element.innerHTML = template;
+			return element;
+		}
+		_eventHandlers() {
+			let headerElement = this.element.querySelector('.multi-select-header');
+			this.element.querySelectorAll('.multi-select-option').forEach(option => {
+				option.onclick = () => {
+					let selected = true;
+					if(!option.classList.contains('multi-select-selected')) {
+						if(this.options.max && this.selectedValues.length >= this.options.max) {
+							return;
+						}
+						option.classList.add('multi-select-selected');
+						if(this.options.listAll === true || this.options.listAll === 'true') {
+							if(this.element.querySelector('.multi-select-header-option')) {
+								let opt = Array.from(this.element.querySelectorAll('.multi-select-header-option')).pop();
+								opt.insertAdjacentHTML('afterend', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+							} else {
+								headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+							}
+						}
+						this.element.querySelector('.multi-select').insertAdjacentHTML('afterbegin', `<input type="hidden" name="${this.name}[]" value="${option.dataset.value}">`);
+						this.data.filter(data => data.value == option.dataset.value)[0].selected = true;
+					} else {
+						option.classList.remove('multi-select-selected');
+						this.element.querySelectorAll('.multi-select-header-option').forEach(headerOption => headerOption.dataset.value == option.dataset.value ? headerOption.remove() : '');
+						this.element.querySelector(`input[value="${option.dataset.value}"]`).remove();
+						this.data.filter(data => data.value == option.dataset.value)[0].selected = false;
+						selected = false;
+						if(critDamageValues.has(option.dataset.value)) {
+							let toUpdate = critDamageValues.get(option.dataset.value);
+							toUpdate.active = false;
+							critDamageValues.set(option.dataset.value, toUpdate);
+							document.getElementById(toUpdate.name).remove();
+						}
+					}
+					if(this.options.listAll === false || this.options.listAll === 'false') {
+						if(this.element.querySelector('.multi-select-header-option')) {
+							this.element.querySelector('.multi-select-header-option').remove();
+						}
+						headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
+					}
+					if(!this.element.querySelector('.multi-select-header-option')) {
+						headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-placeholder">${this.placeholder}</span>`);
+					} else if(this.element.querySelector('.multi-select-header-placeholder')) {
+						this.element.querySelector('.multi-select-header-placeholder').remove();
+					}
+					if(this.options.max) {
+						this.element.querySelector('.multi-select-header-max').innerHTML = this.selectedValues.length + '/' + this.options.max + ' selected';
+					}
+					if(this.options.search === true || this.options.search === 'true') {
+						this.element.querySelector('.multi-select-search').value = '';
+					}
+					this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
+					if(this.options.closeListOnItemSelect === true || this.options.closeListOnItemSelect === 'true') {
+						headerElement.classList.remove('multi-select-header-active');
+					}
+					this.options.onChange(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
+					if(selected) {
+						this.options.onSelect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
+					} else {
+						this.options.onUnselect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
+					}
+					let selfCritDamage = document.getElementById("self");
+					console.log(selfCritDamage);
+					this.selectedValues.forEach(option => {
+						if(critDamageValues.has(option)) {
+							let toUpdate = critDamageValues.get(option);
+							toUpdate.active = true;
+							critDamageValues.set(option, toUpdate);
+							if(!document.getElementById(toUpdate.name)) {
+								selfCritDamage.insertAdjacentHTML('afterend', `<div id="${toUpdate.name}" class="source">
+          <input type="checkbox" class="critDamageSource" name="${option}" autocomplete="off" checked disabled />
+		  <input type="number" id="dummy" name="dummy" min="1" max="1" value="1" autocomplete="off" disabled>
+          <label for="${option}">${toUpdate.name}</label>
+		  <span>${toUpdate.value}%</span>
+         </div>`);
+							}
+						}
+					});
+					updateDisplay();
+				};
+			});
+			headerElement.onclick = () => headerElement.classList.toggle('multi-select-header-active');
+			if(this.options.search === true || this.options.search === 'true') {
+				let search = this.element.querySelector('.multi-select-search');
+				search.oninput = () => {
+					this.element.querySelectorAll('.multi-select-option').forEach(option => {
+						option.style.display = option.querySelector('.multi-select-option-text').innerHTML.toLowerCase().indexOf(search.value.toLowerCase()) > -1 ? 'flex' : 'none';
+					});
+				};
+			}
+			if(this.options.selectAll === true || this.options.selectAll === 'true') {
+				let selectAllButton = this.element.querySelector('.multi-select-all');
+				selectAllButton.onclick = () => {
+					let allSelected = selectAllButton.classList.contains('multi-select-selected');
+					this.element.querySelectorAll('.multi-select-option').forEach(option => {
+						let dataItem = this.data.find(data => data.value == option.dataset.value);
+						if(dataItem && ((allSelected && dataItem.selected) || (!allSelected && !dataItem.selected))) {
+							option.click();
+						}
+					});
+					selectAllButton.classList.toggle('multi-select-selected');
+				};
+			}
+			if(this.selectElement.id && document.querySelector('label[for="' + this.selectElement.id + '"]')) {
+				document.querySelector('label[for="' + this.selectElement.id + '"]').onclick = () => {
+					headerElement.classList.toggle('multi-select-header-active');
+				};
+			}
+			document.addEventListener('click', event => {
+				if(!event.target.closest('.' + this.name) && !event.target.closest('label[for="' + this.selectElement.id + '"]')) {
+					headerElement.classList.remove('multi-select-header-active');
+				}
+			});
+		}
+		_updateSelected() {
+			if(this.options.listAll === true || this.options.listAll === 'true') {
+				this.element.querySelectorAll('.multi-select-option').forEach(option => {
+					if(option.classList.contains('multi-select-selected')) {
+						this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+					}
+				});
+			} else {
+				if(this.selectedValues.length > 0) {
+					this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
+				}
+			}
+			if(this.element.querySelector('.multi-select-header-option')) {
+				this.element.querySelector('.multi-select-header-placeholder').remove();
+			}
+		}
+		get selectedValues() {
+			return this.data.filter(data => data.selected).map(data => data.value);
+		}
+		get selectedItems() {
+			return this.data.filter(data => data.selected);
+		}
+		set data(value) {
+			this.options.data = value;
+		}
+		get data() {
+			return this.options.data;
+		}
+		set selectElement(value) {
+			this.options.selectElement = value;
+		}
+		get selectElement() {
+			return this.options.selectElement;
+		}
+		set element(value) {
+			this.options.element = value;
+		}
+		get element() {
+			return this.options.element;
+		}
+		set placeholder(value) {
+			this.options.placeholder = value;
+		}
+		get placeholder() {
+			return this.options.placeholder;
+		}
+		set name(value) {
+			this.options.name = value;
+		}
+		get name() {
+			return this.options.name;
+		}
+		set width(value) {
+			this.options.width = value;
+		}
+		get width() {
+			return this.options.width;
+		}
+		set height(value) {
+			this.options.height = value;
+		}
+		get height() {
+			return this.options.height;
+		}
+	}
+	document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
+	
+	let checkboxElems = document.querySelectorAll('input[type="checkbox"]')
+	for(var i = 0; i < checkboxElems.length; i++) {
+		checkboxElems[i].addEventListener("click", displayCheck);
+	}
+
+	function displayCheck(option) {
+		if(option.target.checked) {
+			if(critDamageValues.has(option.target.name)) {
+				let toUpdate = critDamageValues.get(option.target.name);
+				toUpdate.active = true;
+				if(option.target.name === 'ec') {
+					toUpdate.quantity = document.getElementById('element').value;
+				} else if(option.target.name === 'mediumArmor') {
+					toUpdate.quantity = document.getElementById('armor').value;
+				} else if(option.target.name === 'moras') {
+					toUpdate.quantity = document.getElementById('buff').value;
+				} else if(option.target.name === 'dwAxe') {
+					toUpdate.quantity = document.getElementById('axe').value;
+				}
+				critDamageValues.set(option.target.name, toUpdate);
+			}
+		} else {
+			if(critDamageValues.has(option.target.name)) {
+				let toUpdate = critDamageValues.get(option.target.name);
+				toUpdate.active = false;
+				critDamageValues.set(option.target.name, toUpdate);
+			}
+		}
+		updateDisplay();
+	}
+	
+	let quantityElems = document.querySelectorAll('input[type="number"]')
+	for(var i = 0; i < quantityElems.length; i++) {
+		quantityElems[i].addEventListener("change", quantityCheck);
+	}
+
+	function quantityCheck(change) {
+		if(change.target.id === 'element') {
+			let toUpdate = critDamageValues.get('ec');
+			toUpdate.quantity = change.target.valueAsNumber;
+			critDamageValues.set('ec', toUpdate);
+		} else if(change.target.id === 'armor') {
+			let toUpdate = critDamageValues.get('mediumArmor');
+			toUpdate.quantity = change.target.valueAsNumber;
+			critDamageValues.set('mediumArmor', toUpdate);
+		} else if(change.target.id === 'buff') {
+			let toUpdate = critDamageValues.get('moras');
+			toUpdate.quantity = change.target.valueAsNumber;
+			critDamageValues.set('moras', toUpdate);
+		} else if(change.target.id === 'axe') {
+			let toUpdate = critDamageValues.get('dwAxe');
+			toUpdate.quantity = change.target.valueAsNumber;
+			critDamageValues.set('dwAxe', toUpdate);
+		}
+		updateDisplay();
+	}
+
+	function updateDisplay() {
+		let critRate = Number(document.getElementById('critRate').value) / 100;
+		let critDamage = 0;
+		for(const [key, properties] of critDamageValues) {
+			if(properties.active) {
+				critDamage += properties.value * properties.quantity;
+			}
+		}
+		let missing = 125 - critDamage;
+		let box1 = document.getElementById("displayCritDamage");
+		box1.value = critDamage;
+		let box2 = document.getElementById("displayMissing");
+		box2.value = Math.max(missing, 0);
+		let box3 = document.getElementById("displayDamageLoss");
+		box3.value = Math.max(0, Number((1 - (1 + critDamage / 100 * critRate) / (1 + 1.25 * critRate)) * 100).toFixed(2));
+		if(missing > 0) {
+			box1.style["color"] = "red";
+			box2.style["color"] = "red";
+			box3.style["color"] = "red";
+		} else {
+			box1.style["color"] = "blue";
+			box2.style["color"] = "blue";
+			box3.style["color"] = "blue";
+		}
+	}
+	
+	document.querySelector('#critRate').addEventListener('change', () => {
+		updateDisplay();
+	});
+	</script>
+</body>
+</html>
