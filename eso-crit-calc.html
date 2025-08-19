@@ -309,17 +309,27 @@
 	}
 
 	#displayCritDamage,
-	#displayDamageLoss {
+	#displayMissing,
+	#displayDamageLoss,
+	#critCap,
+	#critRate {
 		border: none;
 		text-align: center;
 		font: 20px bold;
 		font-family: sans-serif;
-		color: blue;
-		border-radius: 4px;
+		color: #212529;
 	}
 	
 	#displayCritDamage {
-		width: 150px;
+		width: 60px;
+	}
+	
+	#displayMissing {
+		width: 100px;
+	}
+	
+	#critCap {
+		width: 50px;
 	}
 	
 	#displayDamageLoss {
@@ -512,17 +522,23 @@
 				</fieldset>
 			</form>
 			<div class="flex-container">
-			<fieldset>
+				<fieldset>
 					<legend>Crit Rate</legend>
-					<div>
-						<label for="critRate">Percent Chance to Crit: </label>
-						<input type="number" id="critRate" min="0" max="100" value="70" autocomplete="off">
+					<div style = "font: 20px bold; color: #212529;">
+						<input type="number" id="critRate" min="0" max="100" value="70" autocomplete="off"><span>%</span>
 					</div>
 				</fieldset>
 				<fieldset>
 					<legend>Crit Damage</legend>
-					<div>
-						<input type="text" id="displayCritDamage" disabled>
+					<div style = "font: 20px bold; color: #212529;">
+						<input type="text" id="displayCritDamage" disabled><span>/</span>
+						<input type="text" id="critCap" disabled>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend id="cap">Under Cap</legend>
+					<div style = "font: 20px bold; color: #212529;">
+						<input type="text" id="displayMissing" disabled>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -531,6 +547,11 @@
 						<input type="text" id="displayDamageLoss" disabled>
 					</div>
 				</fieldset>
+			</div>
+			<div style="text-align:center;margin-top:10px;font-weight:bold;">
+			<div style="padding-bottom:5px;color:#eb4634;">Red: Under crit damage cap.</div>
+			<div style="padding-bottom:5px;color:#40c979">Green: At or above crit damage cap within reason.</div>
+			<div style="color:#3461eb;">Blue: May have too much crit damage.</div>
 			</div>
 		</div>
 	</div>
@@ -994,15 +1015,30 @@
 		}
 		let missing = 125 - critDamage;
 		let box1 = document.getElementById("displayCritDamage");
-		box1.value = critDamage + "% / 125%";
-		let box2 = document.getElementById("displayDamageLoss");
-		box2.value = Math.max(0, Number((1 - (1 + critDamage / 100 * critRate) / (1 + 1.25 * critRate)) * 100).toFixed(2)) + "%";
+		box1.value = critDamage + "%";
+		let box2 = document.getElementById("displayMissing");
+		box2.value = Math.abs(missing) + "%";
+		let box3 = document.getElementById("displayDamageLoss");
+		box3.value = Math.max(0, Number((1 - (1 + critDamage / 100 * critRate) / (1 + 1.25 * critRate)) * 100).toFixed(2)) + "%";
+		let box4 = document.getElementById("critCap");
+		box4.value = 125 + "%";
+		if(missing < 0) {
+			document.getElementById("cap").innerHTML = "Over Cap";
+		} else {
+			document.getElementById("cap").innerHTML = "Under Cap";
+		}
 		if(missing > 0) {
-			box1.style["color"] = "red";
-			box2.style["color"] = "red";
+			box1.style["color"] = "#eb4634";
+			box2.style["color"] = "#eb4634";
+			box3.style["color"] = "#eb4634";
+		} else if(missing < -10) {
+			box1.style["color"] = "#3461eb";
+			box2.style["color"] = "#3461eb";
+			box3.style["color"] = "#3461eb";
 		} else {
 			box1.style["color"] = "#40c979";
 			box2.style["color"] = "#40c979";
+			box3.style["color"] = "#40c979";
 		}
 	}
 	
