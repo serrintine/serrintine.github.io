@@ -363,6 +363,7 @@
     border: 1px solid #dee2e6;
     display: inline-flex;
     border-radius: 10px;
+    height: 18px;
     margin: 0;
     margin-right: 10px;
   
@@ -402,13 +403,23 @@
       justify-content: center;
       width: 16px;
       height: 16px;
-      cursor: pointer;
       margin: 0;
       position: relative;
       padding: 0;
       border-radius: 50%;
   }
 
+  button:enabled {
+  	  cursor: pointer;
+  }
+
+  button:hover:enabled {
+      background-color: #dfdfdf;
+  }
+
+  button:active:enabled {
+      background-color: #b0b0b0;
+  }
   
   button:before, button:after {
     display: inline-block;
@@ -450,7 +461,7 @@
 <body translate="no">
 	<div class="container">
 		<h1>ESO Crit Damage Calculator (U47)</h1>
-		<h5>Last updated: Aug 18, 2025</h5>
+		<h5>Last updated: Aug 19, 2025</h5>
 		<div id="calculator">
 			<form>
 				<label class="legend" for="subclasses">Subclasses</label>
@@ -491,9 +502,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="base" autocomplete="off" checked disabled />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="base">Base Character Crit Damage</label>
 						</div>
@@ -506,9 +517,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="majorForce" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="majorForce">Major Force</label>
 						</div>
@@ -518,9 +529,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="majorBrittle" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="majorBrittle">Major Brittle</label>
 						</div>
@@ -530,9 +541,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="minorBrittle" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="minorBrittle">Minor Brittle</label>
 						</div>
@@ -542,9 +553,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="lucent" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="lucent">Lucent Echoes</label>
 						</div>
@@ -569,9 +580,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="minorForce" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="minorForce">Minor Force</label>
 						</div>
@@ -593,9 +604,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="fighting" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="fighting">Fighting Finesse</label>
 						</div>
@@ -605,9 +616,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="backstabber" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="backstabber">Backstabber</label>
 						</div>
@@ -617,9 +628,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="khajiit" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="khajiit">Khajiit</label>
 						</div>
@@ -629,9 +640,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="sulxan" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="sulxan">Sul-Xan's Torment</label>
 						</div>
@@ -665,9 +676,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="thAxe" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="thAxe">Two-Handed Axe</label>
 						</div>
@@ -677,9 +688,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="mundus" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="mundus">Shadow Mundus (7 divines)</label>
 						</div>
@@ -689,9 +700,9 @@
 							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="kilt" autocomplete="off" />
 							<div class="number-input">
-  <button type="button"></button>
+  <button type="button" disabled></button>
   <input class="quantity bg-light" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled>
-  <button type="button" class="plus"></button>
+  <button type="button" class="plus" disabled></button>
 </div>
 							<label for="kilt">Harpooner's Wading Kilt</label>
 						</div>
