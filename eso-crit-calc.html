@@ -18,8 +18,9 @@
 		margin: 30px auto;
 	}
 	
-	.container h1 {
+	.container h1, .container h5 {
 		text-align: center;
+		margin: 5px auto;
 	}
 
 	.multi-select {
@@ -254,12 +255,14 @@
 		appearance: none;
 		background-color: #fff;
 		margin: 0;
+		margin-bottom: -3px;
 		font: inherit;
 		color: currentColor;
 		height: 16px;
 		width: 16px;
 		border: 1px solid #ced4da;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 
 	input[type="checkbox"]:checked {
@@ -281,6 +284,7 @@
 	input[type="checkbox"][disabled] {
 		border-color: gray;
 		background-color: gray;
+		cursor: auto;
 	}
 
 	#display {
@@ -291,8 +295,15 @@
 		margin: 30px auto;
 		padding-top: 10px;
 		padding-left: 10px;
-		box-shadow: 0px 0px 30px gray;
 		border-radius: 10px;
+	}
+	
+	.flex-container {
+		display: flex;
+	}
+	
+	.flex-container > div {
+		padding: 10px;
 	}
 
 	#displayCritDamage,
@@ -300,7 +311,7 @@
 	#displayDamageLoss {
 		margin-top: 10px;
 		margin-bottom: 10px;
-		width: 220px;
+		width: 100px;
 		height: 30px;
 		border: 1px solid gray;
 		box-shadow: 0px 0px 30px gray;
@@ -342,7 +353,8 @@
 
 <body translate="no">
 	<div class="container">
-		<h1>ESO Crit Damage Calculator (Updated U47)</h1>
+		<h1>ESO Crit Damage Calculator (U47)</h1>
+		<h5>Last updated: Aug 18, 2025</h5>
 		<div id="calculator">
 			<form>
 				<label class="legend" for="subclasses">Subclasses</label>
@@ -497,23 +509,23 @@
 					</div>
 				</fieldset>
 			</form>
-			<div id="display">
-				<form>
-					<legend>Crit Damage % (Cap 125)</legend>
+			<form id="display">
+				<label class="legend" for="subclasses">Crit Damage % (Cap 125)</label>
+				<div class="flex-container">
 					<div>
-						<label for="scales">Current Amount</label>
+						<label for="amount">Current Amount</label>
 						<input type="text" id="displayCritDamage" disabled>
 					</div>
 					<div>
-						<label for="scales">Missing Amount</label>
+						<label for="missing">Missing Amount</label>
 						<input type="text" id="displayMissing" disabled>
 					</div>
 					<div>
-						<label for="scales">Damage Loss</label>
+						<label for="dmgLoss">Damage Loss</label>
 						<input type="text" id="displayDamageLoss" disabled>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 	<script>
