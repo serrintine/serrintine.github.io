@@ -22,7 +22,7 @@
 					<div id="self" name="self" data-source></div>
 				</fieldset>
 			</form>
-			<form class="flex-container">
+			<form class="result flex-container">
 				<fieldset>
 					<legend>Crit Rate</legend>
 					<div class="number-input big enabled">
@@ -31,27 +31,23 @@
 				</fieldset>
 				<fieldset>
 					<legend>Crit Damage</legend>
-					<div style = "font: 20px bold; color: inherit;">
+					<div>
 						<input type="text" id="displayCritDamage" disabled><span>/</span>
 						<input type="text" id="critCap" disabled>
 					</div>
 				</fieldset>
 				<fieldset>
 					<legend id="cap">Under Cap</legend>
-					<div style = "font: 20px bold; color: inherit;">
-						<input type="text" id="displayMissing" disabled>
-					</div>
+					<input type="text" id="displayMissing" disabled>
 				</fieldset>
 				<fieldset>
 					<legend>Damage Loss</legend>
-					<div>
-						<input type="text" id="displayDamageLoss" disabled>
-					</div>
+					<input type="text" id="displayDamageLoss" disabled>
 				</fieldset>
 			</form>
-			<div style="text-align:center;margin-top:10px;font-weight:bold;">
-				<div style="padding-bottom:5px;color:#eb4634;">Red: Under crit damage cap.</div>
-				<div style="padding-bottom:5px;color:#3461eb">Blue: At or above crit damage cap.</div>
+			<div class="result-legend">
+				<div class="red">Red: Under crit damage cap.</div>
+				<div class="blue">Blue: At or above crit damage cap.</div>
 			</div>
 		</div>
 	</div>
