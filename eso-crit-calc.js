@@ -1,3 +1,160 @@
+let penetrationValues = new Map(Object.entries({
+	character: {
+		category: "base",
+		value: 100,
+		active: true,
+		quantity: 1,
+		hasRange: false,
+		label: "Base Character Penetration"
+	},
+	grave: {
+		suppress: true,
+		category: "base",
+		value: 3000,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Grave Lord"
+	},
+	herald: {
+		suppress: true,
+		category: "base",
+		value: 900,
+		active: false,
+		quantity: 2,
+		hasRange: true,
+		range: [1, 6],
+		default: 2,
+		label: "Herald of the Tome (900 per skill)"
+	},
+	majorBreach: {
+		category: "group",
+		value: 5000,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Major Breach"
+	},
+	minorBreach: {
+		category: "group",
+		value: 20,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Minor Breach"
+	},
+	crusher: {
+		category: "group",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Infused Crusher"
+	},
+	alkosh: {
+		category: "group",
+		value: 11,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Roar of Alkosh"
+	},
+	tremor: {
+		category: "group",
+		value: 5,
+		active: false,
+		quantity: 3,
+		hasRange: false,
+		label: "Tremorscale"
+	},
+	crimson: {
+		category: "group",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Crimson Oath's Rive"
+	},
+	runic: {
+		category: "group",
+		value: 2,
+		active: false,
+		quantity: 6,
+		hasRange: false,
+		label: "Runic Sunder"
+	},
+	crystal: {
+		category: "group",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Crystal Weapon"
+	},
+	penCP: {
+		category: "self",
+		value: 6,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Penetration CP"
+	},
+	lightArmor: {
+		category: "self",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		range: [1, 7],
+		default: 1,
+		label: "Light Armor (900 per piece)"
+	},
+	velothi: {
+		category: "self",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Velothi-Ur Mage's Amulet"
+	},
+	fonCP: {
+		category: "self",
+		value: 1,
+		active: false,
+		quantity: 12,
+		hasRange: true,
+		range: [1, 10],
+		default: 3,
+		label: "Force of Nature CP (900 per status)"
+	},
+	otherArmor: {
+		category: "self",
+		value: 8,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		range: [1, 10],
+		default: 1,
+		label: "Armor Penetration Bonus (1000 per line)"
+	},
+	woodElf: {
+		category: "self",
+		value: 8,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Wood Elf"
+	},
+	mundus: {
+		category: "self",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Lover Mundus (7 divines)"
+	}
+}));
+
 let critDamageValues = new Map(Object.entries({
 	character: {
 		category: "base",
