@@ -236,8 +236,7 @@
 	}
 
 	fieldset div {
-		margin-bottom: 10px;
-		margin-top: 5px;
+		margin: 5px 0;
 	}
 
 	.legend {
@@ -255,6 +254,7 @@
 		appearance: none;
 		background-color: #fff;
 		margin: 0;
+		margin-right: 10px;
 		font: inherit;
 		color: currentColor;
 		height: 16px;
@@ -332,8 +332,18 @@
 		width: 40px;
 	}
 
+	.source {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.source span {
-		float: right;
+		padding-top: 5px;
+	}
+
+	.medium {
+		width: 400px;
+		justify-content: flex-start;
 	}
 
 	hr {
@@ -353,6 +363,8 @@
     border: 1px solid #dee2e6;
     display: inline-flex;
     border-radius: 10px;
+    margin: 0;
+    margin-right: 10px;
   
     &, * { box-sizing: border-box; }
   
@@ -414,6 +426,10 @@
 
   .big {
     border-radius: 50px;
+    height: 26px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    margin-right: 0px;
   
   input[type="number"] {
 	height: 24px;
@@ -472,6 +488,7 @@
 					<legend>Crit Damage Sources</legend>
 					<div id="base">
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="base" autocomplete="off" checked disabled />
 							<div class="number-input">
   <button type="button"></button>
@@ -479,12 +496,14 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="base">Base Character Crit Damage</label>
+						</div>
 							<span name="baseValue">50%</span>
 						</div>
 					</div>
 					<hr />
 					<div id="group">
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="majorForce" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -492,9 +511,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="majorForce">Major Force</label>
+						</div>
 							<span name="majorForceValue">20%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="majorBrittle" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -502,9 +523,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="majorBrittle">Major Brittle</label>
+						</div>
 							<span name="majorBrittleValue">20%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="minorBrittle" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -512,9 +535,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="minorBrittle">Minor Brittle</label>
+						</div>
 							<span name="minorBrittleValue">10%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="lucent" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -522,9 +547,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="lucent">Lucent Echoes</label>
+						</div>
 							<span name="lucentValue">11%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="ec" autocomplete="off" />
 							<div class="number-input">
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
@@ -532,12 +559,14 @@
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>
 </div>
 							<label for="ec">Elemental Catalyst (5% per element)</label>
+						</div>
 							<span name="ecValue">15%</span>
 						</div>
 					</div>
 					<hr />
 					<div id="self">
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="minorForce" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -545,9 +574,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="minorForce">Minor Force</label>
+						</div>
 							<span name="minorForceValue">10%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="mediumArmor" autocomplete="off" />
 							<div class="number-input">
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
@@ -555,9 +586,11 @@
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>
 </div>
 							<label for="mediumArmor">Medium Armor (2% per piece)</label>
+						</div>
 							<span name="mediumArmorValue">12%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="fighting" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -565,9 +598,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="fighting">Fighting Finesse</label>
+						</div>
 							<span name="fightingValue">8%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="backstabber" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -575,9 +610,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="backstabber">Backstabber</label>
+						</div>
 							<span name="backstabberValue">10%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="khajiit" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -585,9 +622,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="khajiit">Khajiit</label>
+						</div>
 							<span name="khajiitValue">12%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="sulxan" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -595,9 +634,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="sulxan">Sul-Xan's Torment</label>
+						</div>
 							<span name="sulxanValue">12%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="moras" autocomplete="off" />
 							<div class="number-input">
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
@@ -605,9 +646,11 @@
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>
 </div>
 							<label for="moras">Mora Scribe's Thesis (1% per buff)</label>
+						</div>
 							<span name="morasValue">12%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="dwAxe" autocomplete="off" />
 							<div class="number-input">
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
@@ -615,9 +658,11 @@
   <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>
 </div>
 							<label for="dwAxe">Dual Wield Axes (6% per axe)</label>
+						</div>
 							<span name="dwAxeValue">6%</span>
 						</div>
-						<div class="source">
+						<div class="source flex-container">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="thAxe" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -625,9 +670,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="thAxe">Two-Handed Axe</label>
+						</div>
 							<span name="thAxeValue">12%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="mundus" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -635,9 +682,11 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="mundus">Shadow Mundus (7 divines)</label>
+						</div>
 							<span name="mundusValue">18%</span>
 						</div>
 						<div class="source">
+							<div class="flex-container medium">
 							<input type="checkbox" class="critDamageSource" name="kilt" autocomplete="off" />
 							<div class="number-input">
   <button type="button"></button>
@@ -645,6 +694,7 @@
   <button type="button" class="plus"></button>
 </div>
 							<label for="kilt">Harpooner's Wading Kilt</label>
+						</div>
 							<span name="kiltValue">10%</span>
 						</div>
 					</div>
