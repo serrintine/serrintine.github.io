@@ -1010,7 +1010,7 @@
 					} else {
 						this.options.onUnselect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
 					}
-					let selfCritDamage = document.getElementById("self");
+					let selfCritDamage = document.getElementById("base");
 					this.selectedValues.forEach(option => {
 						if(critDamageValues.has(option)) {
 							let toUpdate = critDamageValues.get(option);
