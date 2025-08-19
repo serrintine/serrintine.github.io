@@ -745,8 +745,7 @@
 			</div>
 			<div style="text-align:center;margin-top:10px;font-weight:bold;">
 			<div style="padding-bottom:5px;color:#eb4634;">Red: Under crit damage cap.</div>
-			<div style="padding-bottom:5px;color:#40c979">Green: At or above crit damage cap within reason.</div>
-			<div style="color:#3461eb;">Blue: May have too much crit damage.</div>
+			<div style="padding-bottom:5px;color:#3461eb">Blue: At or above crit damage cap.</div>
 			</div>
 		</div>
 	</div>
@@ -781,6 +780,12 @@
 			value: 2,
 			active: false,
 			quantity: 6,
+		},
+		animal: {
+			value: 5,
+			active: false,
+			quantity: 1,
+			name: "Warden Animal Companions (5% per skill)"
 		},
 		assassin: {
 			value: 10,
@@ -1012,6 +1017,21 @@
 							toUpdate.active = true;
 							critDamageValues.set(option, toUpdate);
 							if(!document.getElementById(toUpdate.name)) {
+								if (option === "animal") {
+selfCritDamage.insertAdjacentHTML('afterend', `<div id="${toUpdate.name}" class="source">
+									<div class="flex-container medium">
+          <input type="checkbox" class="critDamageSource" name="${option}" autocomplete="off" checked disabled />
+		<div class="number-input">
+  <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
+  <input class="quantity bg-light" min="1" max="6" name="skill" id="skill" value="1" type="number" autocomplete="off">
+  <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>
+</div>
+          <label for="${option}">${toUpdate.name}</label>
+									</div>
+		  <span name="${option}Value">${toUpdate.value}%</span>
+         </div>`);
+document.getElementById("skill").addEventListener("change", quantityCheck);
+								} else {
 								selfCritDamage.insertAdjacentHTML('afterend', `<div id="${toUpdate.name}" class="source">
 									<div class="flex-container medium">
           <input type="checkbox" class="critDamageSource" name="${option}" autocomplete="off" checked disabled />
@@ -1025,6 +1045,7 @@
 		  <span name="${option}Value">${toUpdate.value}%</span>
          </div>`);
 							}
+						}
 						}
 					});
 					updateDisplay();
@@ -1184,6 +1205,10 @@
 			let toUpdate = critDamageValues.get('dwAxe');
 			toUpdate.quantity = change.target.valueAsNumber;
 			critDamageValues.set('dwAxe', toUpdate);
+		} else if(change.target.id === 'skill') {
+			let toUpdate = critDamageValues.get('animal');
+			toUpdate.quantity = change.target.valueAsNumber;
+			critDamageValues.set('animal', toUpdate);
 		}
 		updateDisplay();
 	}
@@ -1233,14 +1258,10 @@
 			box1.style["color"] = "#eb4634";
 			box2.style["color"] = "#eb4634";
 			box3.style["color"] = "#eb4634";
-		} else if(missing < -10) {
+		} else {
 			box1.style["color"] = "#3461eb";
 			box2.style["color"] = "#3461eb";
 			box3.style["color"] = "#3461eb";
-		} else {
-			box1.style["color"] = "#40c979";
-			box2.style["color"] = "#40c979";
-			box3.style["color"] = "#40c979";
 		}
 	}
 	
