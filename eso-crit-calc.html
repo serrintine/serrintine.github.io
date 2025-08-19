@@ -286,17 +286,6 @@
 		background-color: gray;
 		cursor: auto;
 	}
-
-	#display {
-		max-width: 600px;
-		border: 5px solid black;
-		text-align: center;
-		background: #b463ff;
-		margin: 30px auto;
-		padding-top: 10px;
-		padding-left: 10px;
-		border-radius: 10px;
-	}
 	
 	.flex-container {
 		display: flex;
@@ -317,7 +306,7 @@
 		text-align: center;
 		font: 20px bold;
 		font-family: sans-serif;
-		color: #212529;
+		color: inherit;
 	}
 	
 	#displayCritDamage {
@@ -524,20 +513,20 @@
 			<div class="flex-container">
 				<fieldset>
 					<legend>Crit Rate</legend>
-					<div style = "font: 20px bold; color: #212529;">
+					<div style = "font: 20px bold; color: inherit;">
 						<input type="number" id="critRate" min="0" max="100" value="70" autocomplete="off"><span>%</span>
 					</div>
 				</fieldset>
 				<fieldset>
 					<legend>Crit Damage</legend>
-					<div style = "font: 20px bold; color: #212529;">
+					<div style = "font: 20px bold; color: inherit;">
 						<input type="text" id="displayCritDamage" disabled><span>/</span>
 						<input type="text" id="critCap" disabled>
 					</div>
 				</fieldset>
 				<fieldset>
 					<legend id="cap">Under Cap</legend>
-					<div style = "font: 20px bold; color: #212529;">
+					<div style = "font: 20px bold; color: inherit;">
 						<input type="text" id="displayMissing" disabled>
 					</div>
 				</fieldset>
