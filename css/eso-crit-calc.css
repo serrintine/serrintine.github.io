@@ -98,6 +98,22 @@ input[type="checkbox"][disabled] {
 	justify-content: center;
 }
 
+.vertical {
+	text-align: center;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
+
+.vertical .number-input {
+	margin-right: 0;
+}
+
+.short {
+	width: 400px;
+	margin: 0 auto;
+}
+
 #displayCritDamage,
 #displayMissing,
 #displayDamageLoss,

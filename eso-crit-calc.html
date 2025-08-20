@@ -4,6 +4,10 @@
 	<meta charset="UTF-8">
 	<title>ESO Crit Damage Calculator</title>
 	<link rel="stylesheet" href="css/eso-crit-calc.css">
+	<script src="subclasses.js"></script>
+	<script src="armorValues.js"></script>
+	<script src="critDamageValues.js"></script>
+	<script src="penetrationValues.js"></script>
 </head>
 <body translate="no">
 	<div class="container">
@@ -13,6 +17,16 @@
 			<form>
 				<label class="legend" for="subclasses">Subclasses</label>
 				<select id="subclass" name="subclass"></select>
+				<fieldset>
+					<legend>Armor Distribution</legend>
+					<div class="flex-container short">
+					<div id="heavyArmor" name="heavyArmor" data-armor></div>
+					<hr />
+					<div id="mediumArmor" name="mediumArmor" data-armor></div>
+					<hr />
+					<div id="lightArmor" name="lightArmor" data-armor></div>
+				</div>
+				</fieldset>
 				<fieldset>
 					<legend>Crit Damage Sources</legend>
 					<div id="base" name="base" data-source></div>
@@ -45,12 +59,9 @@
 					<input type="text" id="displayDamageLoss" disabled>
 				</fieldset>
 			</form>
-			<div class="result-legend">
-				<div class="red">Red: Under crit damage cap.</div>
-				<div class="blue">Blue: At or above crit damage cap.</div>
-			</div>
 		</div>
 	</div>
 	<script src="eso-crit-calc.js"></script>
+	<script src="multiselect.js"></script>
 </body>
 </html>
