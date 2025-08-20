@@ -1,0 +1,184 @@
+let critDamageValues = new Map(Object.entries({
+	character: {
+		category: "base",
+		value: 50,
+		active: true,
+		quantity: 1,
+		hasRange: false,
+		label: "Base Character Crit Damage"
+	},
+	animal: {
+		suppress: true,
+		category: "base",
+		value: 5,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		range: [1, 6],
+		default: 1,
+		label: "Animal Companions (5% per skill)"
+	},
+	assassin: {
+		suppress: true,
+		category: "base",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Assassination"
+	},
+	aedric: {
+		suppress: true,
+		category: "base",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Aedric Spear"
+	},
+	herald: {
+		suppress: true,
+		category: "base",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Herald of the Tome"
+	},
+	majorForce: {
+		category: "group",
+		value: 20,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Major Force"
+	},
+	majorBrittle: {
+		category: "group",
+		value: 20,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Major Brittle"
+	},
+	minorBrittle: {
+		category: "group",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Minor Brittle"
+	},
+	lucent: {
+		category: "group",
+		value: 11,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Lucent Echoes"
+	},
+	ec: {
+		category: "group",
+		value: 5,
+		active: false,
+		quantity: 3,
+		hasRange: true,
+		range: [1, 3],
+		default: 3,
+		label: "Elemental Catalyst"
+	},
+	minorForce: {
+		category: "self",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Minor Force"
+	},
+	mediumArmor: {
+		category: "self",
+		value: 2,
+		active: false,
+		quantity: 6,
+		hasRange: true,
+		range: [1, 7],
+		default: 6,
+		label: "Medium Armor (2% per piece)"
+	},
+	sulxan: {
+		category: "self",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Sul-Xan's Torment"
+	},
+	moras: {
+		category: "self",
+		value: 1,
+		active: false,
+		quantity: 12,
+		hasRange: true,
+		range: [1, 12],
+		default: 12,
+		label: "Mora Scribe's Thesis (1% per buff)"
+	},
+	dwAxe: {
+		category: "self",
+		value: 6,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		range: [1, 2],
+		default: 1,
+		label: "Dual Wield Axes (6% per weapon)"
+	},
+	thAxe: {
+		category: "self",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Two-Handed Axe"
+	},
+	backstabber: {
+		category: "self",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Backstabber"
+	},
+	fighting: {
+		category: "self",
+		value: 8,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Fighting Finesse"
+	},
+	khajiit: {
+		category: "self",
+		value: 12,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Khajiit"
+	},
+	kilt: {
+		category: "self",
+		value: 10,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Harpooner's Wading Kilt"
+	},
+	mundus: {
+		category: "self",
+		value: 18,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Shadow Mundus"
+	}
+}));
