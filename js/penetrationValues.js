@@ -1,7 +1,7 @@
 let penetrationValues = new Map(Object.entries({
 	character: {
 		category: "base",
-		value: 100,
+		value: 0,
 		active: true,
 		quantity: 1,
 		hasRange: false,
@@ -10,7 +10,7 @@ let penetrationValues = new Map(Object.entries({
 	grave: {
 		suppress: true,
 		category: "base",
-		value: 3000,
+		value: 3271,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -19,17 +19,17 @@ let penetrationValues = new Map(Object.entries({
 	herald: {
 		suppress: true,
 		category: "base",
-		value: 900,
+		value: 1240,
 		active: false,
 		quantity: 2,
 		hasRange: true,
 		range: [1, 6],
 		default: 2,
-		label: "Herald of the Tome (900 per skill)"
+		label: "Herald of the Tome (1240 per skill)"
 	},
 	majorBreach: {
 		category: "group",
-		value: 5000,
+		value: 5948,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -37,7 +37,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	minorBreach: {
 		category: "group",
-		value: 3000,
+		value: 2974,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -45,7 +45,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	crusher: {
 		category: "group",
-		value: 2100,
+		value: 2108,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -61,7 +61,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	tremor: {
 		category: "group",
-		value: 3000,
+		value: 2640,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -69,7 +69,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	crimson: {
 		category: "group",
-		value: 3500,
+		value: 3541,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -97,50 +97,69 @@ let penetrationValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: false,
-		label: "Penetration CP"
+		label: "Piercing CP"
 	},
 	lightArmor: {
 		disabled: true,
 		category: "self",
-		value: 900,
+		value: 939,
 		active: true,
 		quantity: 0,
 		hasRange: true,
 		range: [1, 7],
 		default: 0,
-		label: "Light Armor (900 per piece)"
+		label: "Light Armor (939 per piece)"
 	},
 	velothi: {
 		category: "self",
-		value: 1600,
+		value: 1650,
 		active: false,
 		quantity: 1,
 		hasRange: false,
 		label: "Velothi-Ur Mage's Amulet"
 	},
+	dwMace: {
+		category: "self",
+		value: 1487,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		range: [1, 2],
+		default: 1,
+		label: "Dual Wield Mace (1487 per weapon)"
+	},
+	thMaul: {
+		category: "self",
+		value: 2974,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		default: 1,
+		label: "Two-Handed Maul"
+	},
 	fonCP: {
 		category: "self",
-		value: 900,
+		value: 660,
 		active: false,
 		quantity: 3,
 		hasRange: true,
 		range: [1, 10],
 		default: 3,
-		label: "Force of Nature CP (900 per status)"
+		label: "Force of Nature CP (660 per status)"
 	},
 	otherArmor: {
 		category: "self",
-		value: 1400,
+		value: 1487,
 		active: false,
 		quantity: 1,
 		hasRange: true,
 		range: [1, 10],
 		default: 1,
-		label: "Armor Penetration Bonus (1000 per line)"
+		label: "Armor Set Bonus (1487 per line)"
 	},
 	woodElf: {
 		category: "self",
-		value: 3000,
+		value: 950,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -148,7 +167,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	mundus: {
 		category: "self",
-		value: 6000,
+		value: 4491,
 		active: false,
 		quantity: 1,
 		hasRange: false,
