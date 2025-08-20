@@ -1,115 +1,140 @@
-let subclasses = [
-	{
-		value: "",
-		text: "Dragonknight"
+let classes = new Map(Object.entries({
+	dk: {
+		label: "Dragonknight",
+		active: true,
+		subclasses: [{
+			value: "ardent",
+			text: "Ardent Flame",
+			active: true
+		},
+		{
+			value: "earthen",
+			text: "Earthen Heart",
+			active: true
+		},
+		{
+			value: "draconic",
+			text: "Draconic Power",
+			active: true
+		}]
 	},
-	{
-		value: "ardent",
-		text: "Ardent Flame"
+	nb: {
+		label: "Nightblade",
+		active: true,
+		subclasses: [{
+			value: "assassin",
+			text: "Assassination",
+			active: true
+		},
+		{
+			value: "siphon",
+			text: "Siphoning",
+			active: true
+		},
+		{
+			value: "shadow",
+			text: "Shadow",
+			active: true
+		}]
 	},
-	{
-		value: "earthen",
-		text: "Earthen Heart"
+	plar: {
+		label: "Templar",
+		active: true,
+		subclasses: [{
+			value: "dawn",
+			text: "Dawn's Wrath",
+			active: true
+		},
+		{
+			value: "aedric",
+			text: "Aedric Spear",
+			active: true
+		},
+		{
+			value: "restoring",
+			text: "Restoring Light",
+			active: true
+		}]
 	},
-	{
-		value: "draconic",
-		text: "Draconic Power"
+	sorc: {
+		label: "Sorcerer",
+		active: true,
+		subclasses: [{
+			value: "storm",
+			text: "Storm Calling",
+			active: true
+		},
+		{
+			value: "daedric",
+			text: "Daedric Summoning",
+			active: true
+		},
+		{
+			value: "dark",
+			text: "Dark Magic",
+			active: true
+		}]
 	},
-	{
-		value: "",
-		text: "Nightblade"
+	den: {
+		label: "Warden",
+		active: true,
+		subclasses: [{
+			value: "animal",
+			text: "Animal Companions",
+			active: true
+		},
+		{
+			value: "winter",
+			text: "Winter's Embrace",
+			active: true
+		},
+		{
+			value: "green",
+			text: "Green Balance",
+			active: true
+		}]
 	},
-	{
-		value: "assassin",
-		text: "Assassination"
+	cro: {
+		label: "Necromancer",
+		active: true,
+		subclasses: [{
+			value: "grave",
+			text: "Grave Lord",
+			active: true
+		},
+		{
+			value: "bone",
+			text: "Bone Tyrant"
+		},
+		{
+			value: "living",
+			text: "Living Death",
+			active: true
+		}]
 	},
-	{
-		value: "siphon",
-		text: "Siphoning"
-	},
-	{
-		value: "shadow",
-		text: "Shadow"
-	},
-	{
-		value: "",
-		text: "Templar"
-	},
-	{
-		value: "dawn",
-		text: "Dawn's Wrath"
-	},
-	{
-		value: "aedric",
-		text: "Aedric Spear"
-	},
-	{
-		value: "restoring",
-		text: "Restoring Light"
-	},
-	{
-		value: "",
-		text: "Sorcerer"
-	},
-	{
-		value: "storm",
-		text: "Storm Calling"
-	},
-	{
-		value: "daedric",
-		text: "Daedric Summoning"
-	},
-	{
-		value: "dark",
-		text: "Dark Magic"
-	},
-	{
-		value: "",
-		text: "Warden"
-	},
-	{
-		value: "animal",
-		text: "Animal Companions"
-	},
-	{
-		value: "winter",
-		text: "Winter's Embrace"
-	},
-	{
-		value: "green",
-		text: "Green Balance"
-	},
-	{
-		value: "",
-		text: "Necromancer"
-	},
-	{
-		value: "grave",
-		text: "Grave Lord"
-	},
-	{
-		value: "bone",
-		text: "Bone Tyrant"
-	},
-	{
-		value: "living",
-		text: "Living Death"
-	},
-	{
-		value: "",
-		text: "Arcanist"
-	},
-	{
-		value: "herald",
-		text: "Herald of the Tome"
-	},
-	{
-		value: "soldier",
-		text: "Soldier of Apocrypha"
-	},
-	{
-		value: "curative",
-		text: "Curative Runeforms"
+	arc: {
+		label: "Arcanist",
+		active: true,
+		subclasses: [{
+			value: "herald",
+			text: "Herald of the Tome",
+			active: true
+		},
+		{
+			value: "soldier",
+			text: "Soldier of Apocrypha",
+			active: true
+		},
+		{
+			value: "curative",
+			text: "Curative Runeforms",
+			active: true
+		}]
 	}
+}));
 
-];
+let subclasses = [];
+classes.forEach((classConfig, className) => {
+	subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
+	classConfig.subclasses.forEach((subclass) => subclasses.push({ "value": subclass.value, "text": subclass.text }));
+});

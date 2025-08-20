@@ -221,6 +221,10 @@
 	color: #212529;
 }
 
+.multi-select .multi-select-option-disabled {
+	cursor: auto;
+}
+
 .multi-select-option-disabled-text {
 	font-weight: bold;
 }

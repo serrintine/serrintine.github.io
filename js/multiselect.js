@@ -47,27 +47,27 @@ class MultiSelect {
 		let optionsHTML = '';
 		for(let i = 0; i < this.data.length; i++) {
 			if(this.data[i].value.length > 0) {
-				optionsHTML += `
+				if(this.data[i].isSection) {
+					optionsHTML += `
+                      <div class="multi-select-option-disabled" data-value="${this.data[i].value}">
+                          <span class="multi-select-option-disabled-text">${this.data[i].html ? this.data[i].html : this.data[i].text}</span>
+                      </div>`;
+				} else {
+					optionsHTML += `
                       <div class="multi-select-option${this.selectedValues.includes(this.data[i].value) ? ' multi-select-selected' : ''}" data-value="${this.data[i].value}">
                           <span class="multi-select-option-radio"></span>
                           <span class="multi-select-option-text">${this.data[i].html ? this.data[i].html : this.data[i].text}</span>
-                      </div>
-				`;
-			} else {
-				optionsHTML += `
-                      <div class="multi-select-option-disabled">
-                          <span class="multi-select-option-disabled-text">${this.data[i].html ? this.data[i].html : this.data[i].text}</span>
-                      </div>
-				`;
+                      </div>`;
+				}
 			}
 		}
 		let selectAllHTML = '';
 		if(this.options.selectAll === true || this.options.selectAll === 'true') {
-			selectAllHTML = `<div class="multi-select-all"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Select all</span></div>`;
+			selectAllHTML = `<div class="multi-select-all"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Select All</span></div>`;
 		}
 		let clearAllHTML = '';
 		if(this.options.clearAll === true || this.options.clearAll === 'true') {
-			clearAllHTML = `<div class="multi-select-clear"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Clear all</span></div>`;
+			clearAllHTML = `<div class="multi-select-clear"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Clear All</span></div>`;
 		}
 		let template = `
                   <div class="multi-select ${this.name}"${this.selectElement.id ? ' id="' + this.selectElement.id + '"' : ''} style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
@@ -118,14 +118,12 @@ class MultiSelect {
 						let toUpdate = critDamageValues.get(option.dataset.value);
 						toUpdate.active = false;
 						toUpdate.suppress = true;
-						critDamageValues.set(option.dataset.value, toUpdate);
 						document.getElementById(toUpdate.label).remove();
 					}
 					if(penetrationValues.has(option.dataset.value)) {
 						let toUpdate = penetrationValues.get(option.dataset.value);
 						toUpdate.active = false;
 						toUpdate.suppress = true;
-						penetrationValues.set(option.dataset.value, toUpdate);
 						document.getElementById(toUpdate.label).remove();
 					}
 				}
@@ -143,10 +141,10 @@ class MultiSelect {
 				if(this.options.max) {
 					this.element.querySelector('.multi-select-header-max').innerHTML = this.selectedValues.length + '/' + this.options.max + ' selected';
 				}
-				if(this.options.search === true || this.options.search === 'true') {
+				/*if(this.options.search === true || this.options.search === 'true') {
 					this.element.querySelector('.multi-select-search').value = '';
-				}
-				this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
+				}*/
+				//this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
 				if(this.options.closeListOnItemSelect === true || this.options.closeListOnItemSelect === 'true') {
 					headerElement.classList.remove('multi-select-header-active');
 				}
@@ -162,7 +160,6 @@ class MultiSelect {
 						let toUpdate = critDamageValues.get(option);
 						toUpdate.active = true;
 						toUpdate.suppress = false;
-						critDamageValues.set(option, toUpdate);
 						if(!document.getElementById(toUpdate.label)) {
 							setupCritCalc(base, option, toUpdate);
 							addButtons();
@@ -172,7 +169,6 @@ class MultiSelect {
 						let toUpdate = penetrationValues.get(option);
 						toUpdate.active = true;
 						toUpdate.suppress = false;
-						penetrationValues.set(option, toUpdate);
 						if(!document.getElementById(toUpdate.label)) {
 							setupPenCalc(base, option, toUpdate);
 							addButtons();
@@ -183,13 +179,43 @@ class MultiSelect {
 				updateDisplay();
 			};
 		});
-		headerElement.onclick = () => headerElement.classList.toggle('multi-select-header-active');
+		headerElement.onclick = () => {
+			headerElement.classList.toggle('multi-select-header-active');
+			if(this.options.search === true || this.options.search === 'true') {
+				this.element.querySelector('.multi-select-search').value = '';
+			}
+			this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
+			this.element.querySelectorAll('.multi-select-option-disabled').forEach(option => option.style.display = 'flex');
+		}
 		if(this.options.search === true || this.options.search === 'true') {
 			let search = this.element.querySelector('.multi-select-search');
 			search.oninput = () => {
+				classes.forEach((classConfig, className) => {
+						let matchedClass = classConfig.label.toLowerCase().indexOf(search.value.toLowerCase()) > -1;
+						classConfig.active = matchedClass;
+						classConfig.subclasses.forEach((subclass) => {
+							let matchedSubclass = subclass.text.toLowerCase().indexOf(search.value.toLowerCase()) > -1;
+							subclass.active = matchedClass || matchedSubclass;
+							if (matchedSubclass) {
+								classConfig.active = true;
+							}
+						});
+				});
 				this.element.querySelectorAll('.multi-select-option').forEach(option => {
-					let searchField = option.querySelector('.multi-select-option-text');
-					option.style.display = searchField.innerHTML.toLowerCase().indexOf(search.value.toLowerCase()) > -1 ? 'flex' : 'none';
+					classes.forEach((classConfig, className) => {
+						classConfig.subclasses.forEach((subclass) => {
+							if(option.dataset.value === subclass.value) {
+								option.style.display = subclass.active ? 'flex' : 'none';
+							}
+						});
+					});
+				});
+				this.element.querySelectorAll('.multi-select-option-disabled').forEach(option => {
+					classes.forEach((classConfig, className) => {
+						if(option.dataset.value === className) {
+							option.style.display = classConfig.active ? 'flex' : 'none';
+						}
+					});
 				});
 			};
 		}
@@ -215,6 +241,11 @@ class MultiSelect {
 						option.click();
 					}
 				});
+				if(this.options.search === true || this.options.search === 'true') {
+					this.element.querySelector('.multi-select-search').value = '';
+				}
+				this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
+				this.element.querySelectorAll('.multi-select-option-disabled').forEach(option => option.style.display = 'flex');
 			};
 		}
 		if(this.selectElement.id && document.querySelector('label[for="' + this.selectElement.id + '"]')) {
@@ -296,8 +327,9 @@ class MultiSelect {
 //document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
 new MultiSelect('#subclass', {
 	data: subclasses,
-	search: false,
+	search: true,
 	selectAll: false,
+	clearAll: true,
 	listAll: true,
 	height: 50,
 	max: 3

@@ -65,20 +65,14 @@ function stepUp(element) {
 function armorCheck(change) {
 	let key = change.target.id.replace("Quantity", "");
 	let newValue = change.target.valueAsNumber;
-	let toUpdate = armorValues.get(key);
-	toUpdate.quantity = newValue;
-	armorValues.set(key, toUpdate);
+	armorValues.get(key).quantity = newValue;
 	if (critDamageValues.has(key)) {
-		let toChange = critDamageValues.get(key);
-		toChange.quantity = newValue;
-		critDamageValues.set(key, toChange);
+		critDamageValues.get(key).quantity = newValue;
 		document.getElementById(key + "QuantityDummy").value = newValue;
 		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'));
 	}
 	if (penetrationValues.has(key)) {
-		let toChange = penetrationValues.get(key);
-		toChange.quantity = newValue;
-		penetrationValues.set(key, toChange);
+		penetrationValues.get(key).quantity = newValue;
 		document.getElementById(key + "QuantityDummy").value = newValue;
 		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'));
 	}
@@ -154,15 +148,12 @@ function displayCheck(option) {
 	} else {
 		toUpdate.active = false;
 	}
-	dataSource.set(option.target.name, toUpdate);
 	updateDisplay();
 }
 
 function quantityCheck(change) {
 	let key = change.target.id.replace("Quantity", "");
-	let toUpdate = dataSource.get(key);
-	toUpdate.quantity = change.target.valueAsNumber;
-	dataSource.set(key, toUpdate);
+	dataSource.get(key).quantity = change.target.valueAsNumber;
 	updateDisplay();
 }
 
