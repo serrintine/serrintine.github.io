@@ -73,16 +73,14 @@ function armorCheck(change) {
 		toChange.quantity = newValue;
 		critDamageValues.set(key, toChange);
 		document.getElementById(key + "QuantityDummy").value = newValue;
-		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'))
-		updateDisplay();
+		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'));
 	}
 	if (penetrationValues.has(key)) {
 		let toChange = penetrationValues.get(key);
 		toChange.quantity = newValue;
 		penetrationValues.set(key, toChange);
 		document.getElementById(key + "QuantityDummy").value = newValue;
-		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'))
-		updateDisplay();
+		document.querySelector("#" + key + "Check").dispatchEvent(new Event('click'));
 	}
 }
 
