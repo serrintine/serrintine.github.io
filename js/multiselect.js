@@ -41,7 +41,6 @@ class MultiSelect {
 		this.selectElement.replaceWith(this.element);
 		this._updateSelected();
 		this._eventHandlers();
-		updateDisplay();
 	}
 	_template() {
 		let optionsHTML = '';
@@ -109,13 +108,14 @@ class MultiSelect {
 					this.element.querySelector(`input[value="${option.dataset.value}"]`).remove();
 					this.data.filter(data => data.value == option.dataset.value)[0].selected = false;
 					selected = false;
-					if(document.getElementById("critDamage").checked && critDamageValues.has(option.dataset.value)) {
+					if(critDamageValues.has(option.dataset.value)) {
 						let toUpdate = critDamageValues.get(option.dataset.value);
 						toUpdate.active = false;
 						toUpdate.suppress = true;
 						critDamageValues.set(option.dataset.value, toUpdate);
 						document.getElementById(toUpdate.label).remove();
-					} else if(document.getElementById("penetration").checked && penetrationValues.has(option.dataset.value)) {
+					}
+					if(penetrationValues.has(option.dataset.value)) {
 						let toUpdate = penetrationValues.get(option.dataset.value);
 						toUpdate.active = false;
 						toUpdate.suppress = true;
@@ -152,7 +152,7 @@ class MultiSelect {
 				}
 				let base = document.getElementById("base");
 				this.selectedValues.forEach(option => {
-					if(document.getElementById("critDamage").checked && critDamageValues.has(option)) {
+					if(critDamageValues.has(option)) {
 						let toUpdate = critDamageValues.get(option);
 						toUpdate.active = true;
 						toUpdate.suppress = false;
@@ -161,7 +161,8 @@ class MultiSelect {
 							setupCritCalc(base, option, toUpdate);
 							addButtons();
 						}
-					} else if(document.getElementById("penetration").checked && penetrationValues.has(option)) {
+					}
+					if(penetrationValues.has(option)) {
 						let toUpdate = penetrationValues.get(option);
 						toUpdate.active = true;
 						toUpdate.suppress = false;
@@ -172,6 +173,7 @@ class MultiSelect {
 						}
 					}
 				});
+				calcCheck();
 				updateDisplay();
 			};
 		});
