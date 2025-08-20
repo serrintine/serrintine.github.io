@@ -94,7 +94,8 @@
 }
 
 .multi-select .multi-select-options .multi-select-option,
-.multi-select .multi-select-options .multi-select-all {
+.multi-select .multi-select-options .multi-select-all,
+.multi-select .multi-select-options .multi-select-clear {
 	padding: 4px 12px;
 	height: 42px;
 }
@@ -108,8 +109,15 @@
 	border-radius: 4px;
 }
 
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio {
+	margin-right: 14px;
+	height: 16px;
+	width: 16px;
+}
+
 .multi-select .multi-select-options .multi-select-option .multi-select-option-text,
-.multi-select .multi-select-options .multi-select-all .multi-select-option-text {
+.multi-select .multi-select-options .multi-select-all .multi-select-option-text,
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-text {
 	box-sizing: border-box;
 	flex: 1;
 	overflow: hidden;
@@ -138,6 +146,30 @@
 	transform: rotate(45deg);
 }
 
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio {
+  width: 16px;
+  height: 16px;
+  opacity: 0.3;
+}
+.multi-select .multi-select-options .multi-select-clear:hover .multi-select-option-radio {
+  opacity: 1;
+}
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio:before,
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio:after {
+  position: absolute;
+  left: 24px;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: #333;
+}
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio:before {
+  transform: rotate(45deg);
+}
+.multi-select .multi-select-options .multi-select-clear .multi-select-option-radio:after {
+  transform: rotate(-45deg);
+}
+
 .multi-select .multi-select-options .multi-select-option.multi-select-selected .multi-select-option-text,
 .multi-select .multi-select-options .multi-select-all.multi-select-selected .multi-select-option-text {
 	color: #40c979;
@@ -146,7 +178,9 @@
 .multi-select .multi-select-options .multi-select-option:hover,
 .multi-select .multi-select-options .multi-select-option:active,
 .multi-select .multi-select-options .multi-select-all:hover,
-.multi-select .multi-select-options .multi-select-all:active {
+.multi-select .multi-select-options .multi-select-all:active,
+.multi-select .multi-select-options .multi-select-clear:hover,
+.multi-select .multi-select-options .multi-select-clear:active {
 	background-color: #f3f4f7;
 }
 
@@ -172,7 +206,8 @@
 .multi-select .multi-select-header,
 .multi-select .multi-select-option,
 .multi-select .multi-select-option-disabled,
-.multi-select .multi-select-all {
+.multi-select .multi-select-all,
+.multi-select .multi-select-clear {
 	display: flex;
 	flex-wrap: wrap;
 	box-sizing: border-box;

@@ -6,6 +6,7 @@ class MultiSelect {
 			max: null,
 			search: true,
 			selectAll: true,
+			clearAll: true,
 			listAll: true,
 			closeListOnItemSelect: false,
 			name: '',
@@ -64,6 +65,10 @@ class MultiSelect {
 		if(this.options.selectAll === true || this.options.selectAll === 'true') {
 			selectAllHTML = `<div class="multi-select-all"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Select all</span></div>`;
 		}
+		let clearAllHTML = '';
+		if(this.options.clearAll === true || this.options.clearAll === 'true') {
+			clearAllHTML = `<div class="multi-select-clear"><span class="multi-select-option-radio"></span><span class="multi-select-option-text">Clear all</span></div>`;
+		}
 		let template = `
                   <div class="multi-select ${this.name}"${this.selectElement.id ? ' id="' + this.selectElement.id + '"' : ''} style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
 			${this.selectedValues.map(value => `<input type="hidden" name="${this.name}[]" value="${value}">`).join('')}
@@ -74,6 +79,7 @@ class MultiSelect {
                       <div class="multi-select-options" style="${this.options.dropdownWidth ? 'width:' + this.options.dropdownWidth + ';' : ''}${this.options.dropdownHeight ? 'height:' + this.options.dropdownHeight + ';' : ''}">
                           ${this.options.search === true || this.options.search === 'true' ? '<input type="text" class="multi-select-search" placeholder="Search...">' : ''}
                           ${selectAllHTML}
+													${clearAllHTML}
                           ${optionsHTML}
                       </div>
                   </div>
@@ -182,7 +188,8 @@ class MultiSelect {
 			let search = this.element.querySelector('.multi-select-search');
 			search.oninput = () => {
 				this.element.querySelectorAll('.multi-select-option').forEach(option => {
-					option.style.display = option.querySelector('.multi-select-option-text').innerHTML.toLowerCase().indexOf(search.value.toLowerCase()) > -1 ? 'flex' : 'none';
+					let searchField = option.querySelector('.multi-select-option-text');
+					option.style.display = searchField.innerHTML.toLowerCase().indexOf(search.value.toLowerCase()) > -1 ? 'flex' : 'none';
 				});
 			};
 		}
@@ -197,6 +204,17 @@ class MultiSelect {
 					}
 				});
 				selectAllButton.classList.toggle('multi-select-selected');
+			};
+		}
+		if(this.options.clearAll === true || this.options.clearAll === 'true') {
+			let clearAllButton = this.element.querySelector('.multi-select-clear');
+			clearAllButton.onclick = () => {
+				this.element.querySelectorAll('.multi-select-option').forEach(option => {
+					let dataItem = this.data.find(data => data.value == option.dataset.value);
+					if(dataItem && dataItem.selected) {
+						option.click();
+					}
+				});
 			};
 		}
 		if(this.selectElement.id && document.querySelector('label[for="' + this.selectElement.id + '"]')) {
