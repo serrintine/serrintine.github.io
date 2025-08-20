@@ -189,15 +189,9 @@ function updateDisplay() {
 			if(span) {
 				span.classList.add("green");
 			}
-			if(label) {
-				label.classList.add("green");
-			}
 		} else {
 			if(span) {
 				span.classList.remove("green");
-			}
-			if(label) {
-				label.classList.remove("green");
 			}
 		}
 		if(span) {
@@ -238,15 +232,9 @@ function updateDisplay() {
 			if(span) {
 				span.classList.add("green");
 			}
-			if(label) {
-				label.classList.add("green");
-			}
 		} else {
 			if(span) {
 				span.classList.remove("green");
-			}
-			if(label) {
-				label.classList.remove("green");
 			}
 		}
 		if(span) {
