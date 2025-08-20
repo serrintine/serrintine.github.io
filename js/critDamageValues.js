@@ -96,12 +96,13 @@ let critDamageValues = new Map(Object.entries({
 		label: "Minor Force"
 	},
 	mediumArmor: {
+		disabled: true,
 		category: "self",
 		value: 2,
-		active: false,
+		active: true,
 		quantity: 6,
 		hasRange: true,
-		range: [1, 7],
+		range: [0, 7],
 		default: 6,
 		label: "Medium Armor (2% per piece)"
 	},

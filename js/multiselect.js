@@ -109,11 +109,17 @@ class MultiSelect {
 					this.element.querySelector(`input[value="${option.dataset.value}"]`).remove();
 					this.data.filter(data => data.value == option.dataset.value)[0].selected = false;
 					selected = false;
-					if(critDamageValues.has(option.dataset.value)) {
+					if(document.getElementById("critDamage").checked && critDamageValues.has(option.dataset.value)) {
 						let toUpdate = critDamageValues.get(option.dataset.value);
 						toUpdate.active = false;
 						toUpdate.suppress = true;
 						critDamageValues.set(option.dataset.value, toUpdate);
+						document.getElementById(toUpdate.label).remove();
+					} else if(document.getElementById("penetration").checked && penetrationValues.has(option.dataset.value)) {
+						let toUpdate = penetrationValues.get(option.dataset.value);
+						toUpdate.active = false;
+						toUpdate.suppress = true;
+						penetrationValues.set(option.dataset.value, toUpdate);
 						document.getElementById(toUpdate.label).remove();
 					}
 				}
@@ -144,15 +150,24 @@ class MultiSelect {
 				} else {
 					this.options.onUnselect(option.dataset.value, option.querySelector('.multi-select-option-text').innerHTML, option);
 				}
-				let baseCritDamage = document.getElementById("base");
+				let base = document.getElementById("base");
 				this.selectedValues.forEach(option => {
-					if(critDamageValues.has(option)) {
+					if(document.getElementById("critDamage").checked && critDamageValues.has(option)) {
 						let toUpdate = critDamageValues.get(option);
 						toUpdate.active = true;
 						toUpdate.suppress = false;
 						critDamageValues.set(option, toUpdate);
 						if(!document.getElementById(toUpdate.label)) {
-							setupCritCalc(baseCritDamage, option, toUpdate);
+							setupCritCalc(base, option, toUpdate);
+							addButtons();
+						}
+					} else if(document.getElementById("penetration").checked && penetrationValues.has(option)) {
+						let toUpdate = penetrationValues.get(option);
+						toUpdate.active = true;
+						toUpdate.suppress = false;
+						penetrationValues.set(option, toUpdate);
+						if(!document.getElementById(toUpdate.label)) {
+							setupPenCalc(base, option, toUpdate);
 							addButtons();
 						}
 					}

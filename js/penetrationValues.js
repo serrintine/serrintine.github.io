@@ -37,7 +37,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	minorBreach: {
 		category: "group",
-		value: 20,
+		value: 3000,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -45,7 +45,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	crusher: {
 		category: "group",
-		value: 10,
+		value: 2100,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -53,7 +53,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	alkosh: {
 		category: "group",
-		value: 11,
+		value: 6000,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -61,15 +61,15 @@ let penetrationValues = new Map(Object.entries({
 	},
 	tremor: {
 		category: "group",
-		value: 5,
+		value: 3000,
 		active: false,
-		quantity: 3,
+		quantity: 1,
 		hasRange: false,
 		label: "Tremorscale"
 	},
 	crimson: {
 		category: "group",
-		value: 10,
+		value: 3500,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -77,15 +77,15 @@ let penetrationValues = new Map(Object.entries({
 	},
 	runic: {
 		category: "group",
-		value: 2,
+		value: 2200,
 		active: false,
-		quantity: 6,
+		quantity: 1,
 		hasRange: false,
 		label: "Runic Sunder"
 	},
 	crystal: {
 		category: "group",
-		value: 12,
+		value: 1000,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -93,25 +93,26 @@ let penetrationValues = new Map(Object.entries({
 	},
 	penCP: {
 		category: "self",
-		value: 6,
+		value: 700,
 		active: false,
 		quantity: 1,
 		hasRange: false,
 		label: "Penetration CP"
 	},
 	lightArmor: {
+		disabled: true,
 		category: "self",
-		value: 12,
-		active: false,
-		quantity: 1,
+		value: 900,
+		active: true,
+		quantity: 0,
 		hasRange: true,
 		range: [1, 7],
-		default: 1,
+		default: 0,
 		label: "Light Armor (900 per piece)"
 	},
 	velothi: {
 		category: "self",
-		value: 10,
+		value: 1600,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -119,9 +120,9 @@ let penetrationValues = new Map(Object.entries({
 	},
 	fonCP: {
 		category: "self",
-		value: 1,
+		value: 900,
 		active: false,
-		quantity: 12,
+		quantity: 3,
 		hasRange: true,
 		range: [1, 10],
 		default: 3,
@@ -129,7 +130,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	otherArmor: {
 		category: "self",
-		value: 8,
+		value: 1400,
 		active: false,
 		quantity: 1,
 		hasRange: true,
@@ -139,7 +140,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	woodElf: {
 		category: "self",
-		value: 8,
+		value: 3000,
 		active: false,
 		quantity: 1,
 		hasRange: false,
@@ -147,7 +148,7 @@ let penetrationValues = new Map(Object.entries({
 	},
 	mundus: {
 		category: "self",
-		value: 12,
+		value: 6000,
 		active: false,
 		quantity: 1,
 		hasRange: false,

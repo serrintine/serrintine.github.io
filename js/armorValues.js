@@ -10,8 +10,8 @@ let armorValues = new Map(Object.entries({
 		label: "Medium",
 		color: "green",
 		range: [0, 7],
-		default: 0,
-		quantity: 0
+		default: 6,
+		quantity: 6
 	},
 	lightArmor: {
 		label: "Light",
