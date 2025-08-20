@@ -173,9 +173,9 @@ function updateDisplay() {
 				let total = properties.value * properties.quantity;
 				if(properties.active) {
 					critDamage += total;
-					span.classList.add("green");
+					span.classList.add("blue");
 				} else {
-					span.classList.remove("green");
+					span.classList.remove("blue");
 				}
 				span.innerHTML = total + '%';
 			}
@@ -193,9 +193,9 @@ function updateDisplay() {
 				let total = properties.value * properties.quantity;
 				if(properties.active) {
 					penetration += total;
-					span.classList.add("green");
+					span.classList.add("blue");
 				} else {
-					span.classList.remove("green");
+					span.classList.remove("blue");
 				}
 				span.innerHTML = total;
 			}
@@ -217,8 +217,8 @@ function updateDisplay() {
 		box2.style["color"] = "#eb4634";
 		box3.style["color"] = "#eb4634";
 	} else {
-		box1.style["color"] = "#3461eb";
-		box2.style["color"] = "#3461eb";
-		box3.style["color"] = "#3461eb";
+		box1.style["color"] = "#20b044";
+		box2.style["color"] = "#20b044";
+		box3.style["color"] = "#20b044";
 	} 
 }
