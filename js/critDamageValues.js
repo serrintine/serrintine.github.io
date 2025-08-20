@@ -180,6 +180,6 @@ let critDamageValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: false,
-		label: "Shadow Mundus"
+		label: "Shadow Mundus (7 divines)"
 	}
 }));
