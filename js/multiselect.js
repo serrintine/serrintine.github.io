@@ -136,7 +136,7 @@ class MultiSelect {
 					headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option">${this.selectedValues.length} selected</span>`);
 				}
 				if(!this.element.querySelector('.multi-select-header-option')) {
-					headerElement.insertAdjacentHTML('afterbegin', `<span class="multi-select-header-placeholder">${this.placeholder}</span>`);
+					headerElement.insertAdjacentHTML('beforeend', `<span class="multi-select-header-placeholder">${this.placeholder}</span>`);
 				} else if(this.element.querySelector('.multi-select-header-placeholder')) {
 					this.element.querySelector('.multi-select-header-placeholder').remove();
 				}
