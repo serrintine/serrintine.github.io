@@ -137,6 +137,16 @@ let penetrationValues = new Map(Object.entries({
 		default: 1,
 		label: "Two-Handed Maul"
 	},
+	sharpened: {
+		category: "self",
+		value: 1638,
+		active: false,
+		quantity: 1,
+		hasRange: true,
+		default: 1,
+		range: [1, 2],
+		label: "Sharpened (1638 per weapon, 2H = 2 weapons)"
+	},
 	fonCP: {
 		category: "self",
 		value: 660,
@@ -173,6 +183,6 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Lover Mundus (7 divines)"
 	}
-
 }));
+
 
