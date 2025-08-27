@@ -116,7 +116,7 @@ let penetrationValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: false,
-		label: "Velothi-Ur Mage's Amulet"
+		label: "Velothi Ur-Mage's Amulet"
 	},
 	mace: {
 		category: "self",
@@ -183,6 +183,7 @@ let penetrationValues = new Map(Object.entries({
 		label: "Lover Mundus (7 divines)"
 	}
 }));
+
 
 
 
