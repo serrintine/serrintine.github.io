@@ -1,5 +1,5 @@
 let critDamageValues = new Map(Object.entries({
-	character: {
+	baseCritDmg: {
 		category: "base",
 		value: 50,
 		active: true,
@@ -169,7 +169,7 @@ let critDamageValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Harpooner's Wading Kilt"
 	},
-	mundus: {
+	shadowMundus: {
 		category: "self",
 		value: 18,
 		active: false,
@@ -177,4 +177,5 @@ let critDamageValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Shadow Mundus (7 divines)"
 	}
+
 }));
