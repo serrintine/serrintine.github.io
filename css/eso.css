@@ -403,10 +403,9 @@ input[type="radio"]:checked::before {
 
 .tooltip:after {
 	content: attr(tooltip);
-	width: 75px;
 	bottom: -40px;
-  left: 50%;
-	padding: 5px;
+    left: 50%;
+	padding: 5px 10px 5px 10px;
 	border-radius: 4px;
 	font-size: 14px;
 	opacity: 0;
