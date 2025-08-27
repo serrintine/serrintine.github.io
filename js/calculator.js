@@ -45,7 +45,7 @@ function init() {
 	});
 	
 	if(calcParams.has("c")) {
-		let crit = calcParams.get("c").match(/.{1,3}/g);
+		let crit = calcParams.get("c").match(/.{1,2}/g);
 		crit.forEach((value, index) => {
 			let keys = Array.from(critDamageValues.keys());
 			critDamageValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
@@ -57,7 +57,7 @@ function init() {
 	}
 
 	if(calcParams.has("p")) {
-		let pen = calcParams.get("p").match(/.{1,3}/g);
+		let pen = calcParams.get("p").match(/.{1,2}/g);
 		pen.forEach((value, index) => {
 			let keys = Array.from(penetrationValues.keys());
 			penetrationValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
