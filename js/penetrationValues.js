@@ -175,6 +175,14 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Wood Elf"
 	},
+	arenaPen: {
+		category: "self",
+		value: 1190,
+		active: false,
+		quantity: 1,
+		hasRange: false,
+		label: "Arena Set Bonus"
+	},
 	loverMundus: {
 		category: "self",
 		value: 4491,
@@ -184,5 +192,6 @@ let penetrationValues = new Map(Object.entries({
 		label: "Lover Mundus (7 divines)"
 	}
 }));
+
 
 
