@@ -418,3 +418,10 @@ input[type="radio"]:checked::before {
 	text-align: center;
 }
 
+.announcement {
+	border-radius: 5px;
+    background: rgb(187 247 208);
+    border: 2px solid rgb(32, 176, 68);
+    color: rgb(21 128 61);
+    padding: 5px;
+}
