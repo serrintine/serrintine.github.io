@@ -7,13 +7,13 @@ function generateShortLink() {
   let crit = "";
   critDamageValues.forEach((value, type) => {
     crit += value.active ? "1" : "0";
-    crit += value.quantity > 9 ? value.quantity : "0" + value.quantity;
+    crit += value.quantity.toString(16);
   })
 
   let pen = "";
   penetrationValues.forEach((value, type) => {
     pen += value.active ? "1" : "0";
-    pen += value.quantity > 9 ? value.quantity : "0" + value.quantity;
+    pen += value.quantity.toString(16);
   })
 
   let subclass = [];
@@ -52,3 +52,4 @@ const restart = (e) => {
 }
 
 document.getElementById("restart").addEventListener("click", (e) => restart(e));
+
