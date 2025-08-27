@@ -263,7 +263,8 @@ class MultiSelect {
 		if(this.options.listAll === true || this.options.listAll === 'true') {
 			this.element.querySelectorAll('.multi-select-option').forEach(option => {
 				if(option.classList.contains('multi-select-selected')) {
-					this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+					//this.element.querySelector('.multi-select-header').insertAdjacentHTML('afterbegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
+					this.element.querySelector('.multi-select-header-max').insertAdjacentHTML('beforebegin', `<span class="multi-select-header-option" data-value="${option.dataset.value}">${option.querySelector('.multi-select-option-text').innerHTML}</span>`);
 				}
 			});
 		} else {
