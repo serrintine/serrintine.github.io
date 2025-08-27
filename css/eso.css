@@ -420,7 +420,7 @@ input[type="radio"]:checked::before {
 .tooltip:after {
 	content: attr(tooltip);
 	bottom: -43px;
-	height: 18px
+	height: 18px;
     left: 50%;
 	padding: 5px 10px 5px 10px;
 	border-radius: 4px;
