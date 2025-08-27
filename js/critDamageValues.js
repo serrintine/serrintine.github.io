@@ -135,7 +135,7 @@ let critDamageValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: false,
-		label: "Backstabber"
+		label: "Backstabber CP"
 	},
 	fighting: {
 		category: "self",
@@ -143,7 +143,7 @@ let critDamageValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: false,
-		label: "Fighting Finesse"
+		label: "Fighting Finesse CP"
 	},
 	khajiit: {
 		category: "self",
@@ -171,4 +171,5 @@ let critDamageValues = new Map(Object.entries({
 	}
 
 }));
+
 
