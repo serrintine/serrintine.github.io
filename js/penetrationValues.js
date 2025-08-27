@@ -118,7 +118,7 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Velothi-Ur Mage's Amulet"
 	},
-	dwMace: {
+	mace: {
 		category: "self",
 		value: 1487,
 		active: false,
@@ -126,16 +126,7 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: true,
 		range: [1, 2],
 		default: 1,
-		label: "Dual Wield Mace (1487 per weapon)"
-	},
-	thMaul: {
-		category: "self",
-		value: 2974,
-		active: false,
-		quantity: 1,
-		hasRange: false,
-		default: 1,
-		label: "Two-Handed Maul"
+		label: "Mace/Maul (1487 per weapon, 2H = 2 weapons)"
 	},
 	sharpened: {
 		category: "self",
@@ -192,6 +183,7 @@ let penetrationValues = new Map(Object.entries({
 		label: "Lover Mundus (7 divines)"
 	}
 }));
+
 
 
 
