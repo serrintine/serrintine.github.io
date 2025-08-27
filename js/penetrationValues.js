@@ -1,5 +1,5 @@
 let penetrationValues = new Map(Object.entries({
-	character: {
+	basePen: {
 		category: "base",
 		value: 0,
 		active: true,
@@ -165,7 +165,7 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Wood Elf"
 	},
-	mundus: {
+	lover: {
 		category: "self",
 		value: 4491,
 		active: false,
@@ -173,4 +173,5 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Lover Mundus (7 divines)"
 	}
+
 }));
