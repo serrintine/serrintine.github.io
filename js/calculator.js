@@ -49,7 +49,7 @@ function init() {
 		crit.forEach((value, index) => {
 			let keys = Array.from(critDamageValues.keys());
 			critDamageValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
-			critDamageValues.get(keys[index]).quantity = Number(value.substring(1, 3));
+			critDamageValues.get(keys[index]).quantity = parseInt(value.substring(1, 2), 16);
 			if(critDamageValues.get(keys[index]).active) {
 				critDamageValues.get(keys[index]).suppress = false;
 			}
@@ -61,7 +61,7 @@ function init() {
 		pen.forEach((value, index) => {
 			let keys = Array.from(penetrationValues.keys());
 			penetrationValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
-			penetrationValues.get(keys[index]).quantity = Number(value.substring(1, 3));
+			penetrationValues.get(keys[index]).quantity = parseInt(value.substring(1, 2), 16);
 			if(penetrationValues.get(keys[index]).active) {
 				penetrationValues.get(keys[index]).suppress = false;
 			}
