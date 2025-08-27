@@ -120,22 +120,14 @@ let critDamageValues = new Map(Object.entries({
 		range: [1, 12],
 		label: "Mora Scribe's Thesis (1% per buff)"
 	},
-	dwAxe: {
+	axe: {
 		category: "self",
 		value: 6,
 		active: false,
 		quantity: 1,
 		hasRange: true,
 		range: [1, 2],
-		label: "Dual Wield Axes (6% per weapon)"
-	},
-	thAxe: {
-		category: "self",
-		value: 12,
-		active: false,
-		quantity: 1,
-		hasRange: false,
-		label: "Two-Handed Axe"
+		label: "Axe (6% per weapon, 2H = 2 weapons)"
 	},
 	backstabber: {
 		category: "self",
@@ -179,3 +171,4 @@ let critDamageValues = new Map(Object.entries({
 	}
 
 }));
+
