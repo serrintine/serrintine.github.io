@@ -425,3 +425,7 @@ input[type="radio"]:checked::before {
     color: rgb(21 128 61);
     padding: 5px;
 }
+
+.disabled {
+	color: lightgray;
+}
