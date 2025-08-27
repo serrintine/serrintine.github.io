@@ -165,7 +165,7 @@ let penetrationValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Wood Elf"
 	},
-	lover: {
+	loverMundus: {
 		category: "self",
 		value: 4491,
 		active: false,
@@ -175,3 +175,4 @@ let penetrationValues = new Map(Object.entries({
 	}
 
 }));
+
