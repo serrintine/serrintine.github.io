@@ -46,3 +46,9 @@ const resetTooltip = (e) => {
 const copyButton = document.getElementById("copy");
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
+
+const restart = (e) => {
+  window.location = window.location.pathname;
+}
+
+document.getElementById("restart").addEventListener("click", (e) => restart(e));

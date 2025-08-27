@@ -378,12 +378,14 @@ input[type="radio"]:checked::before {
 }
 
 .tooltip {
+	display: inline-block;
 	position: relative;
+  height: 28px;
+	width: 28px;
 }
 
 .tooltip svg {
-	height: 24px;
-	width: 24px;;
+	vertical-align: middle;
 }
 
 .tooltip:hover svg path {
@@ -402,8 +404,8 @@ input[type="radio"]:checked::before {
 .tooltip:after {
 	content: attr(tooltip);
 	width: 75px;
-	top: 5px;
-	left: 80px;
+	bottom: -40px;
+  left: 50%;
 	padding: 5px;
 	border-radius: 4px;
 	font-size: 14px;
@@ -412,7 +414,7 @@ input[type="radio"]:checked::before {
 	position: absolute;
 	background-color: #000000;
 	color: #ffffff;
-	transform: translateY(0) translateX(-60%);
+	transform: translateY(-10px) translateX(-50%);
 	transition: all 300ms ease;
 	text-align: center;
 }
