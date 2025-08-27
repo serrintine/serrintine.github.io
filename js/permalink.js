@@ -24,8 +24,9 @@ function generateShortLink() {
   });
 
   let calc = document.getElementById("critDamage").checked ? "c" : "p";
+  let critRate = document.querySelector('#critRate').value;
 
-  const queryParams = "?r=" + calc + "&s=" + JSON.stringify(subclass) + "&a=" + armor + "&c=" + crit + "&p=" + pen;
+  const queryParams = "?s=" + JSON.stringify(subclass) + "&a=" + armor + "&c=" + crit + "&p=" + pen + "&v=" + critRate + "&r=" + calc;
   navigator.clipboard.writeText(window.location.href.split('?')[0] + queryParams);
   window.history.replaceState(null, null, queryParams);
 }

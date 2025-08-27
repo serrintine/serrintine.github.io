@@ -14,7 +14,7 @@ let critDamageValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: true,
-		range: [1, 6],
+		range: [0, 6],
 		label: "Animal Companions (5% per skill)"
 	},
 	assassin: {
@@ -169,7 +169,6 @@ let critDamageValues = new Map(Object.entries({
 		hasRange: false,
 		label: "Shadow Mundus (7 divines)"
 	}
-
 }));
 
 

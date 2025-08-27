@@ -1,38 +1,147 @@
 let dataSource = critDamageValues;
 let subclasses = [];
+let permalinkIssue = false;
+let dataIssue = false;
 init();
 
 function init() {
-	const calcParams = new URLSearchParams(window.location.search);
+	let armor = [];
+	let crit = [];
+	let pen = [];
+	let selected = new Set([]);
 
+	const calcParams = new URLSearchParams(window.location.search);
 	if(calcParams.size > 0) {
 		document.querySelector(".permalink").getElementById("icon1").setAttribute("fill", "#3461eb");
 		document.querySelector(".permalink").getElementById("icon2").setAttribute("fill", "#3461eb");
 		document.querySelector(".permalink").getElementById("icon3").setAttribute("fill", "#3461eb");
-	}
 
-	if(calcParams.has("a")) {
-		let armor = calcParams.get("a").split('');
-		armor.forEach((value, index) => {
-			let keys = Array.from(armorValues.keys());
-			armorValues.get(keys[index]).quantity = Number(value);
-		});
-	}
-
-	let selected = [];
-	if(calcParams.has("s")) {
-		selected = JSON.parse(calcParams.get("s"));
-	}
-	classes.forEach((classConfig, className) => {
-		subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
-		classConfig.subclasses.forEach((subclass) => {
-			if(selected.includes(subclass.value)) {
-				subclasses.push({ "value": subclass.value, "text": subclass.text, "selected": true });
+		if(calcParams.has("a")) {
+			armor = calcParams.get("a").split('');
+			if(armor.length != armorValues.size) {
+				permalinkIssue = true;
+			}
+		} else {
+			permalinkIssue = true;
+		}
+		if(calcParams.has("c")) {
+			let str = calcParams.get("c");
+			if(str.length != critDamageValues.size * 2) {
+				permalinkIssue = true;
 			} else {
+				crit = str.match(/.{1,2}/g);
+			}
+		} else {
+			permalinkIssue = true;
+		}
+		if(calcParams.has("p")) {
+			let str = calcParams.get("p");
+			if(str.length != penetrationValues.size * 2) {
+				permalinkIssue = true;
+			} else {
+				pen = str.match(/.{1,2}/g);
+			}
+		} else {
+			permalinkIssue = true;
+		}
+		if(calcParams.has("s")) {
+			let set = new Set(JSON.parse(calcParams.get("s")));
+			if(set.size > 3) {
+				permalinkIssue = true;
+			} else {
+				selected = set;
+			}
+		} else {
+			permalinkIssue = true;
+		}
+	}
+
+	if(permalinkIssue) {
+		document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="permalinkIssue">Permalink corruption detected. All calculators have been reverted to default states.<span class="x" id="dismissPermalinkIssue"></span></h5>');
+		document.getElementById("dismissPermalinkIssue").addEventListener("click", () => document.getElementById('permalinkIssue').remove());
+
+		classes.forEach((classConfig, className) => {
+			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
+			classConfig.subclasses.forEach((subclass) => {
 				subclasses.push({ "value": subclass.value, "text": subclass.text });
+			});
+		});
+	} else {
+		let sum = 0;
+		for(val of armor) {
+			let num = parseInt(val, 16);
+			if(isNaN(num)) {
+				dataIssue = true;
+			} else {
+				sum += num;
+			}
+		}
+		if(sum > 7) {
+			dataIssue = true;
+		} else if(!dataIssue) {
+			armor.forEach((value, index) => {
+				let keys = Array.from(armorValues.keys());
+				armorValues.get(keys[index]).quantity = Number(value);
+			});
+		}
+
+		crit.forEach((value, index) => {
+			let keys = Array.from(critDamageValues.keys());
+			let toUpdate = critDamageValues.get(keys[index]);
+			let active = value.substring(0, 1);
+			let quantity = parseInt(value.substring(1, 2), 16);
+			let checkArmor = armorValues.has(keys[index]) ? armorValues.get(keys[index]).quantity : quantity;
+			if(!/^[01]$/.test(active) || isNaN(quantity) || quantity != checkArmor || (!toUpdate.hasRange && quantity != toUpdate.quantity) || (toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1]))) {
+				dataIssue = true;
+			} else {
+				toUpdate.active = active === "1" ? true : false;
+				toUpdate.quantity = quantity;
+				if(toUpdate.active && selected.has(keys[index])) {
+					toUpdate.suppress = false;
+				}
 			}
 		});
-	});
+
+		pen.forEach((value, index) => {
+			let keys = Array.from(penetrationValues.keys());
+			let toUpdate = penetrationValues.get(keys[index]);
+			let active = value.substring(0, 1);
+			let quantity = parseInt(value.substring(1, 2), 16);
+			let checkArmor = armorValues.has(keys[index]) ? armorValues.get(keys[index]).quantity : quantity;
+			if(!/^[01]$/.test(active) || isNaN(quantity) || quantity != checkArmor || (!toUpdate.hasRange && quantity != toUpdate.quantity) || (toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1]))) {
+				dataIssue = true;
+				console.log(keys[index]);
+				console.log((!toUpdate.hasRange && quantity != toUpdate.quantity))
+				console.log((toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1])))
+			} else {
+				toUpdate.active = active === "1" ? true : false;
+				toUpdate.quantity = quantity;
+				if(toUpdate.active && selected.has(keys[index])) {
+					toUpdate.suppress = false;
+				}
+			}
+		});
+
+		classes.forEach((classConfig, className) => {
+			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
+			classConfig.subclasses.forEach((subclass) => {
+				if(selected.has(subclass.value)) {
+					subclasses.push({ "value": subclass.value, "text": subclass.text, "selected": true });
+					selected.delete(subclass.value);
+				} else {
+					subclasses.push({ "value": subclass.value, "text": subclass.text });
+				}
+			});
+		});
+		if(selected.size > 0) {
+			dataIssue = true;
+		}
+
+		if(dataIssue) {
+			document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="dataIssue">Permalink corruption detected. Attempted to use defaults where possible. <br /> Calculator states may not be accurate.<span class="x" id="dismissDataIssue"></span></h5>');
+			document.getElementById("dismissDataIssue").addEventListener("click", () => document.getElementById('dataIssue').remove());
+		}
+	}
 
 	new MultiSelect('#subclass', {
 		data: subclasses,
@@ -43,30 +152,6 @@ function init() {
 		height: 50,
 		max: 3
 	});
-	
-	if(calcParams.has("c")) {
-		let crit = calcParams.get("c").match(/.{1,2}/g);
-		crit.forEach((value, index) => {
-			let keys = Array.from(critDamageValues.keys());
-			critDamageValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
-			critDamageValues.get(keys[index]).quantity = parseInt(value.substring(1, 2), 16);
-			if(critDamageValues.get(keys[index]).active) {
-				critDamageValues.get(keys[index]).suppress = false;
-			}
-		});
-	}
-
-	if(calcParams.has("p")) {
-		let pen = calcParams.get("p").match(/.{1,2}/g);
-		pen.forEach((value, index) => {
-			let keys = Array.from(penetrationValues.keys());
-			penetrationValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
-			penetrationValues.get(keys[index]).quantity = parseInt(value.substring(1, 2), 16);
-			if(penetrationValues.get(keys[index]).active) {
-				penetrationValues.get(keys[index]).suppress = false;
-			}
-		});
-	}
 
 	document.querySelectorAll('[data-armor]').forEach(armor => armorValues.forEach((value, type) => setupArmor(armor, type, value)));
 	document.querySelectorAll('[data-source]').forEach(source => critDamageValues.forEach((damage, type) => setupCritCalc(source, type, damage)));
@@ -82,18 +167,25 @@ function init() {
 
 	if(calcParams.has("r")) {
 		let calc = calcParams.get("r");
-		if(calc === "c") {
-			document.getElementById("critDamage").checked = true;
-			document.getElementById("critDamage").dispatchEvent(new Event('change'))
-		} else {
+		if(calc === "p") {
 			document.getElementById("penetration").checked = true;
-			document.getElementById("penetration").dispatchEvent(new Event('change'))
+			document.getElementById("penetration").dispatchEvent(new Event('change'));
+		} else {
+			document.getElementById("critDamage").checked = true;
+			document.getElementById("critDamage").dispatchEvent(new Event('change'));
 		}
 	} else if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
 		document.getElementById("critDamage").checked = true;
-		document.getElementById("critDamage").dispatchEvent(new Event('change'))
+		document.getElementById("critDamage").dispatchEvent(new Event('change'));
 	} else {
 		calcCheck();
+	}
+	if(calcParams.has("v")) {
+		let critRate = Number(calcParams.get("v"));
+		if(!isNaN(critRate) && critRate >=0 && critRate <=100) {
+			document.querySelector('#critRate').value = critRate;
+			document.querySelector('#critRate').dispatchEvent(new Event('change'));
+		}
 	}
 }
 
@@ -137,7 +229,7 @@ function stepUp(element) {
 	console.log(armorSum)
 	if(armorSum < 7) {
 		element.stepUp();
-		element.dispatchEvent(new Event('change'))
+		element.dispatchEvent(new Event('change'));
 	}
 }
 

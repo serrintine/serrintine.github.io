@@ -23,8 +23,7 @@ let penetrationValues = new Map(Object.entries({
 		active: false,
 		quantity: 2,
 		hasRange: true,
-		range: [1, 6],
-		default: 2,
+		range: [0, 6],
 		label: "Herald of the Tome (1240 per skill)"
 	},
 	majorBreach: {
@@ -106,8 +105,7 @@ let penetrationValues = new Map(Object.entries({
 		active: true,
 		quantity: 0,
 		hasRange: true,
-		range: [1, 7],
-		default: 0,
+		range: [0, 7],
 		label: "Light Armor (939 per piece)"
 	},
 	velothi: {
@@ -125,7 +123,6 @@ let penetrationValues = new Map(Object.entries({
 		quantity: 1,
 		hasRange: true,
 		range: [1, 2],
-		default: 1,
 		label: "Mace/Maul (1487 per weapon, 2H = 2 weapons)"
 	},
 	sharpened: {
@@ -134,7 +131,6 @@ let penetrationValues = new Map(Object.entries({
 		active: false,
 		quantity: 1,
 		hasRange: true,
-		default: 1,
 		range: [1, 2],
 		label: "Sharpened (1638 per weapon, 2H = 2 weapons)"
 	},
@@ -145,7 +141,6 @@ let penetrationValues = new Map(Object.entries({
 		quantity: 3,
 		hasRange: true,
 		range: [1, 10],
-		default: 3,
 		label: "Force of Nature CP (660 per status)"
 	},
 	otherArmor: {
@@ -155,7 +150,6 @@ let penetrationValues = new Map(Object.entries({
 		quantity: 1,
 		hasRange: true,
 		range: [1, 10],
-		default: 1,
 		label: "Armor Set Bonus (1487 per line)"
 	},
 	woodElf: {
