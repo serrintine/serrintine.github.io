@@ -325,12 +325,3 @@ class MultiSelect {
 	}
 }
 //document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));
-new MultiSelect('#subclass', {
-	data: subclasses,
-	search: true,
-	selectAll: false,
-	clearAll: true,
-	listAll: true,
-	height: 50,
-	max: 3
-});

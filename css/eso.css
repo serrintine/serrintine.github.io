@@ -328,32 +328,32 @@ hr {
 }
 
 .form-control {
-  display: grid;
-  grid-template-columns: 1em auto;
-  gap: 0.5em;
+	display: grid;
+	grid-template-columns: 1em auto;
+	gap: 0.5em;
 }
 
 input[type="radio"] {
-  /* Add if not using autoprefixer */
-  -webkit-appearance: none;
-  /* Remove most all native input styles */
-  appearance: none;
-  /* For iOS < 15 */
-  background-color: none;
-  /* Not removed via appearance */
-  margin: 0;
+	/* Add if not using autoprefixer */
+	-webkit-appearance: none;
+	/* Remove most all native input styles */
+	appearance: none;
+	/* For iOS < 15 */
+	background-color: none;
+	/* Not removed via appearance */
+	margin: 0;
 
-  font: inherit;
-  color: inhert;
-  width: 16px;
-  height: 16px;
-  border: 2px solid black;
-  border-radius: 50%;
-  transform: translateY(-0.075em);
+	font: inherit;
+	color: inhert;
+	width: 16px;
+	height: 16px;
+	border: 2px solid black;
+	border-radius: 50%;
+	transform: translateY(-0.075em);
 
-  display: grid;
-  place-content: center;
-  cursor: pointer;
+	display: grid;
+	place-content: center;
+	cursor: pointer;
 }
 
 input[type="radio"][disabled] {
@@ -362,17 +362,58 @@ input[type="radio"][disabled] {
 }
 
 input[type="radio"]::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 16px 16px #3461eb;
-  /* Windows High Contrast Mode */
-  background-color: CanvasText;
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 16px 16px #3461eb;
+	/* Windows High Contrast Mode */
+	background-color: CanvasText;
 }
 
 input[type="radio"]:checked::before {
-  transform: scale(1);
+	transform: scale(1);
 }
+
+.tooltip {
+	position: relative;
+}
+
+.tooltip svg {
+	height: 24px;
+	width: 24px;;
+}
+
+.tooltip:hover svg path {
+	fill: #3461eb;
+}
+
+.tooltip:hover {
+	cursor: pointer;
+}
+
+.tooltip:hover:after {
+	opacity: 1;
+	transform: translateY(0) translateX(-50%);
+}
+
+.tooltip:after {
+	content: attr(tooltip);
+	width: 75px;
+	top: 5px;
+	left: 80px;
+	padding: 5px;
+	border-radius: 4px;
+	font-size: 14px;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	background-color: #000000;
+	color: #ffffff;
+	transform: translateY(0) translateX(-60%);
+	transition: all 300ms ease;
+	text-align: center;
+}
+

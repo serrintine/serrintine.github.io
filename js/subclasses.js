@@ -132,9 +132,3 @@ let classes = new Map(Object.entries({
 		}]
 	}
 }));
-
-let subclasses = [];
-classes.forEach((classConfig, className) => {
-	subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
-	classConfig.subclasses.forEach((subclass) => subclasses.push({ "value": subclass.value, "text": subclass.text }));
-});

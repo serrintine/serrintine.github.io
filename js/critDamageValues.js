@@ -15,7 +15,6 @@ let critDamageValues = new Map(Object.entries({
 		quantity: 1,
 		hasRange: true,
 		range: [1, 6],
-		default: 1,
 		label: "Animal Companions (5% per skill)"
 	},
 	assassin: {
@@ -84,7 +83,6 @@ let critDamageValues = new Map(Object.entries({
 		quantity: 3,
 		hasRange: true,
 		range: [1, 3],
-		default: 3,
 		label: "Elemental Catalyst"
 	},
 	minorForce: {
@@ -103,7 +101,6 @@ let critDamageValues = new Map(Object.entries({
 		quantity: 6,
 		hasRange: true,
 		range: [0, 7],
-		default: 6,
 		label: "Medium Armor (2% per piece)"
 	},
 	sulxan: {
@@ -121,7 +118,6 @@ let critDamageValues = new Map(Object.entries({
 		quantity: 12,
 		hasRange: true,
 		range: [1, 12],
-		default: 12,
 		label: "Mora Scribe's Thesis (1% per buff)"
 	},
 	dwAxe: {
@@ -131,7 +127,6 @@ let critDamageValues = new Map(Object.entries({
 		quantity: 1,
 		hasRange: true,
 		range: [1, 2],
-		default: 1,
 		label: "Dual Wield Axes (6% per weapon)"
 	},
 	thAxe: {

@@ -1,22 +1,100 @@
 let dataSource = critDamageValues;
+let subclasses = [];
+init();
 
-document.querySelectorAll('[data-armor]').forEach(armor => armorValues.forEach((value, type) => setupArmor(armor, type, value)));
-document.querySelectorAll('[data-source]').forEach(source => critDamageValues.forEach((damage, type) => setupCritCalc(source, type, damage)));
-document.querySelectorAll('[data-source]').forEach(source => penetrationValues.forEach((damage, type) => setupPenCalc(source, type, damage)));
+function init() {
+	const calcParams = new URLSearchParams(window.location.search);
 
-document.querySelectorAll('input[type="radio"]').forEach(function(element) {
-	element.addEventListener("change", calcCheck);
-});
-document.querySelector('#critRate').addEventListener('change', () => {
-	updateDisplay();
-});
+	if(calcParams.size > 0) {
+		document.querySelector(".permalink").getElementById("icon1").setAttribute("fill", "#3461eb");
+		document.querySelector(".permalink").getElementById("icon2").setAttribute("fill", "#3461eb");
+		document.querySelector(".permalink").getElementById("icon3").setAttribute("fill", "#3461eb");
+	}
 
-addButtons();
-if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
-	document.getElementById("critDamage").checked = true;
-	document.getElementById("critDamage").dispatchEvent(new Event('change'))
-} else {
-	calcCheck();
+	if(calcParams.has("a")) {
+		let armor = calcParams.get("a").split('');
+		armor.forEach((value, index) => {
+			let keys = Array.from(armorValues.keys());
+			armorValues.get(keys[index]).quantity = Number(value);
+		});
+	}
+
+	let selected = [];
+	if(calcParams.has("s")) {
+		selected = JSON.parse(calcParams.get("s"));
+	}
+	classes.forEach((classConfig, className) => {
+		subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
+		classConfig.subclasses.forEach((subclass) => {
+			if(selected.includes(subclass.value)) {
+				subclasses.push({ "value": subclass.value, "text": subclass.text, "selected": true });
+			} else {
+				subclasses.push({ "value": subclass.value, "text": subclass.text });
+			}
+		});
+	});
+
+	new MultiSelect('#subclass', {
+		data: subclasses,
+		search: true,
+		selectAll: false,
+		clearAll: true,
+		listAll: true,
+		height: 50,
+		max: 3
+	});
+	
+	if(calcParams.has("c")) {
+		let crit = calcParams.get("c").match(/.{1,3}/g);
+		crit.forEach((value, index) => {
+			let keys = Array.from(critDamageValues.keys());
+			critDamageValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
+			critDamageValues.get(keys[index]).quantity = Number(value.substring(1, 3));
+			if(critDamageValues.get(keys[index]).active) {
+				critDamageValues.get(keys[index]).suppress = false;
+			}
+		});
+	}
+
+	if(calcParams.has("p")) {
+		let pen = calcParams.get("p").match(/.{1,3}/g);
+		pen.forEach((value, index) => {
+			let keys = Array.from(penetrationValues.keys());
+			penetrationValues.get(keys[index]).active = value.substring(0, 1) === "1" ? true : false;
+			penetrationValues.get(keys[index]).quantity = Number(value.substring(1, 3));
+			if(penetrationValues.get(keys[index]).active) {
+				penetrationValues.get(keys[index]).suppress = false;
+			}
+		});
+	}
+
+	document.querySelectorAll('[data-armor]').forEach(armor => armorValues.forEach((value, type) => setupArmor(armor, type, value)));
+	document.querySelectorAll('[data-source]').forEach(source => critDamageValues.forEach((damage, type) => setupCritCalc(source, type, damage)));
+	document.querySelectorAll('[data-source]').forEach(source => penetrationValues.forEach((damage, type) => setupPenCalc(source, type, damage)));
+	document.querySelectorAll('input[type="radio"]').forEach(function(element) {
+		element.addEventListener("change", calcCheck);
+	});
+	document.querySelector('#critRate').addEventListener('change', () => {
+		updateDisplay();
+	});
+	
+	addButtons();
+
+	if(calcParams.has("r")) {
+		let calc = calcParams.get("r");
+		if(calc === "c") {
+			document.getElementById("critDamage").checked = true;
+			document.getElementById("critDamage").dispatchEvent(new Event('change'))
+		} else {
+			document.getElementById("penetration").checked = true;
+			document.getElementById("penetration").dispatchEvent(new Event('change'))
+		}
+	} else if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
+		document.getElementById("critDamage").checked = true;
+		document.getElementById("critDamage").dispatchEvent(new Event('change'))
+	} else {
+		calcCheck();
+	}
 }
 
 function calcCheck(event) {
@@ -44,7 +122,7 @@ function setupArmor(armor, type, value) {
 				<label class="bold" for="${type}Armor">${value.label}</label>
 				<div class="number-input enabled">
 				<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
-				<input class="quantity" min="${value.range[0]}" max="${value.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${value.default}" type="number" autocomplete="off">
+				<input class="quantity" min="${value.range[0]}" max="${value.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${value.quantity}" type="number" autocomplete="off">
 				<button type="button" onclick="stepUp(this.parentNode.querySelector('input[type=number]'))" class="plus"></button>
 			</div>
 			</div>
@@ -56,6 +134,7 @@ function setupArmor(armor, type, value) {
 function stepUp(element) {
 	let armorSum = 0;
 	armorValues.forEach((value, type) => armorSum += value.quantity);
+	console.log(armorSum)
 	if(armorSum < 7) {
 		element.stepUp();
 		element.dispatchEvent(new Event('change'))
@@ -89,10 +168,10 @@ function setupCritCalc(source, type, damage) {
 		}
 		checkBox += ` />`;
 		if (damage.hasRange && !damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.default}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
 			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
 		} else if (damage.hasRange && damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.default}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
 		} else {
 			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
 		}
@@ -111,10 +190,10 @@ function setupPenCalc(source, type, damage) {
 		}
 		checkBox += ` />`;
 		if (damage.hasRange && !damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.default}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
 			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
 		} else if (damage.hasRange && damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.default}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
 		} else {
 			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
 		}
@@ -139,16 +218,18 @@ function addButtons() {
 
 function displayCheck(option) {
 	let toUpdate = dataSource.get(option.target.name);
-	if(option.target.checked) {
-		toUpdate.active = true;
-		let quantity = document.getElementById(option.target.name + "Quantity");
-		if (quantity) {
-			toUpdate.quantity = document.getElementById(option.target.name + "Quantity").value;
+	if (toUpdate) {
+		if(option.target.checked) {
+			toUpdate.active = true;
+			let quantity = document.getElementById(option.target.name + "Quantity");
+			if (quantity) {
+				toUpdate.quantity = document.getElementById(option.target.name + "Quantity").value;
+			}
+		} else {
+			toUpdate.active = false;
 		}
-	} else {
-		toUpdate.active = false;
+		updateDisplay();
 	}
-	updateDisplay();
 }
 
 function quantityCheck(change) {
