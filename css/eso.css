@@ -403,7 +403,7 @@ input[type="radio"]:checked::before {
 }
 
 .tooltip:before {
-	border-color: #000000;
+    border-color: #222 rgb(0, 0, 0, 0);
     border-style: solid;
     border-width: 0 5px 5px;
     bottom: -15px;
@@ -413,13 +413,14 @@ input[type="radio"]:checked::before {
     opacity: 0;
     position: absolute;
     width: 0;
-    /*transform: translateY(-10px) translateX(-50%);*/
+    transform: translateY(-10px) translateX(-50%);
     transition: all 300ms ease;
 }
 
 .tooltip:after {
 	content: attr(tooltip);
-	bottom: -40px;
+	bottom: -43px;
+	height: 18px
     left: 50%;
 	padding: 5px 10px 5px 10px;
 	border-radius: 4px;
