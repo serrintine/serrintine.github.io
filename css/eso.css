@@ -524,6 +524,7 @@ input[type="radio"]:checked::before {
 	width: 12px;
 	float: right;
 	margin-top: 6px;
+	rotate: -180deg;
 }
 
 .selected-display {
@@ -566,7 +567,7 @@ svg {
 }
 
 .wrapper-dropdown .dropdown li {
-  padding: 5px;
+  padding: 10px 5px;
   overflow: hidden;
   font-size: 16px;
 }
