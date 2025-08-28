@@ -489,3 +489,7 @@ input[type="radio"]:checked::before {
 .disabled {
 	color: lightgray;
 }
+
+#time {
+	font-weight: bold;
+}

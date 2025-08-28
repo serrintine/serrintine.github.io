@@ -3,6 +3,9 @@ let subclasses = [];
 let permalinkIssue = false;
 init();
 
+let date = new Date(1756343135674);
+document.getElementById('time').innerHTML = date;
+
 async function init() {
 	let armor = [];
 	let crit = [];
@@ -157,7 +160,6 @@ function setupArmor(armor, type, value) {
 function stepUp(element) {
 	let armorSum = 0;
 	armorValues.forEach((value, type) => armorSum += value.quantity);
-	console.log(armorSum)
 	if(armorSum < 7) {
 		element.stepUp();
 		element.dispatchEvent(new Event('change'));
