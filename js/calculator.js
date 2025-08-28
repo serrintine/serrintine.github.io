@@ -29,7 +29,7 @@ async function init() {
 				if(pen.length != penetrationValues.size) {
 					permalinkIssue = true;
 				} 
-				selected = JSON.parse(attributes[0]);
+				selected = attributes[0].split(",");
 				if(selected.length > 3) {
 					permalinkIssue = true;
 				}
@@ -43,7 +43,7 @@ async function init() {
 	}
 
 	if(permalinkIssue) {
-		document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="permalinkIssue">Permalink corruption detected. All calculators have been reverted to default states.<span class="x" id="dismissPermalinkIssue"></span></h5>');
+		document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="permalinkIssue">Permalink corruption detected. All calculators have been reset to default states.<span class="x" id="dismissPermalinkIssue"></span></h5>');
 		document.getElementById("dismissPermalinkIssue").addEventListener("click", () => document.getElementById('permalinkIssue').remove());
 		classes.forEach((classConfig, className) => {
 			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });

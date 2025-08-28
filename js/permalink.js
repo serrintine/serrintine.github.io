@@ -26,7 +26,7 @@ async function generateShortLink() {
   let calc = document.getElementById("critDamage").checked ? "c" : "p";
   let critRate = document.querySelector('#critRate').value;
 
-  const attributes = [JSON.stringify(subclass), armor, crit, pen, critRate, calc];
+  const attributes = [subclass.join(), armor, crit, pen, critRate, calc];
   const compressed = base64UrlEncode(await compress(attributes.join("_")));
   navigator.clipboard.writeText(window.location.href.split('?')[0] + "?pl=" + compressed);
   window.history.replaceState(null, null, "?pl=" + compressed);
