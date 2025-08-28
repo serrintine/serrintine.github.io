@@ -73,8 +73,17 @@
 			</form>
 			<form class="result flex-container" name="result">
 				<fieldset>
-					<legend>Crit Rate</legend>
-					<div class="number-input big enabled"><input class="quantity" min="0" max="100" name="critRate" id="critRate" value="70" type="number" autocomplete="off"></div>
+					<legend data-extra-option>Crit Rate</legend>
+					<div class="number-input big enabled" id="critRateDiv"><input class="quantity" min="0" max="100" name="critRate" id="critRate" value="70" type="number" autocomplete="off"></div>
+					<div class="wrapper-dropdown" id="enemyType">
+						<span class="selected-display" id="selectedEnemy"></span>
+						<span class="arrow"></span>
+						<ul class="dropdown">
+							<li class="item" data-value="18200">Instanced</li>
+							<li class="item" data-value="9100">Overland</li>
+							<li class="item" data-value="13650">Dragons</li>
+						</ul>
+					</div>
 				</fieldset>
 				<fieldset>
 					<legend data-calc-result>Result</legend>

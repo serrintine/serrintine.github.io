@@ -1,6 +1,7 @@
 let dataSource = critDamageValues;
 let subclasses = [];
 let permalinkIssue = false;
+let enemyArmor = 18200;
 init();
 
 let date = new Date(1756343135674);
@@ -105,10 +106,13 @@ async function init() {
 		}
 		document.querySelector('#critRate').value = Number(attributes[4]);
 		document.querySelector('#critRate').dispatchEvent(new Event('change'));
+		setupEnemy(attributes[6]);
 	} else if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
 		document.getElementById("critDamage").checked = true;
 		document.getElementById("critDamage").dispatchEvent(new Event('change'));
+		setupEnemy(0);
 	} else {
+		setupEnemy(0);
 		calcCheck();
 	}
 }
@@ -130,12 +134,18 @@ function calcCheck(event) {
 		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "none");
 		document.querySelector('[data-calc-sources]').innerHTML = "Crit Damage Sources";
 		document.querySelector('[data-calc-result]').innerHTML = "Crit Damage";
+		document.querySelector('[data-extra-option]').innerHTML = "Crit Rate";
+		document.getElementById('critRateDiv').style["display"] = "flex";
+		document.getElementById('enemyType').style["display"] = "none";
 	} else if (document.getElementById("penetration").checked) {
 		dataSource = penetrationValues;
 		document.querySelectorAll('[data-crit-damage]').forEach(element => element.style["display"] = "none");
 		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "flex");
 		document.querySelector('[data-calc-sources]').innerHTML = "Penetration Sources";
 		document.querySelector('[data-calc-result]').innerHTML = "Penetration";
+		document.querySelector('[data-extra-option]').innerHTML = "Enemy";
+		document.getElementById('critRateDiv').style["display"] = "none";
+		document.getElementById('enemyType').style["display"] = "inline-block";
 	}
 	updateDisplay();
 }
@@ -306,11 +316,11 @@ function updateDisplay() {
 				span.innerHTML = total;
 			}
 		}
-		missing = 18200 - penetration;
+		missing = enemyArmor - penetration;
 		box1.value = penetration;
 		box2.value = Math.abs(missing);
 		box3.value = Math.max(0, (missing / 500).toFixed(2)) + "%";
-		box4.value = 18200;
+		box4.value = enemyArmor;
 	}
 
 	if(missing < 0) {
@@ -327,4 +337,63 @@ function updateDisplay() {
 		box2.style["color"] = "#20b044";
 		box3.style["color"] = "#20b044";
 	} 
+}
+
+function setupEnemy(index) {
+	index = index ? index : 0;
+	const selectedAll = document.querySelectorAll(".wrapper-dropdown");
+	selectedAll.forEach((selected) => {
+		const optionsContainer = selected.children[2];
+		const optionsList = selected.querySelectorAll("div.wrapper-dropdown li");
+		selected.querySelector(".selected-display").innerHTML = optionsList[index].innerHTML;
+		enemyArmor = optionsList[index].dataset.value;
+		updateDisplay();
+
+		selected.addEventListener("click", () => {
+			let arrow = selected.children[1];
+			if (selected.classList.contains("active")) {
+				handleDropdown(selected, arrow, false);
+			} else {
+				let currentActive = document.querySelector(".wrapper-dropdown.active");
+				if (currentActive) {
+					let anotherArrow = currentActive.children[1];
+					handleDropdown(currentActive, anotherArrow, false);
+				}
+				handleDropdown(selected, arrow, true);
+			}
+		});
+
+		for (let o of optionsList) {
+			o.addEventListener("click", () => {
+				selected.querySelector(".selected-display").innerHTML = o.innerHTML;
+				enemyArmor = o.dataset.value;
+				updateDisplay();
+			});
+		}
+	});
+
+	window.addEventListener("click", function (e) {
+		if (e.target.closest(".wrapper-dropdown") === null) {
+			closeAllDropdowns();
+		}
+	});
+}
+
+function closeAllDropdowns() {
+	const selectedAll = document.querySelectorAll(".wrapper-dropdown");
+	selectedAll.forEach((selected) => {
+		const optionsContainer = selected.children[2];
+		let arrow = selected.children[1];
+		handleDropdown(selected, arrow, false);
+	});
+}
+
+function handleDropdown(dropdown, arrow, open) {
+	if (open) {
+		arrow.classList.add("rotated");
+		dropdown.classList.add("active");
+	} else {
+		arrow.classList.remove("rotated");
+		dropdown.classList.remove("active");
+	}
 }
