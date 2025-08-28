@@ -542,7 +542,7 @@ input[type="radio"]:checked::before {
 	height: 12px;
 	width: 12px;
 	float: right;
-	margin-top: 6px;
+	margin-top: 7px;
 	rotate: -180deg;
 }
 
