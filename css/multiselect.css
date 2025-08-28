@@ -224,6 +224,7 @@
 
 .multi-select .multi-select-option-disabled {
 	cursor: auto;
+	padding: 12px;
 }
 
 .multi-select-option-disabled-text {
