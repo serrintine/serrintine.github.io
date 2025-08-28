@@ -1,65 +1,50 @@
 let dataSource = critDamageValues;
 let subclasses = [];
 let permalinkIssue = false;
-let dataIssue = false;
 init();
 
-function init() {
+async function init() {
 	let armor = [];
 	let crit = [];
 	let pen = [];
-	let selected = new Set([]);
+	let selected = [];
 
 	const calcParams = new URLSearchParams(window.location.search);
-	if(calcParams.size > 0) {
+	let attributes = [];
+	if(calcParams.size > 0 && calcParams.has("pl")) {
+		attributes = await processShortLink(calcParams.get("pl"));
+		if(attributes.length < 1) {
+			permalinkIssue = true;
+		} else {
+			try {
+				armor = attributes[1].split('');
+				if(armor.length != armorValues.size) {
+					permalinkIssue = true;
+				}
+				crit = attributes[2].match(/.{1,2}/g);
+				if(crit.length != critDamageValues.size) {
+					permalinkIssue = true;
+				}
+				pen = attributes[3].match(/.{1,2}/g);
+				if(pen.length != penetrationValues.size) {
+					permalinkIssue = true;
+				} 
+				selected = JSON.parse(attributes[0]);
+				if(selected.length > 3) {
+					permalinkIssue = true;
+				}
+			} catch(e) {
+				permalinkIssue = true;
+			}
+		}
 		document.querySelector(".permalink").getElementById("icon1").setAttribute("fill", "#3461eb");
 		document.querySelector(".permalink").getElementById("icon2").setAttribute("fill", "#3461eb");
 		document.querySelector(".permalink").getElementById("icon3").setAttribute("fill", "#3461eb");
-
-		if(calcParams.has("a")) {
-			armor = calcParams.get("a").split('');
-			if(armor.length != armorValues.size) {
-				permalinkIssue = true;
-			}
-		} else {
-			permalinkIssue = true;
-		}
-		if(calcParams.has("c")) {
-			let str = calcParams.get("c");
-			if(str.length != critDamageValues.size * 2) {
-				permalinkIssue = true;
-			} else {
-				crit = str.match(/.{1,2}/g);
-			}
-		} else {
-			permalinkIssue = true;
-		}
-		if(calcParams.has("p")) {
-			let str = calcParams.get("p");
-			if(str.length != penetrationValues.size * 2) {
-				permalinkIssue = true;
-			} else {
-				pen = str.match(/.{1,2}/g);
-			}
-		} else {
-			permalinkIssue = true;
-		}
-		if(calcParams.has("s")) {
-			let set = new Set(JSON.parse(calcParams.get("s")));
-			if(set.size > 3) {
-				permalinkIssue = true;
-			} else {
-				selected = set;
-			}
-		} else {
-			permalinkIssue = true;
-		}
 	}
 
 	if(permalinkIssue) {
 		document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="permalinkIssue">Permalink corruption detected. All calculators have been reverted to default states.<span class="x" id="dismissPermalinkIssue"></span></h5>');
 		document.getElementById("dismissPermalinkIssue").addEventListener("click", () => document.getElementById('permalinkIssue').remove());
-
 		classes.forEach((classConfig, className) => {
 			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
 			classConfig.subclasses.forEach((subclass) => {
@@ -67,80 +52,22 @@ function init() {
 			});
 		});
 	} else {
-		let sum = 0;
-		for(val of armor) {
-			let num = parseInt(val, 16);
-			if(isNaN(num)) {
-				dataIssue = true;
-			} else {
-				sum += num;
-			}
-		}
-		if(sum > 7) {
-			dataIssue = true;
-		} else if(!dataIssue) {
-			armor.forEach((value, index) => {
-				let keys = Array.from(armorValues.keys());
-				armorValues.get(keys[index]).quantity = Number(value);
-			});
-		}
-
-		crit.forEach((value, index) => {
-			let keys = Array.from(critDamageValues.keys());
-			let toUpdate = critDamageValues.get(keys[index]);
-			let active = value.substring(0, 1);
-			let quantity = parseInt(value.substring(1, 2), 16);
-			let checkArmor = armorValues.has(keys[index]) ? armorValues.get(keys[index]).quantity : quantity;
-			if(!/^[01]$/.test(active) || isNaN(quantity) || quantity != checkArmor || (!toUpdate.hasRange && quantity != toUpdate.quantity) || (toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1]))) {
-				dataIssue = true;
-			} else {
-				toUpdate.active = active === "1" ? true : false;
-				toUpdate.quantity = quantity;
-				if(toUpdate.active && selected.has(keys[index])) {
-					toUpdate.suppress = false;
-				}
-			}
+		armor.forEach((value, index) => {
+			let keys = Array.from(armorValues.keys());
+			armorValues.get(keys[index]).quantity = Number(value);
 		});
-
-		pen.forEach((value, index) => {
-			let keys = Array.from(penetrationValues.keys());
-			let toUpdate = penetrationValues.get(keys[index]);
-			let active = value.substring(0, 1);
-			let quantity = parseInt(value.substring(1, 2), 16);
-			let checkArmor = armorValues.has(keys[index]) ? armorValues.get(keys[index]).quantity : quantity;
-			if(!/^[01]$/.test(active) || isNaN(quantity) || quantity != checkArmor || (!toUpdate.hasRange && quantity != toUpdate.quantity) || (toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1]))) {
-				dataIssue = true;
-				console.log(keys[index]);
-				console.log((!toUpdate.hasRange && quantity != toUpdate.quantity))
-				console.log((toUpdate.hasRange && (quantity < toUpdate.range[0] || quantity > toUpdate.range[1])))
-			} else {
-				toUpdate.active = active === "1" ? true : false;
-				toUpdate.quantity = quantity;
-				if(toUpdate.active && selected.has(keys[index])) {
-					toUpdate.suppress = false;
-				}
-			}
-		});
-
+		crit.forEach((value, index) => updateValues(critDamageValues, index, value, selected));
+		pen.forEach((value, index) => updateValues(penetrationValues, index, value, selected));
 		classes.forEach((classConfig, className) => {
 			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
 			classConfig.subclasses.forEach((subclass) => {
-				if(selected.has(subclass.value)) {
+				if(selected.includes(subclass.value)) {
 					subclasses.push({ "value": subclass.value, "text": subclass.text, "selected": true });
-					selected.delete(subclass.value);
 				} else {
 					subclasses.push({ "value": subclass.value, "text": subclass.text });
 				}
 			});
 		});
-		if(selected.size > 0) {
-			dataIssue = true;
-		}
-
-		if(dataIssue) {
-			document.querySelector('.announcement').insertAdjacentHTML('afterend', '<h5 class="warning" id="dataIssue">Permalink corruption detected. Attempted to use defaults where possible. <br /> Calculator states may not be accurate.<span class="x" id="dismissDataIssue"></span></h5>');
-			document.getElementById("dismissDataIssue").addEventListener("click", () => document.getElementById('dataIssue').remove());
-		}
 	}
 
 	new MultiSelect('#subclass', {
@@ -162,30 +89,34 @@ function init() {
 	document.querySelector('#critRate').addEventListener('change', () => {
 		updateDisplay();
 	});
-	
+
 	addButtons();
 
-	if(calcParams.has("r")) {
-		let calc = calcParams.get("r");
-		if(calc === "p") {
+	if (!permalinkIssue && attributes.length > 0) {
+		if(attributes[5] === "p") {
 			document.getElementById("penetration").checked = true;
 			document.getElementById("penetration").dispatchEvent(new Event('change'));
 		} else {
 			document.getElementById("critDamage").checked = true;
 			document.getElementById("critDamage").dispatchEvent(new Event('change'));
 		}
+		document.querySelector('#critRate').value = Number(attributes[4]);
+		document.querySelector('#critRate').dispatchEvent(new Event('change'));
 	} else if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
 		document.getElementById("critDamage").checked = true;
 		document.getElementById("critDamage").dispatchEvent(new Event('change'));
 	} else {
 		calcCheck();
 	}
-	if(calcParams.has("v")) {
-		let critRate = Number(calcParams.get("v"));
-		if(!isNaN(critRate) && critRate >=0 && critRate <=100) {
-			document.querySelector('#critRate').value = critRate;
-			document.querySelector('#critRate').dispatchEvent(new Event('change'));
-		}
+}
+
+function updateValues(source, index, value, selected) {
+	let keys = Array.from(source.keys());
+	let toUpdate = source.get(keys[index]);
+	toUpdate.active = value.substring(0, 1) === "1" ? true : false;
+	toUpdate.quantity = parseInt(value.substring(1, 2), 16);
+	if(toUpdate.active && selected.includes(keys[index])) {
+		toUpdate.suppress = false;
 	}
 }
 

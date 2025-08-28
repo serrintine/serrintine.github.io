@@ -1,4 +1,4 @@
-function generateShortLink() {
+async function generateShortLink() {
   let armor = "";
   armorValues.forEach((value, type) => {
     armor += value.quantity;
@@ -26,9 +26,20 @@ function generateShortLink() {
   let calc = document.getElementById("critDamage").checked ? "c" : "p";
   let critRate = document.querySelector('#critRate').value;
 
-  const queryParams = "?s=" + JSON.stringify(subclass) + "&a=" + armor + "&c=" + crit + "&p=" + pen + "&v=" + critRate + "&r=" + calc;
-  navigator.clipboard.writeText(window.location.href.split('?')[0] + queryParams);
-  window.history.replaceState(null, null, queryParams);
+  const attributes = [JSON.stringify(subclass), armor, crit, pen, critRate, calc];
+  const compressed = base64UrlEncode(await compress(attributes.join("_")));
+  navigator.clipboard.writeText(window.location.href.split('?')[0] + "?pl=" + compressed);
+  window.history.replaceState(null, null, "?pl=" + compressed);
+}
+
+async function processShortLink(str) {
+  try {
+    const decompressed = await decompress(base64UrlDecode(str));
+    const attributes = decompressed.split("_");
+    return attributes;
+  } catch(e) {
+    return [];
+  }
 }
 
 const copyText = (e) => {
@@ -53,4 +64,3 @@ const restart = (e) => {
 }
 
 document.getElementById("restart").addEventListener("click", (e) => restart(e));
-
