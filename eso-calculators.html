@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A set of calculators for critical damage and penetration for the Elder Scrolls Online (ESO) MMORPG">
 	<title>ESO Calculators</title>
 	<link rel="stylesheet" href="css/eso.css">
 	<link rel="stylesheet" href="css/multiselect.css">
-	<script src="js/classes.js"></script>
-	<script src="js/armorValues.js"></script>
-	<script src="js/critDamageValues.js"></script>
-	<script src="js/penetrationValues.js"></script>
+	<script src="js/data.js"></script>
 </head>
 <body translate="no">
 	<div class="container">
@@ -30,10 +29,10 @@
 				</svg>
 			</span>
 		</h1>
-		<h5 class="announcement">
-			<b>Last updated: Aug 27, 2025.</b><br /> 
-			Permalink is now supported with basic data validation. You may still experience issues with calculator functionality if there is any link corruption. If you generated any links prior to <span id="time"></span>, those are no longer valid.
-		</h5>
+		<div class="announcement">
+			<b>Last updated: Aug 29, 2025.</b><br /> 
+			Permalink is now shortened and has basic data validation. You may still experience issues with calculator functionality if there is any link corruption. If you generated any links prior to <span id="time"></span>, those are no longer valid.
+		</div>
 		<div id="calculator">
 			<form>
 				<label class="legend" for="subclasses">Subclasses</label>
@@ -104,10 +103,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="js/compression.js"></script>
 	<script src="js/permalink.js"></script>
 	<script src="js/multiselect.js"></script>
 	<script src="js/calculator.js"></script>
 </body>
-
 </html>

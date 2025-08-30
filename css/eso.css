@@ -10,12 +10,9 @@
 	margin: 30px auto;
 }
 
-.container h1, .container h5 {
+.container h1 {
 	text-align: center;
 	margin: 5px auto;
-}
-
-h1 {
 	font-size: 32px;
 }
 
@@ -458,25 +455,26 @@ input[type="radio"]:checked::before {
 	text-align: center;
 }
 
-.announcement {
+.announcement, .warning {
+	text-align: center;
+	margin: 5px auto;
 	border-radius: 5px;
-	background: rgb(187, 247, 208);
-	border: 1px solid rgb(32, 176, 68);
-	color: rgb(21, 128, 61);
 	padding: 5px;
 	font-size: 14px;
 	font-weight: normal;
 }
 
+.announcement {
+	background: rgb(187, 247, 208);
+	border: 1px solid rgb(32, 176, 68);
+	color: rgb(21, 128, 61);
+}
+
 .warning {
 	position: relative;
-	border-radius: 5px;
 	background: rgb(247, 187, 208);
 	border: 1px solid rgb(235, 70, 52);
 	color: rgb(128, 21, 61);
-	padding: 5px;
-	font-size: 14px;
-	font-weight: normal;
 }
 
 .x {
@@ -553,10 +551,6 @@ input[type="radio"]:checked::before {
 	font-size: 14px;
 	padding: 3px 8px;
 	border-radius: 5px;
-}
-
-svg {
-  /*transition: all 0.3s;*/
 }
 
 .rotated {

@@ -117,13 +117,11 @@ class MultiSelect {
 					if(critDamageValues.has(option.dataset.value)) {
 						let toUpdate = critDamageValues.get(option.dataset.value);
 						toUpdate.active = false;
-						toUpdate.suppress = true;
 						document.getElementById(toUpdate.label).remove();
 					}
 					if(penetrationValues.has(option.dataset.value)) {
 						let toUpdate = penetrationValues.get(option.dataset.value);
 						toUpdate.active = false;
-						toUpdate.suppress = true;
 						document.getElementById(toUpdate.label).remove();
 					}
 				}
@@ -141,10 +139,6 @@ class MultiSelect {
 				if(this.options.max) {
 					this.element.querySelector('.multi-select-header-max').innerHTML = this.selectedValues.length + '/' + this.options.max + ' selected';
 				}
-				/*if(this.options.search === true || this.options.search === 'true') {
-					this.element.querySelector('.multi-select-search').value = '';
-				}*/
-				//this.element.querySelectorAll('.multi-select-option').forEach(option => option.style.display = 'flex');
 				if(this.options.closeListOnItemSelect === true || this.options.closeListOnItemSelect === 'true') {
 					headerElement.classList.remove('multi-select-header-active');
 				}
@@ -159,24 +153,21 @@ class MultiSelect {
 					if(critDamageValues.has(option)) {
 						let toUpdate = critDamageValues.get(option);
 						toUpdate.active = true;
-						toUpdate.suppress = false;
 						if(!document.getElementById(toUpdate.label)) {
-							setupCritCalc(base, option, toUpdate);
+							setupCalc("crit-damage", base, option, toUpdate);
 							addButtons();
 						}
 					}
 					if(penetrationValues.has(option)) {
 						let toUpdate = penetrationValues.get(option);
 						toUpdate.active = true;
-						toUpdate.suppress = false;
 						if(!document.getElementById(toUpdate.label)) {
-							setupPenCalc(base, option, toUpdate);
+							setupCalc("penetration", base, option, toUpdate);
 							addButtons();
 						}
 					}
 				});
 				calcCheck();
-				updateDisplay();
 			};
 		});
 		headerElement.onclick = () => {
@@ -325,4 +316,3 @@ class MultiSelect {
 		return this.options.height;
 	}
 }
-//document.querySelectorAll('[data-multi-select]').forEach(select => new MultiSelect(select));

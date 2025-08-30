@@ -8,7 +8,6 @@ let penetrationValues = new Map(Object.entries({
 		label: "Base Character Penetration"
 	},
 	grave: {
-		suppress: true,
 		category: "base",
 		value: 3271,
 		active: false,
@@ -17,7 +16,6 @@ let penetrationValues = new Map(Object.entries({
 		label: "Grave Lord"
 	},
 	herald: {
-		suppress: true,
 		category: "base",
 		value: 1240,
 		active: false,
@@ -177,8 +175,3 @@ let penetrationValues = new Map(Object.entries({
 		label: "Lover Mundus (7 divines)"
 	}
 }));
-
-
-
-
-

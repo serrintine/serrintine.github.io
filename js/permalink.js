@@ -1,30 +1,58 @@
-async function generateShortLink() {
+function base64UrlEncode(str) {
+  const utf8Arr = new TextEncoder().encode(str);
+  const base64Encoded = btoa(String.fromCharCode(...utf8Arr));
+  return base64Encoded
+    .replace(/\+/g, '-') // Replace '+' with '-'
+    .replace(/\//g, '_') // Replace '/' with '_'
+    .replace(/=+$/, ''); // Remove trailing '='
+}
+
+function base64UrlDecode(str) {
+  let base64Encoded = str
+    .replace(/-/g, '+') // Replace '-' with '+'
+    .replace(/_/g, '/'); // Replace '_' with '/'
+  while (base64Encoded.length % 4) {
+    base64Encoded += '='; // Add back padding '='
+  }
+  const decodedBinary = atob(base64Encoded);
+  const utf8Arr = new Uint8Array(decodedBinary.split('').map(char => char.charCodeAt(0)));
+  return new TextDecoder().decode(utf8Arr);
+}
+
+function generateShortLink() {
   let armor = "";
   armorValues.forEach((value, type) => {
     armor += value.quantity;
   })
 
   let crit = "";
+  let critQuantities = "";
   critDamageValues.forEach((value, type) => {
     crit += value.active ? "1" : "0";
-    crit += value.quantity.toString(16);
+    if (value.active && value.hasRange) {
+      critQuantities += value.quantity.toString(36);
+    }
   })
 
   let pen = "";
+  let penQuantities = "";
   penetrationValues.forEach((value, type) => {
     pen += value.active ? "1" : "0";
-    pen += value.quantity.toString(16);
+    if (value.active && value.hasRange) {
+      penQuantities += value.quantity.toString(36);
+    }
   })
 
   let subclass = [];
   document.querySelectorAll('.multi-select-option').forEach(option => {
     if(option.classList.contains('multi-select-selected')) {
-      subclass.push(option.dataset.value);
+      subclass.push(classCodeMap[option.dataset.value]);
     }
   });
 
   let calc = document.getElementById("critDamage").checked ? "c" : "p";
-  let critRate = document.querySelector('#critRate').value;
+  let critRate = parseInt(document.querySelector('#critRate').value, 10);
+  critRate = isNaN(critRate) ? 70 : critRate;
 
   const enemyList = document.querySelectorAll("div.wrapper-dropdown li");
   const selectedEnemy = document.querySelector(".selected-display").innerHTML;
@@ -35,24 +63,33 @@ async function generateShortLink() {
     }
   });
 
-  const attributes = [subclass.join(), armor, crit, pen, critRate, calc, enemyIndex];
-  const compressed = base64UrlEncode(await compress(attributes.join("_")));
-  navigator.clipboard.writeText(window.location.href.split('?')[0] + "?pl=" + compressed);
-  window.history.replaceState(null, null, "?pl=" + compressed);
+  const attributes = [
+    subclass.join(""), armor,
+    parseInt(crit, 2).toString(36) + "_" + critQuantities,
+    parseInt(pen, 2).toString(36) + "_" + penQuantities,
+    critRate.toString(36),
+    calc,
+    enemyIndex
+  ];
+  console.log("compressed: " + attributes.join("."))
+  const encoded = base64UrlEncode(attributes.join("."));
+  console.log("encoded: " + encoded)
+
+  navigator.clipboard.writeText(window.location.href.split('?')[0] + "?" + encoded);
+  window.history.replaceState(null, null, "?" + encoded);
 }
 
-async function processShortLink(str) {
+function processShortLink(str) {
   try {
-    const decompressed = await decompress(base64UrlDecode(str));
-    const attributes = decompressed.split("_");
-    return attributes;
+    const decoded = base64UrlDecode(str);
+    console.log("decoded: " + decoded)
+    return decoded.split(".");
   } catch(e) {
     return [];
   }
 }
 
 const copyText = (e) => {
-  //document.execCommand("copy");
   document.querySelector(".permalink").getElementById("icon1").setAttribute("fill", "#3461eb");
   document.querySelector(".permalink").getElementById("icon2").setAttribute("fill", "#3461eb");
   document.querySelector(".permalink").getElementById("icon3").setAttribute("fill", "#3461eb");
@@ -67,9 +104,4 @@ const resetTooltip = (e) => {
 const copyButton = document.getElementById("copy");
 copyButton.addEventListener("click", (e) => copyText(e));
 copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
-
-const restart = (e) => {
-  window.location = window.location.pathname;
-}
-
-document.getElementById("restart").addEventListener("click", (e) => restart(e));
+document.getElementById("restart").addEventListener("click", () => window.location = window.location.pathname);

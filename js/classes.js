@@ -132,3 +132,13 @@ let classes = new Map(Object.entries({
 		}]
 	}
 }));
+
+let classBaseCode = "0123456789abcdefghijklmnopqrstuvwxyz".split("");
+let classCodeMap = {};
+let codeIndex = 0;
+classes.forEach((classConfig, className) => {
+	classConfig.subclasses.forEach((subclass) => {
+		classCodeMap[subclass.value] = classBaseCode[codeIndex];
+		codeIndex++;
+	});
+});

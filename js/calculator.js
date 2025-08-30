@@ -1,23 +1,24 @@
 let dataSource = critDamageValues;
 let subclasses = [];
+let attributes = [];
 let permalinkIssue = false;
 let enemyArmor = 18200;
+let date = new Date(1756513824304);
+document.getElementById('time').innerHTML = date;
 init();
 
-let date = new Date(1756343135674);
-document.getElementById('time').innerHTML = date;
-
-async function init() {
+function init() {
 	let armor = [];
 	let crit = [];
+	let critQuantities = [];
 	let pen = [];
+	let penQuantities = [];
 	let selected = [];
 
 	const calcParams = new URLSearchParams(window.location.search);
-	let attributes = [];
-	if(calcParams.size > 0 && calcParams.has("pl")) {
-		attributes = await processShortLink(calcParams.get("pl"));
-		if(attributes.length < 1) {
+	if(calcParams.size > 0) {
+		attributes = processShortLink(calcParams.keys().next().value);
+		if(attributes.length < 7) {
 			permalinkIssue = true;
 		} else {
 			try {
@@ -25,15 +26,30 @@ async function init() {
 				if(armor.length != armorValues.size) {
 					permalinkIssue = true;
 				}
-				crit = attributes[2].match(/.{1,2}/g);
-				if(crit.length != critDamageValues.size) {
+
+				let critString = attributes[2].split('_');
+				if(critString.length != 2) {
 					permalinkIssue = true;
+				} else {
+					crit = parseInt(critString[0], 36).toString(2).split('');
+					critQuantities = critString[1].split('');
+					if(crit.length < critDamageValues.size) {
+						permalinkIssue = true;
+					}
 				}
-				pen = attributes[3].match(/.{1,2}/g);
-				if(pen.length != penetrationValues.size) {
+
+				let penString = attributes[3].split('_');
+				if(penString.length != 2) {
 					permalinkIssue = true;
-				} 
-				selected = attributes[0].split(",");
+				} else {
+					pen = parseInt(penString[0], 36).toString(2).split('');
+					penQuantities = penString[1].split('');
+					if(pen.length < penetrationValues.size) {
+						permalinkIssue = true;
+					}
+				}
+
+				selected = attributes[0].split('');
 				if(selected.length > 3) {
 					permalinkIssue = true;
 				}
@@ -60,12 +76,26 @@ async function init() {
 			let keys = Array.from(armorValues.keys());
 			armorValues.get(keys[index]).quantity = Number(value);
 		});
-		crit.forEach((value, index) => updateValues(critDamageValues, index, value, selected));
-		pen.forEach((value, index) => updateValues(penetrationValues, index, value, selected));
+
+		let quantityIndex = 0;
+		crit.forEach((value, index) => {
+			if(updateValues(critDamageValues, index, value, critQuantities, quantityIndex, selected)) {
+				quantityIndex++;
+			}
+		});
+
+		quantityIndex = 0;
+		pen.forEach((value, index) => {
+			if(updateValues(penetrationValues, index, value, penQuantities, quantityIndex, selected)) {
+				quantityIndex++;
+			}
+		});
+
 		classes.forEach((classConfig, className) => {
 			subclasses.push({ "value": className, "text": classConfig.label, "isSection": true });
 			classConfig.subclasses.forEach((subclass) => {
-				if(selected.includes(subclass.value)) {
+				let code = classCodeMap[subclass.value];
+				if(selected.includes(code)) {
 					subclasses.push({ "value": subclass.value, "text": subclass.text, "selected": true });
 				} else {
 					subclasses.push({ "value": subclass.value, "text": subclass.text });
@@ -74,6 +104,24 @@ async function init() {
 		});
 	}
 
+	setupCalcElements();
+}
+
+function updateValues(source, index, value, quantities, quantityIndex, selected) {
+	let quantityUpdated = false;
+	let keys = Array.from(source.keys());
+	let toUpdate = source.get(keys[index]);
+	toUpdate.active = value === "1" ? true : false;
+	if(toUpdate.active) {
+		if(toUpdate.hasRange) {
+			toUpdate.quantity = parseInt(quantities[quantityIndex], 36);
+			quantityUpdated = true;
+		}
+	}
+	return quantityUpdated;
+}
+
+function setupCalcElements() {
 	new MultiSelect('#subclass', {
 		data: subclasses,
 		search: true,
@@ -85,8 +133,10 @@ async function init() {
 	});
 
 	document.querySelectorAll('[data-armor]').forEach(armor => armorValues.forEach((value, type) => setupArmor(armor, type, value)));
-	document.querySelectorAll('[data-source]').forEach(source => critDamageValues.forEach((damage, type) => setupCritCalc(source, type, damage)));
-	document.querySelectorAll('[data-source]').forEach(source => penetrationValues.forEach((damage, type) => setupPenCalc(source, type, damage)));
+	document.querySelectorAll('[data-source]').forEach(source => {
+		critDamageValues.forEach((damage, type) => setupCalc("crit-damage", source, type, damage));
+		penetrationValues.forEach((damage, type) => setupCalc("penetration", source, type, damage));
+	});
 	document.querySelectorAll('input[type="radio"]').forEach(function(element) {
 		element.addEventListener("change", calcCheck);
 	});
@@ -94,60 +144,40 @@ async function init() {
 		updateDisplay();
 	});
 
-	addButtons();
-
+	let enemyIndex = 0;
 	if (!permalinkIssue && attributes.length > 0) {
+		enemyIndex = Number(attributes[6]);
+		enemyIndex = isNaN(enemyIndex) || enemyIndex > 2 || enemyIndex < 0 ? 0 : enemyIndex;
 		if(attributes[5] === "p") {
 			document.getElementById("penetration").checked = true;
-			document.getElementById("penetration").dispatchEvent(new Event('change'));
+			document.getElementById("critDamage").checked = false;
 		} else {
+			document.getElementById("penetration").checked = false;
 			document.getElementById("critDamage").checked = true;
-			document.getElementById("critDamage").dispatchEvent(new Event('change'));
 		}
-		document.querySelector('#critRate').value = Number(attributes[4]);
-		document.querySelector('#critRate').dispatchEvent(new Event('change'));
-		setupEnemy(attributes[6]);
+		let critRate = parseInt(attributes[4], 36);
+		document.querySelector('#critRate').value = isNaN(critRate) || critRate > 100 || critRate < 0 ? 70 : critRate;
 	} else if (!document.getElementById("critDamage").checked && !document.getElementById("penetration").checked) {
 		document.getElementById("critDamage").checked = true;
-		document.getElementById("critDamage").dispatchEvent(new Event('change'));
-		setupEnemy(0);
-	} else {
-		setupEnemy(0);
-		calcCheck();
 	}
+
+	setupEnemy(enemyIndex);
+	addButtons();
+	calcCheck();
 }
 
-function updateValues(source, index, value, selected) {
-	let keys = Array.from(source.keys());
-	let toUpdate = source.get(keys[index]);
-	toUpdate.active = value.substring(0, 1) === "1" ? true : false;
-	toUpdate.quantity = parseInt(value.substring(1, 2), 16);
-	if(toUpdate.active && selected.includes(keys[index])) {
-		toUpdate.suppress = false;
-	}
-}
-
-function calcCheck(event) {
-	if (document.getElementById("critDamage").checked) {
-		dataSource = critDamageValues;
-		document.querySelectorAll('[data-crit-damage]').forEach(element => element.style["display"] = "flex");
-		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "none");
-		document.querySelector('[data-calc-sources]').innerHTML = "Crit Damage Sources";
-		document.querySelector('[data-calc-result]').innerHTML = "Crit Damage";
-		document.querySelector('[data-extra-option]').innerHTML = "Crit Rate";
-		document.getElementById('critRateDiv').style["display"] = "flex";
-		document.getElementById('enemyType').style["display"] = "none";
-	} else if (document.getElementById("penetration").checked) {
-		dataSource = penetrationValues;
-		document.querySelectorAll('[data-crit-damage]').forEach(element => element.style["display"] = "none");
-		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "flex");
-		document.querySelector('[data-calc-sources]').innerHTML = "Penetration Sources";
-		document.querySelector('[data-calc-result]').innerHTML = "Penetration";
-		document.querySelector('[data-extra-option]').innerHTML = "Enemy";
-		document.getElementById('critRateDiv').style["display"] = "none";
-		document.getElementById('enemyType').style["display"] = "inline-block";
-	}
-	updateDisplay();
+function addButtons() {
+	document.querySelectorAll(".number-input").forEach(function(element) {
+		if(element.firstChild && element.firstChild.nodeName === "INPUT") {
+			if(element.classList.contains("enabled")) {
+				element.insertAdjacentHTML('afterbegin', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
+				element.insertAdjacentHTML('beforeend', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
+			} else if(element.classList.contains("disabled")) {
+				element.insertAdjacentHTML('afterbegin', `<button type="button" disabled></button>`);
+				element.insertAdjacentHTML('beforeend', `<button type="button" class="plus" disabled></button>`);
+			}
+		}
+	});
 }
 
 function setupArmor(armor, type, value) {
@@ -176,6 +206,91 @@ function stepUp(element) {
 	}
 }
 
+function setupEnemy(index) {
+	const element = document.querySelector(".wrapper-dropdown");
+	const arrow = element.children[1]
+	const optionsList = element.querySelectorAll("div.wrapper-dropdown li");
+	element.querySelector(".selected-display").innerHTML = optionsList[index].innerHTML;
+	enemyArmor = optionsList[index].dataset.value;
+
+	element.addEventListener("click", () => {
+		if(element.classList.contains("active")) {
+			handleDropdown(element, arrow, false);
+		} else {
+			handleDropdown(element, arrow, true);
+		}
+	});
+
+	for(let option of optionsList) {
+		option.addEventListener("click", () => {
+			element.querySelector(".selected-display").innerHTML = option.innerHTML;
+			enemyArmor = option.dataset.value;
+			updateDisplay();
+		});
+	}
+
+	window.addEventListener("click", function (e) {
+		if(e.target.closest(".wrapper-dropdown") === null) {
+			handleDropdown(element, arrow, false);
+		}
+	});
+}
+
+function handleDropdown(dropdown, arrow, open) {
+	if (open) {
+		arrow.classList.add("rotated");
+		dropdown.classList.add("active");
+	} else {
+		arrow.classList.remove("rotated");
+		dropdown.classList.remove("active");
+	}
+}
+
+function setupCalc(calcData, source, type, damage) {
+	if(source.getAttribute('name') === damage.category && (damage.category != "base" || damage.active)) {
+		let checkBox = `<input type="checkbox" class="${calcData}" name="${type}" id="${type}Check" autocomplete="off"`;
+		if (damage.active || damage.disabled) {
+			checkBox += ` checked`;
+		}
+		if (damage.category === "base" || damage.disabled) {
+			checkBox += ` disabled`;
+		}
+		checkBox += ` />`;
+		if (damage.hasRange && !damage.disabled) {
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
+		} else if (damage.hasRange && damage.disabled) {
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+		} else {
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+		}
+		document.getElementById(type + "Check").addEventListener("click", displayCheck);
+	}
+}
+
+function calcCheck(event) {
+	if (document.getElementById("critDamage").checked) {
+		dataSource = critDamageValues;
+		document.querySelectorAll('[data-crit-damage]').forEach(element => element.style["display"] = "flex");
+		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "none");
+		document.querySelector('[data-calc-sources]').innerHTML = "Crit Damage Sources";
+		document.querySelector('[data-calc-result]').innerHTML = "Crit Damage";
+		document.querySelector('[data-extra-option]').innerHTML = "Crit Rate";
+		document.getElementById('critRateDiv').style["display"] = "flex";
+		document.getElementById('enemyType').style["display"] = "none";
+	} else if (document.getElementById("penetration").checked) {
+		dataSource = penetrationValues;
+		document.querySelectorAll('[data-crit-damage]').forEach(element => element.style["display"] = "none");
+		document.querySelectorAll('[data-penetration]').forEach(element => element.style["display"] = "flex");
+		document.querySelector('[data-calc-sources]').innerHTML = "Penetration Sources";
+		document.querySelector('[data-calc-result]').innerHTML = "Penetration";
+		document.querySelector('[data-extra-option]').innerHTML = "Enemy";
+		document.getElementById('critRateDiv').style["display"] = "none";
+		document.getElementById('enemyType').style["display"] = "inline-block";
+	}
+	updateDisplay();
+}
+
 function armorCheck(change) {
 	let key = change.target.id.replace("Quantity", "");
 	let newValue = change.target.valueAsNumber;
@@ -192,63 +307,10 @@ function armorCheck(change) {
 	}
 }
 
-function setupCritCalc(source, type, damage) {
-	if(source.getAttribute('name') === damage.category && !damage.suppress) {
-		let checkBox = `<input type="checkbox" class="critDamageSource" name="${type}" id="${type}Check" autocomplete="off"`;
-		if (damage.active || damage.disabled) {
-			checkBox += ` checked`;
-		}
-		if (damage.category === "base" || damage.disabled) {
-			checkBox += ` disabled`;
-		}
-		checkBox += ` />`;
-		if (damage.hasRange && !damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
-			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
-		} else if (damage.hasRange && damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
-		} else {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-crit-damage><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}CritValue">${damage.value}%</span></div>`);
-		}
-		document.getElementById(type + "Check").addEventListener("click", displayCheck);
-	}
-}
-
-function setupPenCalc(source, type, damage) {
-	if(source.getAttribute('name') === damage.category && !damage.suppress) {
-		let checkBox = `<input type="checkbox" class="penetrationSource" name="${type}" id="${type}Check" autocomplete="off"`;
-		if (damage.active || damage.disabled) {
-			checkBox += ` checked`;
-		}
-		if (damage.category === "base" || damage.disabled) {
-			checkBox += ` disabled`;
-		}
-		checkBox += ` />`;
-		if (damage.hasRange && !damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
-			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
-		} else if (damage.hasRange && damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
-		} else {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-penetration><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}PenValue">${damage.value}</span></div>`);
-		}
-		document.getElementById(type + "Check").addEventListener("click", displayCheck);
-	}
-}
-
-function addButtons() {
-	document.querySelectorAll(".number-input.enabled").forEach(function(element) {
-		if (element.firstChild && element.firstChild.nodeName === "INPUT") {
-			element.insertAdjacentHTML('afterbegin', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
-			element.insertAdjacentHTML('beforeend', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
-		}
-	});
-	document.querySelectorAll(".number-input.disabled").forEach(function(element) {
-		if (element.firstChild && element.firstChild.nodeName === "INPUT") {
-			element.insertAdjacentHTML('afterbegin', `<button type="button" disabled></button>`);
-			element.insertAdjacentHTML('beforeend', `<button type="button" class="plus" disabled></button>`);
-		}
-	});
+function quantityCheck(change) {
+	let key = change.target.id.replace("Quantity", "");
+	dataSource.get(key).quantity = change.target.valueAsNumber;
+	updateDisplay();
 }
 
 function displayCheck(option) {
@@ -267,12 +329,6 @@ function displayCheck(option) {
 	}
 }
 
-function quantityCheck(change) {
-	let key = change.target.id.replace("Quantity", "");
-	dataSource.get(key).quantity = change.target.valueAsNumber;
-	updateDisplay();
-}
-
 function updateDisplay() {
 	let missing = 0;
 	let box1 = document.getElementById("displayResult");
@@ -284,8 +340,8 @@ function updateDisplay() {
 		let critRate = Number(document.getElementById('critRate').value) / 100;
 		let critDamage = 0;
 		for(const [key, properties] of critDamageValues) {
-			if (!properties.suppress) {
-				let span = document.querySelector('[name="' + key + 'CritValue"]');
+			if (properties.category != "base" || properties.active) {
+				let span = document.querySelector('[name="' + key + '-crit-damage"]');
 				let total = properties.value * properties.quantity;
 				if(properties.active) {
 					critDamage += total;
@@ -304,8 +360,8 @@ function updateDisplay() {
 	} else if (document.getElementById("penetration").checked) {
 		let penetration = 0;
 		for(const [key, properties] of penetrationValues) {
-			if (!properties.suppress) {
-				let span = document.querySelector('[name="' + key + 'PenValue"]');
+			if (properties.category != "base" || properties.active) {
+				let span = document.querySelector('[name="' + key + '-penetration"]');
 				let total = properties.value * properties.quantity;
 				if(properties.active) {
 					penetration += total;
@@ -337,63 +393,4 @@ function updateDisplay() {
 		box2.style["color"] = "#20b044";
 		box3.style["color"] = "#20b044";
 	} 
-}
-
-function setupEnemy(index) {
-	index = index ? index : 0;
-	const selectedAll = document.querySelectorAll(".wrapper-dropdown");
-	selectedAll.forEach((selected) => {
-		const optionsContainer = selected.children[2];
-		const optionsList = selected.querySelectorAll("div.wrapper-dropdown li");
-		selected.querySelector(".selected-display").innerHTML = optionsList[index].innerHTML;
-		enemyArmor = optionsList[index].dataset.value;
-		updateDisplay();
-
-		selected.addEventListener("click", () => {
-			let arrow = selected.children[1];
-			if (selected.classList.contains("active")) {
-				handleDropdown(selected, arrow, false);
-			} else {
-				let currentActive = document.querySelector(".wrapper-dropdown.active");
-				if (currentActive) {
-					let anotherArrow = currentActive.children[1];
-					handleDropdown(currentActive, anotherArrow, false);
-				}
-				handleDropdown(selected, arrow, true);
-			}
-		});
-
-		for (let o of optionsList) {
-			o.addEventListener("click", () => {
-				selected.querySelector(".selected-display").innerHTML = o.innerHTML;
-				enemyArmor = o.dataset.value;
-				updateDisplay();
-			});
-		}
-	});
-
-	window.addEventListener("click", function (e) {
-		if (e.target.closest(".wrapper-dropdown") === null) {
-			closeAllDropdowns();
-		}
-	});
-}
-
-function closeAllDropdowns() {
-	const selectedAll = document.querySelectorAll(".wrapper-dropdown");
-	selectedAll.forEach((selected) => {
-		const optionsContainer = selected.children[2];
-		let arrow = selected.children[1];
-		handleDropdown(selected, arrow, false);
-	});
-}
-
-function handleDropdown(dropdown, arrow, open) {
-	if (open) {
-		arrow.classList.add("rotated");
-		dropdown.classList.add("active");
-	} else {
-		arrow.classList.remove("rotated");
-		dropdown.classList.remove("active");
-	}
 }

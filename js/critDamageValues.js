@@ -8,7 +8,6 @@ let critDamageValues = new Map(Object.entries({
 		label: "Base Character Crit Damage"
 	},
 	animal: {
-		suppress: true,
 		category: "base",
 		value: 5,
 		active: false,
@@ -18,7 +17,6 @@ let critDamageValues = new Map(Object.entries({
 		label: "Animal Companions (5% per skill)"
 	},
 	assassin: {
-		suppress: true,
 		category: "base",
 		value: 10,
 		active: false,
@@ -27,7 +25,6 @@ let critDamageValues = new Map(Object.entries({
 		label: "Assassination"
 	},
 	aedric: {
-		suppress: true,
 		category: "base",
 		value: 12,
 		active: false,
@@ -36,7 +33,6 @@ let critDamageValues = new Map(Object.entries({
 		label: "Aedric Spear"
 	},
 	herald: {
-		suppress: true,
 		category: "base",
 		value: 12,
 		active: false,
@@ -170,5 +166,3 @@ let critDamageValues = new Map(Object.entries({
 		label: "Shadow Mundus (7 divines)"
 	}
 }));
-
-
