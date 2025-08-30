@@ -169,12 +169,13 @@ function setupCalcElements() {
 function addButtons() {
 	document.querySelectorAll(".number-input").forEach(function(element) {
 		if(element.firstChild && element.firstChild.nodeName === "INPUT") {
+			let buttonName = element.firstChild.name;
 			if(element.classList.contains("enabled")) {
-				element.insertAdjacentHTML('afterbegin', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
-				element.insertAdjacentHTML('beforeend', `<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
+				element.insertAdjacentHTML('afterbegin', `<button name="${buttonName}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
+				element.insertAdjacentHTML('beforeend', `<button name="${buttonName}Plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
 			} else if(element.classList.contains("disabled")) {
-				element.insertAdjacentHTML('afterbegin', `<button type="button" disabled></button>`);
-				element.insertAdjacentHTML('beforeend', `<button type="button" class="plus" disabled></button>`);
+				element.insertAdjacentHTML('afterbegin', `<button name="${buttonName}Minus" type="button" disabled></button>`);
+				element.insertAdjacentHTML('beforeend', `<button name="${buttonName}Plus" type="button" class="plus" disabled></button>`);
 			}
 		}
 	});
@@ -187,9 +188,9 @@ function setupArmor(armor, type, value) {
 				<div class="flex-container vertical">
 				<label class="bold" for="${type}Armor">${value.label}</label>
 				<div class="number-input enabled">
-				<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
-				<input class="quantity" min="${value.range[0]}" max="${value.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${value.quantity}" type="number" autocomplete="off">
-				<button type="button" onclick="stepUp(this.parentNode.querySelector('input[type=number]'))" class="plus"></button>
+				<button name="${type}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
+				<input class="quantity" min="${value.range[0]}" max="${value.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${value.quantity}" type="number" autocomplete="off" aria-label="${type}Armor">
+				<button name="${type}Plus" type="button" onclick="stepUp(this.parentNode.querySelector('input[type=number]'))" class="plus"></button>
 			</div>
 			</div>
 		</div>`);
@@ -248,7 +249,7 @@ function handleDropdown(dropdown, arrow, open) {
 
 function setupCalc(calcData, source, type, damage) {
 	if(source.getAttribute('name') === damage.category && (damage.category != "base" || damage.active)) {
-		let checkBox = `<input type="checkbox" class="${calcData}" name="${type}" id="${type}Check" autocomplete="off"`;
+		let checkBox = `<input type="checkbox" class="${calcData}" name="${type}" id="${type}Check" autocomplete="off" aria-label="${type}Check"`;
 		if (damage.active || damage.disabled) {
 			checkBox += ` checked`;
 		}
@@ -257,12 +258,12 @@ function setupCalc(calcData, source, type, damage) {
 		}
 		checkBox += ` />`;
 		if (damage.hasRange && !damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off"></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input enabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${damage.quantity}" type="number" autocomplete="off" aria-label="${type}Check"></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
 			document.getElementById(type + "Quantity").addEventListener("change", quantityCheck);
 		} else if (damage.hasRange && damage.disabled) {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.range[0]}" max="${damage.range[1]}" name="${type}QuantityDummy" id="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" aria-label="${type}Check" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
 		} else {
-			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="1" max="1" name="dummy" id="dummy" value="1" type="number" autocomplete="off" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
+			source.insertAdjacentHTML('beforeend', `<div id="${damage.label}" class="source" data-${calcData}><div class="flex-container medium">` + checkBox + `<div class="number-input disabled"><input class="quantity" min="${damage.quantity}" max="${damage.quantity}" name="${type}QuantityDummy" name="${type}QuantityDummy" value="${damage.quantity}" type="number" autocomplete="off" aria-label="${type}Check" disabled></div><label for="${type}">${damage.label}</label></div><span name="${type}-${calcData}">${damage.value}%</span></div>`);
 		}
 		document.getElementById(type + "Check").addEventListener("click", displayCheck);
 	}

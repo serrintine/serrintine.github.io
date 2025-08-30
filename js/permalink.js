@@ -30,7 +30,7 @@ function generateShortLink() {
   critDamageValues.forEach((value, type) => {
     crit += value.active ? "1" : "0";
     if (value.active && value.hasRange) {
-      critQuantities += value.quantity.toString(36);
+      critQuantities += Number(value.quantity).toString(36);
     }
   })
 
@@ -39,7 +39,7 @@ function generateShortLink() {
   penetrationValues.forEach((value, type) => {
     pen += value.active ? "1" : "0";
     if (value.active && value.hasRange) {
-      penQuantities += value.quantity.toString(36);
+      penQuantities += Number(value.quantity).toString(36);
     }
   })
 
@@ -51,7 +51,7 @@ function generateShortLink() {
   });
 
   let calc = document.getElementById("critDamage").checked ? "c" : "p";
-  let critRate = parseInt(document.querySelector('#critRate').value, 10);
+  let critRate = Number(document.querySelector('#critRate').value);
   critRate = isNaN(critRate) ? 70 : critRate;
 
   const enemyList = document.querySelectorAll("div.wrapper-dropdown li");
