@@ -171,11 +171,11 @@ function addButtons() {
 		if(element.firstChild && element.firstChild.nodeName === "INPUT") {
 			let buttonName = element.firstChild.name;
 			if(element.classList.contains("enabled")) {
-				element.insertAdjacentHTML('afterbegin', `<button name="${buttonName}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
-				element.insertAdjacentHTML('beforeend', `<button name="${buttonName}Plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
+				element.insertAdjacentHTML('afterbegin', `<button aria-label="${buttonName}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>`);
+				element.insertAdjacentHTML('beforeend', `<button aria-label="${buttonName}Plus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" class="plus"></button>`);
 			} else if(element.classList.contains("disabled")) {
-				element.insertAdjacentHTML('afterbegin', `<button name="${buttonName}Minus" type="button" disabled></button>`);
-				element.insertAdjacentHTML('beforeend', `<button name="${buttonName}Plus" type="button" class="plus" disabled></button>`);
+				element.insertAdjacentHTML('afterbegin', `<button aria-label="${buttonName}Minus" type="button" disabled></button>`);
+				element.insertAdjacentHTML('beforeend', `<button aria-label="${buttonName}Plus" type="button" class="plus" disabled></button>`);
 			}
 		}
 	});
@@ -188,9 +188,9 @@ function setupArmor(armor, type, value) {
 				<div class="flex-container vertical">
 				<label class="bold" for="${type}Armor">${value.label}</label>
 				<div class="number-input enabled">
-				<button name="${type}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
+				<button aria-label="${type}Minus" type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown();this.parentNode.querySelector('input[type=number]').dispatchEvent(new Event('change'))" ></button>
 				<input class="quantity" min="${value.range[0]}" max="${value.range[1]}" name="${type}Quantity" id="${type}Quantity" value="${value.quantity}" type="number" autocomplete="off" aria-label="${type}Armor">
-				<button name="${type}Plus" type="button" onclick="stepUp(this.parentNode.querySelector('input[type=number]'))" class="plus"></button>
+				<button aria-label="${type}Plus" type="button" onclick="stepUp(this.parentNode.querySelector('input[type=number]'))" class="plus"></button>
 			</div>
 			</div>
 		</div>`);

@@ -49,15 +49,15 @@
 				</fieldset>
 				<div class="flex-container controls">
 					<label class="form-control">
-						<input type="radio" name="radio" id="critDamage" value="critDamage" />
+						<input type="radio" name="radio" id="critDamage" value="critDamage" aria-label="critDamage" />
 						Crit Damage
 					</label>
 					<label class="form-control">
-						<input type="radio" name="radio" id="penetration" value="penetration" />
+						<input type="radio" name="radio" id="penetration" value="penetration" aria-label="penetration" />
 						Penetration
 					</label>
 					<label class="form-control disabled">
-						<input type="radio" name="radio" id="critChance" value="critChance" disabled />
+						<input type="radio" name="radio" id="critChance" value="critChance" aria-label="critChance" disabled />
 						Crit Rate
 					</label>
 				</div>
@@ -73,7 +73,7 @@
 			<form class="result flex-container" name="result">
 				<fieldset>
 					<legend data-extra-option>Crit Rate</legend>
-					<div class="number-input enabled" id="critRateDiv"><input class="quantity" min="0" max="100" name="critRate" id="critRate" value="70" type="number" autocomplete="off"></div>
+					<div class="number-input enabled" id="critRateDiv"><input aria-label="critRate" class="quantity" min="0" max="100" name="critRate" id="critRate" value="70" type="number" autocomplete="off"></div>
 					<div class="wrapper-dropdown" id="enemyType">
 						<span class="selected-display" id="selectedEnemy"></span>
 						<span class="arrow"></span>
