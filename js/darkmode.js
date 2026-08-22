@@ -8,7 +8,7 @@ if (savedTheme) {
   document.documentElement.setAttribute('data-theme', savedTheme);
   toggleBtn.textContent = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
 } else if (prefersDark) {
-  document.documentElement.setAttribute('data-theme', dark);
+  document.documentElement.setAttribute('data-theme', 'dark');
   toggleBtn.textContent = '☀️ Light Mode';
 }
 
