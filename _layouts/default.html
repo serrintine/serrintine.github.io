@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.png" type="image/png" />
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <script src="js/darkmode.js"></script>
   </head>
 
   <body class="site">
@@ -30,6 +31,8 @@
             <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
             <p class="site-description">{{ site.description }}</p>
           </div>
+
+          <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙 Dark Mode</button>
           
           <nav>
             <a href="{{ site.baseurl }}/">Homebase</a>

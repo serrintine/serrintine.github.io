@@ -26,3 +26,19 @@ $georgia: Georgia, serif;
     @content;
   }
 }
+
+:root {
+  --header-bg: #{$white};
+  --header-border: #{$lightGray};
+  --site-name-color: #{$darkGray};
+  --site-desc-color: #{$gray};
+  --nav-link-color: #{$darkGray};
+}
+
+[data-theme="dark"] {
+  --header-bg: #0d1117;
+  --header-border: #30363d;
+  --site-name-color: #f0f6fc;
+  --site-desc-color: #8b949e;
+  --nav-link-color: #58a6ff;
+}
