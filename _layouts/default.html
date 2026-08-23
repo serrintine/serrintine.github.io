@@ -28,22 +28,25 @@
           {% include svg-logo.html %}
           
           <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <h1 class="site-name">
+              <a href="{{ site.baseurl }}/">{{ site.name }}</a>
+              <span class="toggle">
+                                            <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Switch to dark mode"
+            title="Toggle dark mode">
+            <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-17V.5m0 23v-1.5M4.22 4.22l-1.06-1.06m17.68 17.68-1.06-1.06M1 12h1.5m20 0H24m-4.22-7.78 1.06-1.06M4.22 19.78l-1.06 1.06"/>
+            </svg>
+            <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </span>
+            </h1>
             <p class="site-description">{{ site.description }}</p>
           </div>
-
-          <button
-  id="theme-toggle"
-  class="theme-toggle"
-  aria-label="Switch to dark mode"
-  title="Toggle dark mode">
-  <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-    <path d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-17V.5m0 23v-1.5M4.22 4.22l-1.06-1.06m17.68 17.68-1.06-1.06M1 12h1.5m20 0H24m-4.22-7.78 1.06-1.06M4.22 19.78l-1.06 1.06"/>
-  </svg>
-  <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-</button>
           
           <nav>
             <a href="{{ site.baseurl }}/">Homebase</a>

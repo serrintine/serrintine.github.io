@@ -219,6 +219,8 @@ img {
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .site-description {
@@ -308,11 +310,15 @@ footer {
   text-align: center;
 }
 
+.toggle {
+  margin-left: 10px;
+}
+
 .theme-toggle {
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 6px 8px;
+  padding: 8px;
   cursor: pointer;
   color: var(--text-secondary);
   display: flex;

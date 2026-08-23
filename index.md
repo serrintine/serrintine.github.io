@@ -29,7 +29,7 @@ I'm **Serrin**. I write a lot of code. I also [play video game music](https://yo
 def interests
   puts "Mobile development"
   puts "Web development"
-  puts "Cryptography"
+  puts "Backend development"
   puts "Security"
 end
 {% endhighlight %}
@@ -40,11 +40,21 @@ end
 #!/usr/bin/env python
 def languages()
   print "Java"
+  print "TypeScript"
   print "Python"
-  print "C"
   print "HTML/CSS"
   print "SQL"
-  print "LaTeX"
+{% endhighlight %}
+
+<div style="height:15px"></div>
+
+{% highlight java %}
+///usr/bin/env java
+public void profession() {
+    System.out.println("Company: Amazon");
+    System.out.println("Role: Software Development Engineer");
+    System.out.println("Duration: 10 years");
+}
 {% endhighlight %}
 
 <div style="height:15px"></div>
@@ -53,6 +63,6 @@ def languages()
 #!/bin/bash
 function education {
   echo "University of Maryland, College Park"
-  echo "B.S. Candidate, Mathematics and Computer Science"
+  echo "B.S., Mathematics; B.S., Computer Science"
 }
 {% endhighlight %}
