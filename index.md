@@ -51,9 +51,9 @@ def languages()
 {% highlight java %}
 ///usr/bin/env java
 public void profession() {
-    System.out.println("Company: Amazon");
-    System.out.println("Role: Software Development Engineer");
-    System.out.println("Duration: 10 years");
+  System.out.println("Company: Amazon");
+  System.out.println("Role: Software Development Engineer");
+  System.out.println("Duration: 10 years");
 }
 {% endhighlight %}
 
