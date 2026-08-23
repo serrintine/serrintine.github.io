@@ -27,7 +27,30 @@ $georgia: Georgia, serif;
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-color: #0d1117;
+  --text-color: #c9d1d9;
+  --heading-color: #f0f6fc;
+  --link-color: #58a6ff;
+  --border-color: #30363d;
+  --footer-bg: #161b22;
+  --header-bg: #0d1117;
+  --header-border: #30363d;
+  --site-name-color: #f0f6fc;
+  --site-desc-color: #8b949e;
+  --nav-link-color: #58a6ff;
+  }
+}
+
 :root {
+  /* Page Defaults (Light) */
+  --bg-color: #{$white};
+  --text-color: #{$darkGray};
+  --heading-color: #{$darkerGray};
+  --link-color: #{$blue};
+  --border-color: #{$lightGray};
+  --footer-bg: #{$lightGray};
   --header-bg: #{$white};
   --header-border: #{$lightGray};
   --site-name-color: #{$darkGray};
@@ -36,9 +59,35 @@ $georgia: Georgia, serif;
 }
 
 [data-theme="dark"] {
+  /* Page Overrides (Dark) */
+  --bg-color: #0d1117;
+  --text-color: #c9d1d9;
+  --heading-color: #f0f6fc;
+  --link-color: #58a6ff;
+  --border-color: #30363d;
+  --footer-bg: #161b22;
   --header-bg: #0d1117;
   --header-border: #30363d;
   --site-name-color: #f0f6fc;
   --site-desc-color: #8b949e;
   --nav-link-color: #58a6ff;
+}
+
+
+[data-theme="dark"] {
+  .highlight {
+    background: #272822;
+    color: #f8f8f2;
+  }
+  .highlight .k,
+  .highlight .kd,
+  .highlight .kn { color: #66d9ef; }  /* keywords */
+  .highlight .s,
+  .highlight .s1,
+  .highlight .s2 { color: #a6e22e; }  /* strings */
+  .highlight .c,
+  .highlight .c1 { color: #75715e; }  /* comments */
+  .highlight .n  { color: #f8f8f2; }  /* names */
+  .highlight .o  { color: #f92672; }  /* operators */
+  .highlight .mi { color: #ae81ff; }  /* integers */
 }

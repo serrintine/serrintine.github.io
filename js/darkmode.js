@@ -1,29 +1,70 @@
-const toggleBtn = document.getElementById('theme-toggle');
+(function () {
+  'use strict';
 
-// Check for saved preference or system preference on load
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const STORAGE_KEY = 'theme';
+  const DARK = 'dark';
+  const LIGHT = 'light';
 
-if (savedTheme) {
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  toggleBtn.textContent = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
-} else if (prefersDark) {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  toggleBtn.textContent = '☀️ Light Mode';
-}
-
-// Toggle theme on button click
-toggleBtn.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  let newTheme = 'light';
-  
-  if (currentTheme !== 'dark') {
-    newTheme = 'dark';
-    toggleBtn.textContent = '☀️ Light Mode';
-  } else {
-    toggleBtn.textContent = '🌙 Dark Mode';
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      return null;  // localStorage blocked (private browsing on some browsers)
+    }
   }
-  
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT;
+  }
+
+  function getCurrentTheme() {
+    return getStoredTheme() || getSystemTheme();
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  function updateToggleLabel(theme) {
+    const button = document.getElementById('theme-toggle');
+    if (!button) return;
+    button.setAttribute(
+      'aria-label',
+      theme === DARK ? 'Switch to light mode' : 'Switch to dark mode'
+    );
+  }
+
+  // Apply theme IMMEDIATELY — before the rest of the page renders
+  applyTheme(getCurrentTheme());
+
+  // Wire up the toggle after the DOM loads
+  document.addEventListener('DOMContentLoaded', function () {
+    const button = document.getElementById('theme-toggle');
+    if (!button) return;
+
+    updateToggleLabel(getCurrentTheme());
+
+    button.addEventListener('click', function () {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === DARK ? LIGHT : DARK;
+
+      applyTheme(next);
+      updateToggleLabel(next);
+
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch (e) {
+        // localStorage unavailable — theme still switches for this session
+      }
+    });
+
+    // Update icon when OS theme changes (user changes system preference while tab is open)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      if (!getStoredTheme()) {
+        const theme = e.matches ? DARK : LIGHT;
+        applyTheme(theme);
+        updateToggleLabel(theme);
+      }
+    });
+  });
+})();

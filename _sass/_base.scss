@@ -12,9 +12,10 @@ html {
 }
 
 body {
-  background: $white;
+  background: var(--bg-color);
   font: 16px/1.4 $helvetica;
-  color: $darkGray;
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .site {
@@ -52,7 +53,7 @@ table {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
-  color: $darkerGray;
+  color: var(--heading-color);
   font-weight: bold;
   
   line-height: 1.7;
@@ -91,11 +92,11 @@ p {
 }
 
 a {
-  color: $blue;
+  color: var(--link-color);
   text-decoration: none;
   cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: var(--link-color);
   }
   transition: .3s;
 }
@@ -252,7 +253,7 @@ nav {
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: var(--nav-link-color);
     }
   }
 }
@@ -267,7 +268,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .posts > .post:last-child {
@@ -297,12 +298,44 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--footer-bg);
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
 }
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--link-color);
+    color: var(--link-color);
+  }
+
+  svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+/* In dark mode: show sun icon (to switch to light) */
+[data-theme="dark"] .theme-toggle__moon { display: none; }
+[data-theme="dark"] .theme-toggle__sun  { display: block; }
+
+/* In light mode: show moon icon (to switch to dark) */
+.theme-toggle__sun  { display: none; }
+.theme-toggle__moon { display: block; }
