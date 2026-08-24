@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="gallery">
+    <ul id="filters" class="clearfix">
+        <li><span class="filter active" data-filter="all">All</span></li>
+        {% for c in site.portfolio-categories -%}
+        <li><h2 class="filter" data-filter=".{{ c | downcase | replace: ' ', '-' }}">{{ c }}</h2></li>
+        {% endfor %}
+    </ul>
+    <div id="portfoliolist">
+        {% for i in site.portfolio-order -%}
+        {%- assign img-index = forloop.index -%}
+        {%- for p in site.portfolio -%}
+        {%- if i == p.slug -%}
+        <div class="portfolio {{ p.categories | join: '•' | downcase | replace: ' ', '-' | replace: '•', ' ' }}">
+            {% assign source = p.image %}
+            <a title="{{ p.title }}, {{ p.categories | join: ', ' }}" class="image-thumb" href="{{ source }}" data-fancybox="gallery" data-type="{{ p.type | replace: 'pdf', 'iframe' }}"
+               data-caption="<p><b>{{ p.title }}</b></p><p>{{ p.description }}</p>">
+                <div class="portfolio-wrapper">
+                    <div class="portfolio-img">
+                        {%- if img-index > 2 -%}
+                        <img class="lazyload" src="{{ p.image | replace: 'fullsize', 'thumbs-min' | split: '.' | first | append: '-min.jpg' }}"
+                             data-src="{{ p.image | replace: 'fullsize', 'thumbs' | split: '.' | join: '-thumb.' }}" alt="{{ p.description }}"
+                             width="360" height="300" />
+                        {%- else -%}
+                        <img src="{{ p.image | replace: 'fullsize', 'thumbs' | split: '.' | join: '-thumb.' }}" alt="{{ p.description }}"
+                             width="360" height="300" />
+                        {%- endif -%}
+                    </div>
+                    <div class="label">
+                        <h3 class="text-title">{{ p.title }}</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,190 @@
+.gallery {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	transition: all 1s ease;
+	margin-bottom: -25px;
+	text-align: center;
+}
+
+#filters {
+	text-align: center;
+	padding: 0 20px;
+	list-style: none;
+	margin: 0;
+	margin-bottom: 25px;
+	display: inline-block;
+}
+
+#filters li {
+	float: none;
+	display: inline-block;
+	padding: 10px;
+}
+
+#filters li span,
+#filters li h2 {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	color: var(--nav-link-color);
+	cursor: pointer;
+	transition: .3s;
+}
+
+#filters li span:hover,
+#filters li h2:hover {
+    color: var(--nav-link-color);
+}
+
+#filters li span.active,
+#filters li h2.active {
+	color: var(--text-color);
+	font-weight: bold;
+}
+
+#portfoliolist:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#portfoliolist .portfolio {
+	width: calc(1440px/4); //calc(min(100% - 20px, 1420px)/4)
+	height: auto;
+	margin: 0;
+	float: left;
+	overflow: hidden;
+}
+
+.image-thumb {
+    line-height: 0;
+}
+
+.portfolio-wrapper {
+    height: 100%;
+	overflow: hidden;
+	position: relative !important;
+	cursor: pointer;
+}
+
+.portfolio img {
+    transform: scale(1.01);
+    width: 100%;
+    height: 100%;
+	object-fit: cover;
+	transition: all 600ms;
+}
+
+.portfolio-img:after, .portfolio-img:before {
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.portfolio-img:after {
+    content: '\A';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(82, 74, 94, 0.7);
+}
+
+.portfolio:hover .portfolio-img:after,
+.portfolio:hover .portfolio-img:before {
+    opacity: 1;
+}
+
+.portfolio .label {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	text-align: center;
+	transition: all 600ms;
+	opacity: 0;
+	color: $white;
+	line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.portfolio .text-title {
+    font-size: 16px;
+    color: $white;
+	font-weight: 700;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 10px 5px 10px;
+	text-transform: uppercase;
+}
+
+.portfolio .text-category {
+	font-size: 14px;
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 10px 10px;
+}
+
+.portfolio:hover .label {
+	opacity: 1;
+}
+
+.portfolio:hover img {
+	transform: scale(1.2);
+}
+
+//Needed because firefox doesn't support min()
+@media only screen and (max-width: 1440px) {
+	#portfoliolist .portfolio {
+		width: calc(100%/4);
+	}
+}
+
+@media only screen and (max-width: 1080px) {
+	#portfoliolist .portfolio {
+		width: calc(100%/3);
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	#portfoliolist .portfolio {
+		width: calc(100%/2);
+	}
+}
+
+@media only screen and (max-width: 520px) {
+	#filters {
+        width: 350px;
+    }
+    #filters li span,
+    #filters li h2 {
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    #filters {
+        width: 100%;
+    }
+	#portfoliolist .portfolio {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+    #portfoliolist .portfolio {
+        width: 320px;
+    	height: calc(320px*5/6);
+    }
+}

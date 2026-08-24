@@ -91,3 +91,38 @@ $georgia: Georgia, serif;
   .highlight .o  { color: #f92672; }  /* operators */
   .highlight .mi { color: #ae81ff; }  /* integers */
 }
+
+// Colors
+$purple: #986edc;
+$purple-dark: #524a90;
+$purple-light: #e1b7ff;
+$purple-pink: #24e0ff;
+$purple-black: #2e264c;
+
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$gray2: #999;
+$lightGray: #ccc;
+$lighterGray: #eee;
+$white: #fff;
+
+// Font stacks
+@font-face {
+  font-family: "coves";
+  src: url("../assets/fonts/coves.otf");
+  font-display: swap;
+}
+@font-face {
+  font-family: "coves-bold";
+  src: url("../assets/fonts/coves-bold.otf");
+  font-display: swap;
+}
+$coves: "coves", Helvetica, Arial, sans-serif;
+$coves-bold: "coves-bold", Helvetica, Arial, sans-serif;
+$montserrat: 'Montserrat', sans-serif;
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;

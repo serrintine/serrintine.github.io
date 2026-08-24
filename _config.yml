@@ -7,6 +7,62 @@ description: Being meguca is suffering
 # URL of avatar or profile pic
 avatar: /images/avatar.png
 
+# Path of site logo (used for SEO)
+# Only change the image file itself, not the path!
+logo: &logo /images/avatar.png
+
+# Ordered list of categories for portfolio posts
+portfolio-categories:
+  - Icky
+  - Morti
+  - Both
+
+portfolio-order:
+  - ickymorti1
+  - icky1
+  - icky3
+  - icky4
+  - morti1
+  - morti2
+  - icky2
+  - ickymorti2
+  - ickymorti3
+  - ickymorti4
+  - ickymorti5
+  - ickymorti6
+  - ickymorti7
+  - ickymorti8
+  - ickymorti9
+  - morti3
+
+
+# Collections for general pages and portfolio posts
+collections_dir: pages
+collections:
+  menu:
+    output: true
+    permalink: /:title/
+  portfolio:
+    output: true
+    permalink: /:collection/:title/ # Add slugified_categories for Jekyll4.1
+
+# Front matter defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "general"
+      image: *logo
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "portfolio"
+  - scope:
+      path: "assets/**/*.pdf"
+    values:
+      sitemap: false
+
 #
 # Flags below are optional
 #

@@ -1,5 +1,6 @@
 ---
 layout: default
+description: Sailunsi is a software engineer by trade whose true passion is curating images of their cats and catching Pokemon.
 published: true
 ---
 
