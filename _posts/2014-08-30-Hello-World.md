@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello world...
+date: 2014
 published: true
 ---
 

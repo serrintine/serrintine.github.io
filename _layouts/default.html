@@ -26,6 +26,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" defer></script>
     <script src="{{ site.baseurl }}/js/gallery.js" defer></script>
     {%- endif %}
+
+    {% if page.layout == "pokemon" -%}
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/pokemon.css" />
+    {%- endif %}
     
     <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.png" type="image/png" />
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/style.css" />
@@ -64,6 +68,7 @@
           
           <nav>
             <a href="{{ site.baseurl }}/cats">Cats</a>
+            <a href="{{ site.baseurl }}/pokemon">Pokémon</a>
             <a href="{{ site.baseurl }}/eso-calculators">Surprise</a>
           </nav>
         </header>
