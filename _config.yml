@@ -2,7 +2,7 @@
 name: Sailunsi
 
 # Short bio or description (displayed in the header)
-description: Being meguca is suffering
+description: A goofy goober
 
 # URL of avatar or profile pic
 avatar: /images/avatar.png
@@ -45,6 +45,9 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:title/ # Add slugified_categories for Jekyll4.1
+  pokemon:
+    output: true
+    permalink: /:collection/:title/
 
 # Front matter defaults
 defaults:

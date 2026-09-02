@@ -29,7 +29,7 @@ $georgia: Georgia, serif;
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg-color: #0d1117;
+  --bg-color: #0d1117;
   --text-color: #c9d1d9;
   --heading-color: #f0f6fc;
   --link-color: #58a6ff;
@@ -40,6 +40,7 @@ $georgia: Georgia, serif;
   --site-name-color: #f0f6fc;
   --site-desc-color: #8b949e;
   --nav-link-color: #58a6ff;
+  --poke-bg-color: #1f2937;
   }
 }
 
@@ -56,6 +57,7 @@ $georgia: Georgia, serif;
   --site-name-color: #{$darkGray};
   --site-desc-color: #{$gray};
   --nav-link-color: #{$darkGray};
+  --poke-bg-color: #{$white};
 }
 
 [data-theme="dark"] {
@@ -71,6 +73,7 @@ $georgia: Georgia, serif;
   --site-name-color: #f0f6fc;
   --site-desc-color: #8b949e;
   --nav-link-color: #58a6ff;
+  --poke-bg-color: #1f2937;
 }
 
 

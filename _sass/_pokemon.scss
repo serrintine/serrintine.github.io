@@ -1,0 +1,262 @@
+hr.pokedex-divider {
+margin: 25px;
+}
+
+/* Outer Desktop Layout */
+.pokedex-interface {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+  }
+}
+
+/* Common Card Styling */
+.dex-card {
+  background: var(--poke-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  border: 1px solid #374151;
+  overflow: hidden;
+}
+
+/* Left Side: Image Card */
+.overview-card {
+  width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #c03028;
+
+  @include mobile {
+    width: 100%;
+    max-width: 380px; /* Expands slightly on mobile screens for better touch targets */
+  }
+}
+
+.portrait-image {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-bottom: 1px solid #374151;
+
+  @include mobile {
+    height: auto;
+    aspect-ratio: 1 / 1; /* Retains clean square image ratio on scaled screens */
+  }
+}
+
+.overview-content {
+  padding: 16px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overview-content h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-color);;
+  margin-bottom: 2px;
+}
+
+.overview-dex-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+.type-tags {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.type-tag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+}
+
+.type-fire { background-color: #f08030; }
+.type-fighting { background-color: #c03028; }
+.type-flying { background-color: #a890f0; }
+
+/* Right Side Column */
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 360px;
+  flex-shrink: 0;
+
+  @include mobile {
+    width: 100%;
+    max-width: 380px; /* Expands slightly on mobile screens for better touch targets */
+  }
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #374151;
+}
+
+.stat-card-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-color);;
+}
+
+.stat-total {
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  background: #111827;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #374151;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 65px 35px 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.stat-row:last-child {
+  margin-bottom: 0;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.stat-bar-bg {
+  background: #374151;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  width: 0%;
+  animation: fillBar 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fillBar {
+  to {
+    width: var(--val);
+  }
+}
+
+/* Stat Colors */
+.hp  { background-color: #ff5959; }
+.atk { background-color: #f5ac78; }
+.def { background-color: #fae078; }
+.spa { background-color: #9db7f5; }
+.spd { background-color: #a7db8d; }
+.spe { background-color: #fa92b2; }
+
+/* Dex Text Card */
+.dex-card-entry {
+  padding: 20px;
+}
+
+.dex-header {
+  margin-bottom: 10px;
+}
+
+.entry-category {
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.dex-flavor-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #d1d5db;
+  margin-bottom: 14px;
+}
+
+.dex-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #374151;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.metric-value {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Mobile Responsive Breakpoint */
+@media (max-width: 640px) {
+  .pokedex-interface {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .overview-card,
+  .details-column {
+    width: 100%;
+    max-width: 380px; /* Expands slightly on mobile screens for better touch targets */
+  }
+
+  .portrait-image {
+    height: auto;
+    aspect-ratio: 1 / 1; /* Retains clean square image ratio on scaled screens */
+  }
+}
