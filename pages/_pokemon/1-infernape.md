@@ -9,7 +9,7 @@ evoline: 80
 typing: 90
 stats: 90
 abilities: 75
-gimmicks: 0
+moveset: 100
 title: favorite pokémon
 height: 1.2
 weight: 55.0

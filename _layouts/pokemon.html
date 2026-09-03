@@ -26,7 +26,7 @@ layout: default
       <div class="dex-card stat-card">
         <div class="stat-card-header">
           <h3 class="stat-card-title">My Ratings</h3>
-          <span class="stat-total">Total: {{ post.design | plus:post.evoline | plus:post.typing | plus:post.stats | plus:post.abilities | plus:post.gimmicks }} | 600</span>
+          <span class="stat-total">Total: {{ post.design | plus:post.evoline | plus:post.typing | plus:post.stats | plus:post.abilities | plus:post.moveset }}</span>
         </div>
 
         <div class="stat-row">
@@ -70,10 +70,10 @@ layout: default
     </div>
 
     <div class="stat-row">
-      <span class="stat-label">Gimmicks</span>
-      <span class="stat-value">{{ post.gimmicks }}</span>
+      <span class="stat-label">Moveset</span>
+      <span class="stat-value">{{ post.moveset }}</span>
       <div class="stat-bar-bg">
-        <div class="stat-bar-fill spe" style="--val: {{ post.gimmicks }}%;"></div>
+        <div class="stat-bar-fill spe" style="--val: {{ post.moveset }}%;"></div>
       </div>
     </div>
       </div>

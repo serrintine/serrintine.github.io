@@ -1,6 +1,6 @@
 ---
 title: Follow the leader
-description: We were getting ready the move and they decided to perch on our mattress
+description: We were getting ready to move and they decided to perch on our mattress
 categories: [Both]
 image: /images/fullsize/ickymorti3.jpg
 ---

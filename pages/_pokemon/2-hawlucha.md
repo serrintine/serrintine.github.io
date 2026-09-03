@@ -9,11 +9,11 @@ evoline: 0
 typing: 90
 stats: 90
 abilities: 90
-gimmicks: 100
+moveset: 90
 title: favorite mega evolution
 height: 1.0
 weight: 25.0
 imgsrc: /images/fullsize/hawlucha.png
 ---
 
-Mega Hawlucha is a sick birb. 
+Mega Hawlucha is a sick birb. Even though Mega Dragonite won Worlds 2026 and is a goat, my favorite mega remains this silly flying wrestler.

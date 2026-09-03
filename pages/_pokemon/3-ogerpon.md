@@ -9,7 +9,7 @@ evoline: 0
 typing: 80
 stats: 95
 abilities: 90
-gimmicks: 90
+moveset: 90
 title: favorite legendary
 height: 1.2
 weight: 39.8
