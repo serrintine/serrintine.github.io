@@ -1,6 +1,6 @@
 ---
 layout: default
-pokemon: Hawlucha
+pokemon: Mega Hawlucha
 dexnum: "0701"
 type1: fighting
 type2: flying
