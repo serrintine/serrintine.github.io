@@ -1,5 +1,8 @@
 hr.pokedex-divider {
 margin: 25px;
+height: 1px;
+border: none;
+background-color: var(--header-border);
 }
 
 .pokedex-interface {
@@ -19,7 +22,7 @@ width: 100%;
 background: var(--poke-bg-color);
 border-radius: 12px;
 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-border: 1px solid #374151;
+border: 1px solid var(--dex-border);
 overflow: hidden;
 }
 
@@ -28,7 +31,7 @@ width: 340px;
 flex-shrink: 0;
 display: flex;
 flex-direction: column;
-border: 2px solid #c03028;
+border: 2px solid var(--overview-border);
 
 @include mobile {
   width: 100%;
@@ -40,7 +43,7 @@ border: 2px solid #c03028;
 width: 100%;
 height: 340px;
 object-fit: cover;
-border-bottom: 1px solid #374151;
+border-bottom: 1px solid var(--dex-border);
 
 @include mobile {
   height: auto;
@@ -130,7 +133,7 @@ justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
 padding-bottom: 10px;
-border-bottom: 1px solid #374151;
+border-bottom: 1px solid var(--dex-border);
 }
 
 .stat-card-title {
@@ -148,7 +151,7 @@ color: var(--total-color);
 background: var(--total-bg-color);
 padding: 3px 8px;
 border-radius: 6px;
-border: 1px solid #374151;
+border: 1px solid var(--dex-border);
 }
 
 .stat-row {
@@ -230,7 +233,7 @@ display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 8px;
 padding-top: 10px;
-border-top: 1px solid #374151;
+border-top: 1px solid var(--dex-border);
 }
 
 .metric-item {

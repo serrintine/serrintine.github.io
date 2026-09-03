@@ -12,6 +12,7 @@ $black: #000;
 $darkerGray: #222;
 $darkGray: #333;
 $gray: #666;
+$lighterGray: #999;
 $lightGray: #eee;
 $white: #fff;
 
@@ -46,6 +47,8 @@ $georgia: Georgia, serif;
   --total-color: #9ca3af;
   --bar-bg-color: #374151;
   --label-color: #9ca3af;
+  --dex-border: #374151;
+  --overview-border: #c03028;
 
   .highlight {
     background: #272822;
@@ -83,4 +86,6 @@ $georgia: Georgia, serif;
   --total-color: #{$darkGray};
   --bar-bg-color: #{$lightGray};
   --label-color: #{$gray};
+  --dex-border: #{$lighterGray};
+  --overview-border: #c03028;
 }
