@@ -2,7 +2,6 @@ hr.pokedex-divider {
 margin: 25px;
 }
 
-/* Outer Desktop Layout */
 .pokedex-interface {
 display: flex;
 gap: 20px;
@@ -16,7 +15,6 @@ width: 100%;
 }
 }
 
-/* Common Card Styling */
 .dex-card {
 background: var(--poke-bg-color);
 border-radius: 12px;
@@ -25,7 +23,6 @@ border: 1px solid #374151;
 overflow: hidden;
 }
 
-/* Left Side: Image Card */
 .overview-card {
 width: 340px;
 flex-shrink: 0;
@@ -35,7 +32,7 @@ border: 2px solid #c03028;
 
 @include mobile {
   width: 100%;
-  max-width: 380px; /* Expands slightly on mobile screens for better touch targets */
+  max-width: 380px;
 }
 }
 
@@ -47,7 +44,7 @@ border-bottom: 1px solid #374151;
 
 @include mobile {
   height: auto;
-  aspect-ratio: 1 / 1; /* Retains clean square image ratio on scaled screens */
+  aspect-ratio: 1 / 1;
 }
 }
 
@@ -63,14 +60,14 @@ justify-content: center;
 .overview-content h2 {
 font-size: 20px;
 font-weight: 800;
-color: var(--text-color);;
+color: var(--heading-color);
 margin-bottom: 2px;
 }
 
 .overview-dex-num {
 font-size: 12px;
 font-weight: 700;
-color: #9ca3af;
+color: var(--label-color);
 margin-bottom: 10px;
 }
 
@@ -80,39 +77,36 @@ gap: 6px;
 justify-content: center;
 }
 
-/* ALL 18 POKÉMON TYPES WITH TEXT CONTRAST SHADOWS */
-    .type-tag {
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 4px;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-      /* Default dark drop-shadow for lighter backgrounds */
-      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); 
-    }
+.type-tag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); 
+}
 
-    .type-normal   { background-color: #A8A878; color: #ffffff; }
-    .type-fire     { background-color: #F08030; }
-    .type-water    { background-color: #6890F0; }
-    .type-grass    { background-color: #78C850; }
-    .type-electric { background-color: #F8D030; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
-    .type-ice      { background-color: #98D8D8; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
-    .type-fighting { background-color: #C03028; }
-    .type-poison   { background-color: #A040A0; }
-    .type-ground   { background-color: #E0C068; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
-    .type-flying   { background-color: #A890F0; }
-    .type-psychic  { background-color: #F85888; }
-    .type-bug      { background-color: #A8B820; }
-    .type-rock     { background-color: #B8A038; }
-    .type-ghost    { background-color: #705898; }
-    .type-dragon   { background-color: #7038F8; }
-    .type-steel    { background-color: #B8B8D0; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
-    .type-fairy    { background-color: #EE99AC; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
-    .type-dark     { background-color: #705848; }
+.type-normal   { background-color: #a8a878; color: #ffffff; }
+.type-fire     { background-color: #f08030; }
+.type-water    { background-color: #6890f0; }
+.type-grass    { background-color: #78c850; }
+.type-electric { background-color: #f8d030; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
+.type-ice      { background-color: #98d8d8; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
+.type-fighting { background-color: #c03028; }
+.type-poison   { background-color: #a040a0; }
+.type-ground   { background-color: #e0c068; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
+.type-flying   { background-color: #a890f0; }
+.type-psychic  { background-color: #f85888; }
+.type-bug      { background-color: #a8b820; }
+.type-rock     { background-color: #b8a038; }
+.type-ghost    { background-color: #705898; }
+.type-dragon   { background-color: #7038f8; }
+.type-steel    { background-color: #b8b8d0; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
+.type-fairy    { background-color: #ee99ac; color: #222222; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5); }
+.type-dark     { background-color: #705848; }
 
-/* Right Side Column */
 .details-column {
 display: flex;
 flex-direction: column;
@@ -144,14 +138,14 @@ font-size: 12px;
 font-weight: 800;
 text-transform: uppercase;
 letter-spacing: 0.8px;
-color: var(--text-color);;
+color: var(--heading-color);
 }
 
 .stat-total {
 font-size: 11px;
 font-weight: 700;
-color: #9ca3af;
-background: #111827;
+color: var(--total-color);
+background: var(--total-bg-color);
 padding: 3px 8px;
 border-radius: 6px;
 border: 1px solid #374151;
@@ -172,7 +166,7 @@ margin-bottom: 0;
 .stat-label {
 font-size: 12px;
 font-weight: 700;
-color: #9ca3af;
+color: var(--label-color);
 text-transform: uppercase;
 }
 
@@ -183,7 +177,7 @@ text-align: right;
 }
 
 .stat-bar-bg {
-background: #374151;
+background: var(--bar-bg-color);
 height: 8px;
 border-radius: 4px;
 overflow: hidden;
@@ -202,7 +196,6 @@ to {
 }
 }
 
-/* Stat Colors */
 .hp  { background-color: #ff5959; }
 .atk { background-color: #f5ac78; }
 .def { background-color: #fae078; }
@@ -210,7 +203,6 @@ to {
 .spd { background-color: #a7db8d; }
 .spe { background-color: #fa92b2; }
 
-/* Dex Text Card */
 .dex-card-entry {
 padding: 20px;
 }
@@ -222,7 +214,7 @@ margin-bottom: 10px;
 .entry-category {
 font-size: 11px;
 font-weight: 700;
-color: #9ca3af;
+color: var(--label-color);
 text-transform: uppercase;
 }
 
@@ -249,7 +241,7 @@ flex-direction: column;
 .metric-label {
 font-size: 10px;
 font-weight: 700;
-color: #9ca3af;
+color: var(--label-color);
 text-transform: uppercase;
 margin-bottom: 2px;
 }

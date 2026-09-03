@@ -29,6 +29,7 @@ $georgia: Georgia, serif;
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+  /* Page Overrides (Dark) */
   --bg-color: #0d1117;
   --text-color: #c9d1d9;
   --heading-color: #f0f6fc;
@@ -41,6 +42,26 @@ $georgia: Georgia, serif;
   --site-desc-color: #8b949e;
   --nav-link-color: #58a6ff;
   --poke-bg-color: #1f2937;
+  --total-bg-color: #111827;
+  --total-color: #9ca3af;
+  --bar-bg-color: #374151;
+  --label-color: #9ca3af;
+
+  .highlight {
+    background: #272822;
+    color: #f8f8f2;
+  }
+  .highlight .k,
+  .highlight .kd,
+  .highlight .kn { color: #66d9ef; }  /* keywords */
+  .highlight .s,
+  .highlight .s1,
+  .highlight .s2 { color: #a6e22e; }  /* strings */
+  .highlight .c,
+  .highlight .c1 { color: #75715e; }  /* comments */
+  .highlight .n  { color: #f8f8f2; }  /* names */
+  .highlight .o  { color: #f92672; }  /* operators */
+  .highlight .mi { color: #ae81ff; }  /* integers */
   }
 }
 
@@ -58,74 +79,8 @@ $georgia: Georgia, serif;
   --site-desc-color: #{$gray};
   --nav-link-color: #{$darkGray};
   --poke-bg-color: #{$white};
+  --total-bg-color: #{$lightGray};
+  --total-color: #{$darkGray};
+  --bar-bg-color: #{$lightGray};
+  --label-color: #{$gray};
 }
-
-[data-theme="dark"] {
-  /* Page Overrides (Dark) */
-  --bg-color: #0d1117;
-  --text-color: #c9d1d9;
-  --heading-color: #f0f6fc;
-  --link-color: #58a6ff;
-  --border-color: #30363d;
-  --footer-bg: #161b22;
-  --header-bg: #0d1117;
-  --header-border: #30363d;
-  --site-name-color: #f0f6fc;
-  --site-desc-color: #8b949e;
-  --nav-link-color: #58a6ff;
-  --poke-bg-color: #1f2937;
-}
-
-
-[data-theme="dark"] {
-  .highlight {
-    background: #272822;
-    color: #f8f8f2;
-  }
-  .highlight .k,
-  .highlight .kd,
-  .highlight .kn { color: #66d9ef; }  /* keywords */
-  .highlight .s,
-  .highlight .s1,
-  .highlight .s2 { color: #a6e22e; }  /* strings */
-  .highlight .c,
-  .highlight .c1 { color: #75715e; }  /* comments */
-  .highlight .n  { color: #f8f8f2; }  /* names */
-  .highlight .o  { color: #f92672; }  /* operators */
-  .highlight .mi { color: #ae81ff; }  /* integers */
-}
-
-// Colors
-$purple: #986edc;
-$purple-dark: #524a90;
-$purple-light: #e1b7ff;
-$purple-pink: #24e0ff;
-$purple-black: #2e264c;
-
-// Grays
-$black: #000;
-$darkerGray: #222;
-$darkGray: #333;
-$gray: #666;
-$gray2: #999;
-$lightGray: #ccc;
-$lighterGray: #eee;
-$white: #fff;
-
-// Font stacks
-@font-face {
-  font-family: "coves";
-  src: url("../assets/fonts/coves.otf");
-  font-display: swap;
-}
-@font-face {
-  font-family: "coves-bold";
-  src: url("../assets/fonts/coves-bold.otf");
-  font-display: swap;
-}
-$coves: "coves", Helvetica, Arial, sans-serif;
-$coves-bold: "coves-bold", Helvetica, Arial, sans-serif;
-$montserrat: 'Montserrat', sans-serif;
-$helvetica: Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$georgia: Georgia, serif;

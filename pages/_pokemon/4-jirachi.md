@@ -1,7 +1,7 @@
 ---
 layout: default
 pokemon: Jirachi
-dexnum: "1017"
+dexnum: "0385"
 type1: steel
 type2: psychic
 design: 95
